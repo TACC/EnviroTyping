@@ -5,7 +5,6 @@
         ii. Grouped and arranged on following variables: Exp, StatID, Year, & Month
         iii. Dropped missing values
         iv. Created summary statistics for Min/Max for each grouped variable
-
 2. Hybrid and Inbred data
         i. Selected Exp, Pedi, Repl, Harvestm & Y-variables
         ii. Arranged by Exp, Pedi, Repl
