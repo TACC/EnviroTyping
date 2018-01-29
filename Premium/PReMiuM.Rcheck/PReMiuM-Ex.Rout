@@ -1,4 +1,0 @@
-*** Further command line arguments ('--vanilla ') disregarded
-*** (maybe use 'run --vanilla ' from *inside* valgrind)
-
-/usr/lib/R/bin/R: line 286: exec: valgrind: not found

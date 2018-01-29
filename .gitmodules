@@ -1,3 +1,6 @@
 [submodule "PReMiuM-R-package"]
 	path = Premium
 	url = https://github.com/silvialiverani/PReMiuM-R-package.git
+[submodule "Premium"]
+	path = Premium
+	url = https://github.com/silvialiverani/PReMiuM-R-package
