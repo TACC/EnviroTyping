@@ -1,0 +1,193 @@
+G2F 2015 Inbred Data
+
+Thirty one inbreds (Table 7), were planted at 18 locations and across 13
+states, with two experiment locations planted very close to one another in
+Columbia, Missouri and College Station, Texas.  Experiments, within locations
+were planted in a randomized complete block design (RCBD).  Two to twelve
+complete replicates of each inbred were planted at each location; each inbred
+grown was randomized within each replicate.  Each inbred, in the data set, was
+assigned a unique inbred code (located in ‘code’ column of the dataset).
+
+Investigators indicated certain plots had been replaced with filler (any
+variety of corn used as a placeholder for missing plots) or identified outside
+of predetermined ranges and therefore discarded (Table 8).  Columns indicated
+as Filler or discarded may have data in the data set, but those data considered
+unusable by the investigator.  Comments provided by investigators are provided
+in Table 9.
+
+Table 7.
+Inbred Pedigrees.
+
+   Pedigree      |      Pedigree
+-----------------|------------------
+      740        |        LH82
+      2369       |        Mo17
+      A619       |        PB80
+      A632       |        PH207
+      A634       |        PHB47
+      B14        |        PHG35
+      B37        |        PHG39
+      B73        |        PHG47
+      C103       |        PHJ40
+      CM105      |        PHN82
+      LH123HT    |        PHV63
+      LH145      |        PHW52
+      LH162      |        PHZ51
+      LH195      |        W117Ht
+      LH198      |        Wf9
+      LH74       |
+
+
+Table 8. Column names and descriptions.
+Column Name           | Column Description
+----------------------|-------------------------------------------------------
+Recid                 | Internal database id number unique to each plot.
+                      |
+Field-Location        | Location name.
+                      |
+State                 | State were experiment was conducted.
+                      |
+                      |
+Source                | Code assigned by project producing seed designating
+                      | specific origin of seed of the inbred including season,
+                      | location, and nursery row
+                      |
+Pedigree              | Pedigree (Table 7)
+                      |
+Replicate             | Replicate block (2 blocks per experiment).
+                      |
+Plot                  | Designation of individual experimental unit
+                      |
+Range                 | Designation of field range of the plot (ranges are
+                      | organized perpendicular to corn rows)
+                      |
+Pass                  | Designation of field pass of the plot (passes are
+                      | organzied parallel to corn rows; combination of range
+                      | and pass form coordinate grid system describing
+                      | location of each plot with the field)
+                      |
+Plot area             | Planted area (excluding alley) of the plot in square
+                      | feet and used in grain yeild calculation
+                      |
+Date Planted          | Date the plot was planted
+                      |
+Date Harvested        | Date the plot was harvested
+                      |
+Anthesis [days]       | Days between planting and 50% of plants of a plot
+                      | exhibit another exertion on more than half of the main
+                      | tassel spike
+                      |
+Silking [days]        | Days between planting and 50% of plants of a plot
+                      | show silk emergence
+                      |
+Stand Count [plants]  | Number of plants per plot at harvest
+                      |
+Pollen DAP [days]     | Number of days after planting that 50% of plants in the
+                      | plot began shedding pollen
+                      |
+Silk [date]           | Number of days after planting that 50% of plants in the
+                      | plot had visible silks
+                      |
+Plant Height [cm]     | Measured as the distance between the base of a plant
+                      | and the ligule of the flag leaf
+                      |
+Ear Height [cm]       | Measured as the distance from the ground to the primary
+                      | ear bearing node
+                      |
+Root Lodging [plants] | Number of plants that show root lodging per plot, i.e.,
+                      | those stems that lean substantially to one side (> 15%
+                      | from vertical).  Count includes ‘goosenecked’ plants
+                      | that have ‘straightened up’ after becoming lodged
+                      | earlier in the season
+                      |
+Stalk Lodging         |
+[plants]              | Number of plants broken between ground level and top ear
+                      | node at harvest
+                      |
+Plot Discarded        | Value ‘yes’ if investigator believes no data from the
+                      | plot should be used due to problem affecting all data
+
+*Comments from collaborators regarding measurements done outside of the core
+set traits are provided in the ‘Addtl. Measurement Comments’ column
+
+
+Table 9
+Field-level comments from collaborators for Inbred Trials
+
+Experiment  Treatment           All Comments
+------------------------------------------------------------------------------
+PAI1        Regular Nitrogen    One plant per plot was dug up prior to harvest/
+								stand counts for root phenotyping. Silk/pollen 
+								date data not collected. entire field showing 
+								infection with Rhizoctonia root rot: lab results 
+								received on 8/21/15 Sevin (Carboral 4L) applied: 
+								thrips and Japanese Beetle 7/16/15 Warrior 
+								(pyrethroid) to control Army Worm 7/31/15
+
+PAI2        Low Nitrogen        One plant per plot was dug up prior to harvest/
+								stand counts for root phenotyping.  Silk/pollen
+								date data not collected. entire field showing 
+								infection with Rhizoctonia root rot: lab results 
+								received on 8/21/15; treatment was not practical 
+								at stage of growth of crop 6 Warrior (pyrethroid) 
+								to control Army Worm 7/31/15
+
+IAI1                            Grain moisture was not measured at harvest-
+								seeds were uniformly dried
+
+IAI2                            Grain moisture was not measured at harvest-
+								seeds were uniformly dired
+
+IAI3                            Check soil moisture probe data, soil probe 1504 
+								had defective overmold that could lead to 
+								cracking.  In addition to being visually 
+								noticeable the cracking can cause incorrect 
+								readings.  Unusually high readings, dashes 
+								“----“, or constant 0 readings may indicate a 
+								problem with the sensor.  N applied 4/22 K 
+								applied 4/18
+
+IAI4                            Check soil moisture probe data, soil probe 1504 
+								had defective overmold that could lead to 
+								cracking.  In addition to being visually 
+								noticeable the cracking can cause incorrect 
+								readings.  Unusually high readings, dashes 
+								“----“, or constant 0 readings may indicate a 
+								problem with the sensor.  5/6/15 N applied
+
+ILI1                            planted in entry order not plot order, so no 
+								randomization Planter error caused every other 
+								pass to be off set from the one before by one 
+								range
+
+INI1                            Excessive rain in June. 10.04". Ponding over 
+								many plots. Very uneven plots and growth going 
+								into July Ear harvest was delayed well past the
+								ideal harvest date
+
+NCI1                            05/11/15: Heavy rain event completely submerged
+                                inbred and hybrid fields
+
+NYI2                            irrigation in inches/acre
+
+NYI1        Disease trial-      Use weather data from Gore or Buckler field. 
+            Inoculated with     Weather station in need of repair after 
+            Northern Leaf       falling down
+            Blight
+
+SDI1                            Weather data from a station that I have that is
+                                about 13 miles to the west of the corn site
+
+TXI1                            No irrigations needed, too much rain hogs 
+                                disconnected soil moisture and temperature 
+                                probes a couple of times.  Some gaps in data 
+                                collection are expected PH1 = plant height to 
+                                tip of tassel
+
+TXI2                            Weather station was destroyed. No data
+
+WII1                            Weather station failure - data not available 
+                                from Watchdog for May and June 2015
+
+WII2                            Weather station failure - data not available 
+                                from Watchdog for May and June 2015.
