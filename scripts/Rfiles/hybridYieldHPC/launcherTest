@@ -1,0 +1,11 @@
+# this file is a list of all the R scripts that I want to run
+# I directed the LAUNCHER_JOB_FILE to this for using the launcher module
+
+R CMD BATCH ./april.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/april_output.txt
+R CMD BATCH ./may.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/may_output.txt
+R CMD BATCH ./june.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/june_output.txt
+R CMD BATCH ./july.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/july_output.txt
+R CMD BATCH .aug.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/aug_output.txt
+R CMD BATCH ./sept.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/sept_output.txt
+R CMD BATCH ./oct.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/oct_output.txt
+R CMD BATCH ./nov.R $WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/nov_output.txt
