@@ -3,6 +3,7 @@ library(profr)
 library(PReMiuM)
 library(ggplot2)
 ################
+set.seed(1234)
 prem.bench <- function(classNum = 3){
   
   #create list of function names for each distribution. Will later be called to generate the sample data#
