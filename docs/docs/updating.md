@@ -1,16 +1,12 @@
-.. _updating:
-
-===================
- Updating the docs
-===================
+# Updating the docs
 
 Updating the documentation is easy and should be done as users
 discover useful tips and tricks along their own workflows. All
 documentation is stored on github in plain-text at
 https://github.com/TACC/EnviroTyping.
 
-Accessing the source
-====================
+## Accessing the source
+
 
 Make a working copy of the documentation from
 https://github.com/TACC/EnviroTyping
@@ -41,8 +37,8 @@ For more on Sphinx / Read the Docs, see:
 - http://www.sphinx-doc.org/en/stable/rest.html
 - http://docs.readthedocs.io/en/latest/
 
-Forking & Committing Changes
-============================
+## Forking & Committing Changes
+
 
 Follow the standard git commit process to request changes. For a full
 introduction see:
@@ -59,8 +55,8 @@ your proposed changes, add & commit the changes to your fork & open a
 pull request to the master branch at cyverse-validate/docs.
 
 
-Updating table of contents
---------------------------
+## Updating table of contents
+
 
 One unique feature of Sphinx is its ability to cross reference between
 pages and maintain a hierarchy of separate documents, making it
@@ -72,8 +68,8 @@ update index.rst to include the new document, and create a new text
 document "filename.rst”. The formatting is fairly self-explanatory;
 see the existing index for an example.
 
-Building Sphinx html on your own machine
------------------------------------------
+## Building Sphinx html on your own machine
+
 
 To preview the documentation, you'll need to compile html files using the command::
 
@@ -87,7 +83,7 @@ linked ones), and view the html output in your default browser with::
 
 On a windows machine, run make.bat instead.
 
-Further support
----------------
+## Further support
+
 
 Contact hiltbrandd@uncw.edu
