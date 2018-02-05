@@ -27,3 +27,4 @@ This material is based upon work that is supported by the National Institute of 
    :maxdepth: 3
 
    Updating the Docs <updating.rst>
+   Tutorial on Launcher Module <launcherModule.md>
