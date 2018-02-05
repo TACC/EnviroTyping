@@ -10,3 +10,12 @@
     *   Arranged by Exp, Pedi, Repl
     *   Joined to weather data on Exp and dropped missing values
     *   ~2500 Repl values were dropped in the process; should I define these values
+
+2/5
+
+1. Weather data
+    *   Created seperate datasets for clean and calibrated data
+    *   Add the mean and median variables
+2. Hybrid data
+    *   deleted hybridXmonth.csv
+    *   add new csv's to reflect changes in weather data
