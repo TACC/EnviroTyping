@@ -5,11 +5,9 @@
 
 :ref:`updating` is easy, and you can share comments and questions `at this forum <https://github.com/TACC/EnviroTyping/issues>`_.
 
-EnviroTyping
-============
-===================================================================================
-GENETICALLY-INFORMED ENVIROTYPING TOOLS TO BETTER MATCH TEST AND TARGET ENVIRONMENTS
-====================================================================================
+# EnviroTyping
+
+## GENETICALLY-INFORMED ENVIROTYPING TOOLS TO BETTER MATCH TEST AND TARGET ENVIRONMENTS
 
 - Ann E. Stapleton : University of North Carolina Wilmington Department of Biology and Marine Biology
 
