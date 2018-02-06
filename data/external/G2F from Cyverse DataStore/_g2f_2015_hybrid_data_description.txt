@@ -1,0 +1,339 @@
+G2F 2015 Hybrid Data
+
+The experimental design for the 2015 data set was an incomplete block design
+with 20 blocks at most locations.  Each location was divided into two replicate 
+blocks with each replicated hybrid planted once in each replicate block.  Each 
+replicate block was divided into 10 incomplete blocks for placement of check 
+hybrids among the incomplete blocks.  Most locations had 500 hybrids. Data types
+collected are described in Table 1.
+
+Investigators indicated certain plots had been replaced with filler (any
+variety of corn used as a placeholder for missing plots) and/or certain plots
+should be discarded.  Columns indicated as filler may have data in
+the data set, but those data are considered unusable by the investigator.  In
+addition, some values were identified as being out of range of observable
+values and those observations were changed to missing values in the final
+curated
+data set with conditions listed in Table 2.  Comments provided by investigators
+are provided in Table 3.
+
+Table 1.
+Columns in the data file.
+
+Column Name           | Column Description
+----------------------|--------------------------------------------------------
+RecId                 | Internal database id number unique to each plot.
+                      |
+Field-Location        | G2F field-location name. One experiment planted per
+                      | location except Aurora, NY and Columbia, MO, which had
+                      | 2 experiments.  Experiments in Ames, IA (IAH1)
+                      | randomized as three sub-experiments (designated IAH1a,
+                      | IAH1b, and IAH1c).
+                      |
+State                 | State where grown.
+                      |
+City                  | Nearest city to experiment.
+                      |
+Code                  | Unique code assigned to the hybrid.
+                      |
+Source                | Code assigned by project producing seed
+                      | designating specific origin of seed of the hybrid
+                      | including season, location, and nursery row number.
+                      | Commercial hybrid name in the case of local checks.
+                      |
+Pedigree              | Pedigree or name of the hybrid.  Commercial hybrid name
+                      | in the case of local checks (if provided by
+                      | investigators).
+                      |
+Replicate             | Replicate block (2 blocks per experiment).
+                      |
+Block                 | Block within replicate (one trial generally assigned to
+                      | a block with some exceptions due to substitutions and
+                      | very small trials).
+                      |
+Plot                  | Designation of individual experimental unit.
+                      |
+Range                 | Designation of field range of the plot (ranges are
+                      | organized perpendicular to corn rows).
+                      |
+Pass                  | Designation of field pass of the plot (passes are
+                      | organized parallel to corn rows; combination of range
+                      | and pass form coordinate grid system describing
+                      | location of each plot within the field).
+                      |
+Plot Area             | Planted area (excluding alley) of the plot in square
+                      | feet and used in grain yield calculation.
+                      |
+Date Planted          | Date the plot was planted.
+                      |
+Date Harvested        | Date the plot was harvested.
+                      |
+Anthesis [date]       | Days between planting and 50% of plants of a plot
+                      | exhibit another exertion on more than half of the main
+                      | tassel spike.*
+                      |
+Silking [date]        | Days between planting and 50% of plants of a plot show
+                      | silk emergence.*
+                      |
+Stand Count [plants]  | Number of plants per plot at harvest.
+                      |
+Pollen DAP [days]     | Number of days after planting that 50% of plants in the
+                      | plot began shedding pollen.
+                      |
+Silk DAP [date]       | Number of days after planting that 50% of plants in the
+                      | plot had visible silks.
+                      |
+Plant Height [cm]     | Measured as the distance between the base of a plant
+                      | and the ligule of the flag leaf.
+                      |
+Ear Height [cm]       | Measured as the distance from the ground to the primary
+                      | ear bearing node.
+                      |
+Root Lodging [plants] | Number of plants that show root lodging per plot, i.e.,
+                      | those stems that lean substantially to one side (> 15%
+                      | from vertical).  Count includes ‘goosenecked’ plants
+                      | that have ‘straightened up’ after becoming lodged
+                      | earlier in the season.
+                      |
+Stalk Lodging         |Number of plants broken between ground level and top
+plants]               | ear node at harvest.
+                      |
+Grain Moisture        | Water content in grain at harvest.
+[percent]             |
+                      |
+Test Weight [lbs/bu]  | Shelled grain weight per bushel.
+                      |
+Plot Weight [lbs]     | Shelled grain weight per plot.
+                      |
+Grain yield [bu/acre] | Grain yield in bushels per acre at 15.5% grain moisture
+                      | assuming 56lbs per bushel and usin plot area without
+                      | alley.
+                      |
+Plot Discarded        | Value of ‘yes’ if investigator believes no data from
+                      | the plot should be used due to problem affecting all
+                      | data.
+                      |
+Filler                | Value of ‘Filler’ if filler was substituted for
+                      | original entry.
+                      |
+Comments              | Plot-specific comments provided by the investigator.
+                      |
+Damaged Plants        | Number of plants damaged by hogs (GAH1).
+                      |
+PLTHT tassel [cm]     | Plant height to the tip of the tassel
+                      |
+Percent Northern      | Percent northern leaf blight (NYH1).
+Leaf Blight (%)       |
+                      |
+Ear height plant1 [cm]| Ear height measurement for first plant in plot.
+                      |
+Ear height plant2 [cm]| Ear height measurement for second plant in plot. 
+                      |
+Ear height plant3 [cm]| Ear height measurement for third plant in plot.
+                      |
+Ear height plant4 [cm]| Ear height measurement for fourth plant in plot.
+                      |
+Ear height plant5 [cm]| Ear height measurement for fifth plant in plot.
+                      |
+Ear height plant6 [cm]| Ear height measurement for sixth plant in plot.
+                      |
+Ear height plant7 [cm]| Ear height measurement for seventh plant in plot.
+                      |
+Ear height plant8 [cm]| Ear height measurement for eighth plant in plot.
+                      |
+Ear height plant9 [cm]| Ear height measurement for nineth plant in plot.
+                      |
+Plant height          | Plant height to flag leaf for second plant in plot. 
+plant2 [cm]           | 
+                      |
+Plant height          | Plant height to flag leaf for third plant in plot.
+plant3 [cm]           |
+                      |
+plant height          | Plant height to flag leaf for fourth plant in plot.
+plant4 [cm]           |
+                      |
+plant height          | Plant height to flag leaf for fifth plant in plot.
+plant5 [cm]           |
+
+    * yield = (weight(lbs)/area(ft2))*
+              ((100-moisture)/84.5))*(1(bu)/56(lbs))*(43560(ft2)/1(acre))
+      Yield = grain yield in bushels per acre.
+     Weight = observed weight of harvested grain per plot in lbs.
+       Area = harvested area of plot in square feet.
+   Moisture = percent grain moisture.
+
+
+Table 2.
+Conditions for declaring observations out of range.
+
+                   |                                    | Columns Set to
+Trait              | Condition for Setting to Missing   | Missing
+-------------------|------------------------------------|---------------------
+Pollen DAP [days]* | Less than 20 or more than 100      | Pollen DAP
+Silk DAP   [days]* | Greater than 100                   | Silk DAP
+Ear Height [cm]    | Less than 20                       | Ear Height
+Weight     [lbs]   | Less than 1.0                      | Weight, Grain yield,
+                   |                                    | Grain Moisture, Test
+                   |                                    | Weight
+*DAP = days after planting.
+
+
+Table 3.
+Comments provided by collaborators for hybrid trials.
+
+Experiment      Treatment           All Comments
+------------------------------------------------------------------------------
+DEH1                                Weather station battery died. ~ 3 weeks of 
+                                    missing data between June and August. 
+                                    Nearby weather station: You can get the 
+                                    weather data from Delaware Environmental 
+                                    Observation System (DEOS). The station is 
+                                    Georgetown DE-REC where the hybrid yield 
+                                    test was planted. No other known field 
+                                    issues.
+
+IAH2                                Whole trial discarded due to flooding.
+
+ILH2            High N vs. Low      The “Harvest Moisture” values refer to 
+                N comparison        grain moisture at harvest.  We harvested
+                                    these plots by hand, and so rather than
+                                    obtaining these values from a plot combine,
+                                    instead measured a sample of the grain
+                                    taken from the plots on a hand-held Dickey-
+                                    John moisture meter that same day. Although
+                                    the moisture meter did indicate a value for
+                                    test weight, my student Jessica forgot to
+                                    record that value the day of harvest. So
+                                    she measured grain samples from each plot
+                                    again after they had been dried, using the
+                                    same moisture meter, but primarily to get
+                                    the test weight number.  However, for
+                                    reference, she included the moisture at the
+                                    time of measure as “Grain Moisture”.
+
+INH1                                Excessive rain in June. 10.04". Ponding
+                                    over many plots. Very uneven plots and
+                                    growth going into July.
+
+KSH1                                Saturated soils, lack of uniformity.
+
+MNH1                                Discovered pooled water in rain bucket on 
+                                    July 7, 2015, cleared debris on that date. 
+                                    Weather station was left running indoors 
+                                    after removal from field, final field 
+                                    measurement was at 3pm October 30, 2015 
+                                    and harvest date was November 10, 2015
+
+MOH1                                This field was EXTREMELY wet this year, and 
+                                    the left half of the field has questionable 
+                                    data.  We used DTA/PH/Yield data to try to 
+                                    figure out which plots to discard (indicated 
+                                    in data file), but I question the value of 
+                                    this entire field (Mo-H1).  The inbred 
+                                    trials and other hybrid trial appeared to be 
+                                    fine as they were planted in different 
+                                    fields.
+
+NCH1                                05/11/15: Heavy rain event completely 
+                                    submerged inbred and hybrid fields. 
+                                    weather station completely covered by 
+                                    morning glories in September
+
+NEH1                                Bloom Date is male only, we don’t do female 
+                                    because of fund limitations and large 
+                                    number of trials we run. Weather station
+                                    data provided from the Mead Research
+                                    Station weather data 0.6 miles from the
+                                    trial and uploaded both the daily average
+                                    and the hourly data.  did not set up
+                                    weather station due to injury 7/2/15 Stand
+                                    is good, plants on those water logged areas
+                                    are not growing well, they are practically
+                                    flooded. 7/1/15 due to more than 20 inches
+                                    of rain we had since the end of April,
+                                    there are four water logged sections in
+                                    both trials that will affect uniformity of
+                                    performance and I wonder if I should
+                                    continue with the trial. Germination was
+                                    good and uniform but you can see an effect
+                                    in growth in 4 clear and distinctive
+                                    patches and this will cause a lot of
+                                    difference in performance to those entries.
+                                    6/17/15 We have had uninterrupted rains
+                                    every week since early April with only one
+                                    or two days per week to plant so we were
+                                    able to plant it Tuesday of last week 
+                                    (June 6)
+
+NEH4                                Bloom Date is male only, we don’t do female
+                                    because of fund limitations and large
+                                    number of trials we run. Weather station
+                                    data provided from the Mead Research
+                                    Station weather data 0.6 miles from the
+                                    trial and uploaded both the daily average
+                                    and the hourly data. did not set up weather
+                                    station due to injury 7/2/15 Stand is good,
+                                    plants on those water logged areas are not
+                                    growing well, they are practically flooded.
+                                    7/1/15 due to more than 20 inches of rain
+                                    we had since the end of April, there are
+                                    four water logged sections in both trials
+                                    that will affect uniformity of performance
+                                    and I wonder if I should continue with the
+                                    trial. Germination was good and uniform but
+                                    you can see an effect in growth in 4 clear
+                                    and distinctive patches and this will cause
+                                    a lot of difference in performance to those
+                                    entries. 6/17/15 We have had uninterrupted
+                                    rains every week since early April with
+                                    only one or two days per week to plant so
+                                    we were able to plant it Tuesday of last
+                                    week (June 6)
+
+NYH2                                Field washout a few days after planting A
+                                    combination of strong rain and tile
+                                    drainage during early season caused severe
+                                    variation in plant development sometimes
+                                    between rows within plot or within rows in
+                                    some areas of the field. FT data was taken
+                                    following the 50% rule (i.e. if one row
+                                    flowered and the other one not, plot was
+                                    considered flowered). Notes about this
+                                    variation were taken and added in the plots
+                                    comments
+
+NYH3                                Due to rain issues range borders could not
+                                    be planted. Plots 1-30 and 481-500 do not
+                                    have borders in one side (see map) Strong
+                                    field effect in the early season that got
+                                    better once plants flowered. Consistent
+                                    development within plots
+
+NYH1        Disease trial -         Use weather data from Gore or Buckler
+            Inoculated with         field. Weather station in need of repair
+            Northern Leaf           after falling down.
+            Blight
+
+OHH1                                Added Disease rating information 12/4/15 
+                                    Ratings are % disease on ear leaf. Disease
+                                    rating are not loaded to IPlant
+
+ONH1                                Frost on May 23
+
+SDH1                                Needed to cultivate - July 6, 2015 weather
+                                    data from a station that I have that is
+                                    about 13 miles to the west of the corn site
+
+TXH1                                No irrigations needed, too much rain hogs
+                                    disconnected soil moisture and temperature
+                                    probes a couple of times. Some gaps in data
+                                    collection are expected PH1 = plant height
+                                    to tip of tassel.
+
+WIH1                                Weather station failure - data not 
+                                    available from Watchdog for May and 
+                                    June 2015
+
+WIH2                                Weather station failure - data not 
+                                    available from Watchdog for May and 
+                                    June 2015
