@@ -1,0 +1,390 @@
+G2F 2015 Weather Data
+
+Twenty-four hybrid and twenty-eight inbred experiments were conducted in fields
+across seventeen states and the province of Ontario, Canada. Some fields were 
+relatively close to one another allowing collaborators to use a single weather
+station for multiple fields (Table 10). Weather data was collected at 30-minute 
+intervals with a Spectrum WatchDog 2700 weather station throughout the growing 
+season. Each station measured wind speed, direction, and gust; air temperature,
+dewpoint,and relative humidity; soil temperature and moisture; rainfall and 
+solar radiation. Some stations had additional measurements including soil 
+electrical conductivity, ultra-voilet (UV) light, carbon dioxide (CO2), and 
+photosynthetically active radiation (PAR).
+
+The weather stations were equipped with several ports to attach external
+sensors. The data from the sensors were then collected in columns with headers
+that corresponded to the ports used. Collaborators were also able to choose
+between imperial and metric units upon station setup. This was also indicated
+in the column name creating several possible column names for the same
+measurement. Collaborators were able to set the time upon weather station
+setup, but the time zone is not indicated in the weather data files requiring
+investigators to ensure the time was set properly.
+
+Setup instructions did not include steps to ensure proper siting for the
+weather station. Therefore, especially in the case of wind speed, observations
+should be considered microscale and are only representative of the field.
+Investigators compared observations to the nearest National Weather Service
+(NWS) Automated Surface Observing Systems (ASOS) airport weather station to
+verify the data time zone as well as identify erroneous data points. In order
+to create the cleaned data set (Table 11), investigators converted the data to
+local time (if necessary), provided the observation time in Coordinated
+Universal Time (UTC) to allow easy comparison between stations, and converted
+all data to metric units for consistency. Erroneous data was replaced by a
+blank using the methods outlined in Table 12 which were, in part, borrowed from
+the World Meteorological Organization (WMO) “Guidelines on Quality Control
+Procedures for Data from Automatic Weather Stations”.
+
+Upon station setup, not all stations set the wind vane to North. Therefore, in
+several cases the wind direction required calibration. Investigators strongly
+suggest that users planning to utilize the wind direction data download the
+calibrated data set. In order to ensure the experiment provides quality weather
+data, stations with observations that exhibited a systematic bias, like the
+wind direction, were calibrated. The methods of calibration are outlined in
+Table 13. Note that not all elements are able to be calibrated. In cases where
+the weather element was not calibrated, but a calibration column exists, the
+observation column was simply copied. The column headers for the calibrated
+data set are located in Table 14. Observations separated by station location
+and weather element with asterisks indicating calibration are outlined in Table
+15.
+
+
+Table 10.
+Weather stations and associated fields.
+
+   Experiment(s)    | Weather Station
+ -------------------|------------------
+   AZI1,AZI2        | 8639
+   DEH1             | 9079
+   DEI1             | 9078
+   GAH1             | 8427
+   GAI1             | 8631
+   IAH1             | 9080
+   IAH2             | 9083
+   IAH3             | 9085
+   IAH4             | 9082
+   IAI1             | 9084
+   IAI2             | 1967
+   IAI3             | 9081
+   IAI4             | 10801
+   ILH1,ILI1,ILH2   | 8653
+   INH1,INI1        | 8657
+   KSH1,KSI1        | 1504
+   MNH1             | 8650
+   MNI1             | 8649
+   MOH1,MOI1,       | 8645
+   MOH2,MOI2        |
+   NCH1             | 8658
+   NCI1             | 8659
+   NEH1             | 8654
+   NEH2             | 8655
+   NEH3             | 8656
+   NEH4             | 8654
+   NYH1,NYI1        | 9106
+   NYH2             | 9087
+   NYH3,NYI2        | 9086
+   OHH1             | 800
+   ONH1             | 8651
+   ONH2             | 8652
+   PAI1,PAI2        | 8644
+   TXH1,TXI1,TXI2   | 8428
+   TXH2,TXI3        | 8630
+   WIH1,WII1        | 8648
+   WIH2,WII2        | 8647
+
+
+Table 11.
+Cleaned weather data column names and descriptions.
+
+Column Name            | Column Description
+-----------------------|-------------------------------------------------------
+Record Number          | Automatically incremented number to show number of
+                       | data points in file
+                       |
+Station ID             | Weather station ID number
+                       |
+Experiment(s)          | Experiment(s) associated with the weather station
+                       |
+Day [Local]            | Day of month measurement was taken in local time
+                       |
+Month [Local]          | Month of year measurement was taken in local time
+                       |
+Year [Local]           | Year measurement was taken in local time
+                       |
+Day of Year [Local]    | Day of year measurement was taken in local time (Ex:
+                       | January 1 is day 1)
+                       |
+Time [Local]           | Time measurement was taken in local time (Ex: DEH1 is
+                       | Eastern, IAH1 is Central, etc.)
+                       |
+Datetime [UTC]         | Date and time measurement was taken in Coordinated
+                       | Universal Time (UTC)
+                       |
+Temperature [C]        | Temperature in degrees Celsius
+                       |
+Dew Point [C]          | Dew point temperature in degrees Celsius
+                       |
+Relative Humidity [%]  | Relative humidity as a percentage
+                       |
+Solar Radiation [W/m2] | Incoming solar radiation in Watts per square meter
+                       |
+Rainfall [mm]          | Rainfall in millimeters
+                       |
+Wind Speed [m/s]       | Wind speed in meters per second
+                       |
+Wind Direction         | Wind direction in degrees
+[degrees]              |
+                       |
+Wind Gust [m/s]        | Largest wind speed over 30-minute period in meters
+                       | per second
+                       |
+Soil Temperature [C]   | Soil temperature in degrees Celsius
+                       |
+Soil Moisture [%]      | Soil moisture as a percentage
+                       |
+Soil EC [mS/cm]        | Soil electrical conductivity in milliSiemens per
+                       | meter
+                       |
+UV Light [uM/m2s]      | Incoming ultra-violet (UV) radiation in micro-moles
+                       | per meter-squared seconds
+                       |
+PAR [uM/m2s]           | Photosynthetically active radiation (PAR) in
+                       | micro-moles per meter-squared seconds
+                       |
+CO2 [ppm]              | Carbon dioxide (CO2) concentration in parts per
+                       | million
+
+
+
+Table 12.
+Weather data cleaning methods by variable.
+
+Variable               | Cleaning Method
+-----------------------|-------------------------------------------
+Temperature,           | Observations that differed from the NWS ASOS by an
+Dewpoint,and           | amount more than could be explained by the accuracy of
+Relative Humidity      | the instrument were investigated further. In cases
+                       | where a large difference could not be explained (i.e.
+                       | a temperature spike at night due to microscale
+                       | temperature inversion), it was eliminated. The dew
+                       | point cannot exceed the temperature so in cases where
+                       | this occurred both were eliminated. Values exceeding
+                       | the range of accepted values as set out by the WMO
+                       | were eliminated. Finally, cases of unusual variability
+                       | were also eliminated.
+                       |
+Soil Temperature       | Observations greater than the air temperature were
+                       | flagged and investigated further. Cases of unusual
+                       | variability were eliminated.
+                       |
+Soil Moisture          | Observations were compared with rainfall observations
+                       | to determine accuracy of drastic changes. Times where
+                       | a large increase in soil moisture could not be
+                       | explained by rainfall or irrigation were eliminated.
+                       |
+Solar Radiation        | Observations greater than 1400 W/m2 were considered
+                       | erroneous as the solar constant is 1362 W/m2.
+                       | Observations near zero during the day and greater than
+                       | zero at night were also eliminated. Using the WMO
+                       | guidelines, cases of unusual variability between time
+                       | steps were also eliminated.
+                       |
+Rainfall               | Monthly rainfall totals were determined for the
+                       | experiment stations as well as NWS ASOS stations for
+                       | comparison. The maximum 30-minute total rainfall was
+                       | also checked to eliminate values where rainfall was
+                       | unnaturally heavy. Cases where the tipping bucket
+                       | consistently reported a single tip (0.254 mm) were
+                       | also investigated as this can indicate a plugged
+                       | bucket.
+                       |
+Wind Speed,            | Wind is highly spatially variable. Therefore, rather
+Wind Direction, and    | than do a check against the sensors’ accuracy,
+Wind Gust              | periods of strong winds at the experiment stations
+                       | were compared to the nearby NWS ASOS stations in an
+                       | attempt to document systematic bias for later
+                       | calibration. Times where the experiment station
+                       | differed greatly from the NWS ASOS station were
+                       | investigated. Observations with significant
+                       | discrepancy were eliminated. In cases where
+                       | a wind direction was reported with a zero wind speed,
+                       | the wind direction was eliminated. Finally, using the
+                       | WMO guidelines, cases of unusual variability between
+                       | time steps were also eliminated.
+                       |
+UV Light and PAR       | Observations near zero during the day and observations
+                       | much greater than zero at night were eliminated.
+                       |
+CO2                    | Observations greater than 400 ppm were flagged and
+                       | eliminated if necessary.
+
+
+
+Table 13.
+Weather data calibration methods by variable.
+
+Variable               | Calibration Method
+-----------------------|-------------------------------------------
+Temperature,           | Temperature, dewpoint, and relative humidity
+Dewpoint and           | observations were compared to the nearby NWS ASOS
+Relative Humidity      | station. In cases of a systematic bias, the average
+                       | bias  was computed and then subtracted from each
+                       | observation  value.
+                       |
+Soil Temperature and   | There are no soil temperature or moisture
+Soil Moisture          | observations at the NWS ASOS stations so these values
+                       | were only cleaned, not calibrated.
+                       |
+Solar Radiation        | There are no solar radiation observations at the NWS
+                       | ASOS stations so these values were only cleaned, not
+                       | calibrated.
+                       |
+Rainfall               | Rainfall is greatly spatially variable. Therefore,
+                       | the observations were cleaned to remove obviously
+                       | erroneous values, but were not calibrated.
+                       |
+Wind Speed             | Wind is highly spatially variable and is especially
+                       | difficult to verify at low speeds. Therefore, only
+                       | periods of high wind speed were used for comparison to
+                       | the NWS ASOS stations. If speeds were not well-
+                       | correlated a single correction value was subtracted
+                       | from all observations.
+                       |
+Wind Gust and          | Again, only periods of high wind speed were used for
+Wind Direction         | comparison to the NWS ASOS stations. If directions
+                       | were not well-correlated a single correction value was
+                       | subtracted from all observations.
+                       |
+UV Light and PAR       | There are no UV light or PAR observations at the NWS
+                       | ASOS stations so these values were only cleaned, not
+                       | calibrated.
+                       |
+CO2                    | There are no CO2 observations at the NWS ASOS stations
+                       | so these values were only cleaned, not calibrated.
+
+
+
+Table 14.
+Calibrated weather data column names and descriptions.*
+
+Column Name            | Column Description
+-----------------------|-------------------------------------------
+Record Number          | Automatically incremented number to show number of
+                       | data points in file
+                       |
+Station ID             | Weather station ID number
+                       |
+Experiment(s)          | Experiment(s) associated with the weather station
+                       |
+NWS Network            | NWS network identifier created by two letter state
+                       | abbreviation followed by station type
+                       |
+NWS Station            | Nearby National Weather Service (NWS) station used for
+                       | calibration identified by three or four letter code
+                       |
+Day                    | Day of month measurement was taken
+                       |
+Month                  | Month of year measurement was taken
+                       |
+Year                   | Year measurement was taken
+                       |
+Day of Year            | Day of year measurement was taken
+                       | (Ex: January 1 is day 1)
+                       |
+Time [Local]           | Time measurement was taken in local time
+                       | (Ex: DEH1 is Eastern, IAH1 is Central, etc.)
+                       |
+Datetime [UTC]         | Date and time measurement was taken in
+                       | Coordinated Universal Time (UTC)
+                       |
+Temperature [C]        | Temperature in degrees Celsius
+                       |
+NWS Temperature [C]    | Nearby National Weather Service (NWS) station observed
+                       | temperature in degrees Celsius
+                       |
+Calibrated Temperature | Calibrated temperature in degrees Celsius
+[C]                    |
+                       |
+Dew Point [C]          | Dew point temperature in degrees Celsius
+                       |
+NWS Dew Point [C]      | Nearby National Weather Service (NWS) station observed
+                       | dew point temperature in degrees Celsius
+                       |
+Calibrated Dew Point   | Calibrated dew point temperature in degrees Celsius
+[C]                    |
+                       |
+Relative Humidity [%]  | Relative humidity as a percentage
+                       |
+NWS Relative Humidity  | Nearby National Weather Service (NWS) station
+[%]                    | observed relative humidity as a percentage
+                       |
+Calibrated Relative    | Calibrated relative humidity as a percentage
+Humidity [%]           |
+                       |
+Solar Radiation [W/m2] | Incoming solar radiation in Watts per square meter
+                       |
+Rainfall [mm]          | Rainfall in millimeters
+                       |
+NWS Rainfall [mm]      | Nearby National Weather Service (NWS) station observed
+                       | rainfall in millimeters
+                       |
+Wind Speed [m/s]       | Wind speed in meters per second
+                       |
+NWS Wind Speed [m/s]   | Nearby National Weather Service (NWS) station observed
+                       | wind speed in meters per second
+                       |
+Calibrated Wind Speed  | Calibrated wind speed in meters per second
+[m/s]                  |
+                       |
+Wind Direction         | Wind direction in degrees
+[degrees]              |
+                       |
+NWS Wind Direction     | Nearby National Weather Service (NWS) station
+ [degrees]             | observed wind direction in degrees
+                       |
+Calibrated Wind        | Calibrated wind direction in degrees
+Direction [degrees]    |
+                       |
+Wind Gust [m/s]        | Largest wind speed over 30-minute period in meters
+                       | per second
+                       |
+NWS Wind Gust [m/s]    | Nearby National Weather Service (NWS) station
+                       | observed largest wind speed over 10-minute period in
+                       | meters per second
+                       |
+Calibrated Wind Gust   | Calibrated largest wind speed over 30-minute period
+[m/s]                  | in meters per second
+                       |
+Soil Temperature [C]   | Soil temperature in degrees Celsius
+                       |
+Soil Moisture [%]      | Soil moisture as a percentage
+                       |
+Soil EC [mS/cm]        | Soil electrical conductivity in milliSiemens per
+                       | centimeter
+                       |
+UV Light [uM/m2s]      | Incoming ultra-violet (UV) radiation in micro-moles
+                       | per meter-squared seconds
+                       |
+PAR [uM/m2s]           | Photosynthetically active radiation (PAR) in
+                       | micro-moles per meter-squared seconds
+                       |
+CO2 [ppm]              | Carbon dioxide (CO2) concentration in parts per
+                       | million
+
+* If a weather element did not require calibration, the values were simply
+copied and pasted into the calibrated column
+
+
+Table 15.
+Experiments and associated weather stations that required wind direction
+calibration.
+
+Experiment(s)
+Weather Station        |  Wind Direction Calibration
+-----------------------|-------------------------------------------
+TXH1,TXI1,TXI2 8428    |       *
+MNI1           8649    |       *
+ONH1           8651    |       *
+ONH2           8652    |       *
+DEH1           9079    |       *
+IAI1           9084    |       *
+NYH3,NYI2      9086    |       *
