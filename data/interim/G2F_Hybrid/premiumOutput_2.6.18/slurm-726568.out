@@ -1,0 +1,65 @@
+WARNING: LAUNCHER_WORKDIR variable not set. Using current directory.
+/opt/apps/launcher/launcher-3.1/paramrun: line 171: [: -eq: unary operator expected
+Launcher: Setup complete.
+
+------------- SUMMARY ---------------
+   Number of hosts:    7
+   Working directory:  /work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.6.18
+   Processes per host: 1
+   Total processes:    7
+   Total jobs:         18
+   Scheduling method:  dynamic
+/opt/apps/launcher/launcher-3.1/paramrun: line 211: [: -eq: unary operator expected
+
+-------------------------------------
+Launcher: Starting parallel tasks...
+Warning: Permanently added 'c469-003' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'c411-123' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'c468-124' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'c469-101' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'c468-121' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'c407-022' (ECDSA) to the list of known hosts.
+Launcher: Task 0 running job 1 on c407-022.stampede2.tacc.utexas.edu (# this file is a list of all the R scripts that I want to run)
+Launcher: Job 1 completed in 0 seconds.
+Launcher: Task 5 running job 2 on c469-003.stampede2.tacc.utexas.edu (# I directed the LAUNCHER_JOB_FILE to this for using the launcher module)
+Launcher: Task 2 running job 3 on c438-122.stampede2.tacc.utexas.edu (var0=4)
+Launcher: Task 1 running job 4 on c411-123.stampede2.tacc.utexas.edu (var1=5)
+Launcher: Job 2 completed in 0 seconds.
+Launcher: Job 3 completed in 0 seconds.
+Launcher: Task 4 running job 5 on c468-124.stampede2.tacc.utexas.edu (var2=6)
+Launcher: Job 4 completed in 0 seconds.
+Launcher: Task 0 running job 6 on c407-022.stampede2.tacc.utexas.edu (var3=7)
+Launcher: Task 6 running job 7 on c469-101.stampede2.tacc.utexas.edu (var4=8)
+Launcher: Job 5 completed in 0 seconds.
+Launcher: Job 6 completed in 0 seconds.
+Launcher: Job 7 completed in 0 seconds.
+Launcher: Task 3 running job 8 on c468-121.stampede2.tacc.utexas.edu (var5=9)
+Launcher: Task 5 running job 9 on c469-003.stampede2.tacc.utexas.edu (var6=10)
+Launcher: Job 8 completed in 0 seconds.
+Launcher: Task 2 running job 10 on c438-122.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var0 --no-save --no-restore --verbose launcherFunc.R > output$var0.Rout 2> error$var0.Rout)
+Launcher: Job 9 completed in 0 seconds.
+Launcher: Task 1 running job 11 on c411-123.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var1 --no-save --no-restore --verbose launcherFunc.R > output$var1.Rout 2> error$var1.Rout)
+Launcher: Task 4 running job 12 on c468-124.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var2 --no-save --no-restore --verbose launcherFunc.R > output$var2.Rout 2> error$var2.Rout)
+Launcher: Task 0 running job 13 on c407-022.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var3 --no-save --no-restore --verbose launcherFunc.R > output$var3.Rout 2> error$var3.Rout)
+Launcher: Task 6 running job 14 on c469-101.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var4 --no-save --no-restore --verbose launcherFunc.R > output$var4.Rout 2> error$var4.Rout)
+Launcher: Task 3 running job 15 on c468-121.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var5 --no-save --no-restore --verbose launcherFunc.R > output$var5.Rout 2> error$var5.Rout)
+Launcher: Task 5 running job 16 on c469-003.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var6 --no-save --no-restore --verbose launcherFunc.R > output$var6.Rout 2> error$var6.Rout)
+Launcher: Job 10 completed in 10 seconds.
+Launcher: Task 2 running job 17 on c438-122.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var6 --no-save --no-restore --verbose launcherFunc.R > output$var6.Rout 2> error$var6.Rout)
+Launcher: Job 17 completed in 7 seconds.
+Launcher: Task 2 running job 18 on c438-122.stampede2.tacc.utexas.edu (Rscript ./launcherFunc.R  $var6 --no-save --no-restore --verbose launcherFunc.R > output$var6.Rout 2> error$var6.Rout)
+Launcher: Job 18 completed in 6 seconds.
+Launcher: Task 2 done. Exiting.
+Launcher: Job 15 completed in 945 seconds.
+Launcher: Task 3 done. Exiting.
+Launcher: Job 16 completed in 1017 seconds.
+Launcher: Task 5 done. Exiting.
+Launcher: Job 13 completed in 1361 seconds.
+Launcher: Task 0 done. Exiting.
+Launcher: Job 14 completed in 1414 seconds.
+Launcher: Task 6 done. Exiting.
+Launcher: Job 12 completed in 1422 seconds.
+Launcher: Task 4 done. Exiting.
+Launcher: Job 11 completed in 1961 seconds.
+Launcher: Task 1 done. Exiting.
+Launcher: Done. Job exited without errors
