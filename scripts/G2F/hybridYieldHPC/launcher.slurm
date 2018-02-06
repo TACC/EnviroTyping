@@ -13,9 +13,9 @@
 #
 #         <------ Setup Parameters ------>
 #
-#SBATCH -J hybrid
-#SBATCH -N 6
-#SBATCH -n 6
+#SBATCH -J hyb_month
+#SBATCH -N 7
+#SBATCH -n 7
 #SBATCH -p normal
 #SBATCH -t 48:00:00
 #SBATCH -A Envriotype
@@ -23,6 +23,6 @@
 
 export LAUNCHER_PLUGIN_DIR=$LAUNCHER_DIR/plugins
 export LAUNCHER_RMI=SLURM
-export LAUNCHER_JOB_FILE="$WORK/Projects/Premium/hybridAnalysis/hybridYieldHPC/launcherTest2"
+export LAUNCHER_JOB_FILE="./launcherTest2"
 
 $LAUNCHER_DIR/paramrun
