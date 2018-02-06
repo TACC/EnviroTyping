@@ -1,6 +1,7 @@
 # this file is a list of all the R scripts that I want to run
 # I directed the LAUNCHER_JOB_FILE to this for using the launcher module
 
+var0=4
 var1=5
 var2=6
 var3=7
@@ -8,7 +9,7 @@ var4=8
 var5=9
 var6=10
 
-
+Rscript ./launcherFunc.R  $var0 --no-save --no-restore --verbose launcherFunc.R > output$var0.Rout 2> error$var0.Rout
 Rscript ./launcherFunc.R  $var1 --no-save --no-restore --verbose launcherFunc.R > output$var1.Rout 2> error$var1.Rout
 Rscript ./launcherFunc.R  $var2 --no-save --no-restore --verbose launcherFunc.R > output$var2.Rout 2> error$var2.Rout
 Rscript ./launcherFunc.R  $var3 --no-save --no-restore --verbose launcherFunc.R > output$var3.Rout 2> error$var3.Rout
