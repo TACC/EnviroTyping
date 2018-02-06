@@ -23,6 +23,6 @@
 
 export LAUNCHER_PLUGIN_DIR=$LAUNCHER_DIR/plugins
 export LAUNCHER_RMI=SLURM
-export LAUNCHER_JOB_FILE="./launcherTest2"
+export LAUNCHER_JOB_FILE="$WORK/EnviroTyping/scripts/G2F/hybridYieldHPC/launcherTest2"
 
 $LAUNCHER_DIR/paramrun

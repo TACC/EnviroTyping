@@ -2,7 +2,7 @@ library(PReMiuM)
 library(dplyr)
 library(readr)
 
-setwd("$WORK/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.6.18")
+setwd("/work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.6.18")
 
 # read in data from analysis script
 df <- read_csv("../hybrid_bymonth_cleaned_weather.csv")
