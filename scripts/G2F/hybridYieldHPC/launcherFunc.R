@@ -2,10 +2,10 @@ library(PReMiuM)
 library(dplyr)
 library(readr)
 
-setwd("/work/04734/dhbrand/stampede2/Projects/Premium/hybridAnalysis/hybridYieldHPC")
+setwd("$WORK/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.6.18")
 
 # read in data from analysis script
-df <- read_csv("../hybrid.csv")
+df <- read_csv("../hybrid_bymonth_cleaned_weather.csv")
 
 # grabs the args from the command
 args <- commandArgs()
@@ -22,12 +22,10 @@ g <- function(y){
 
         f <- function(x){
 
-            # find continous variables with variance and return as numericVars
+            # find continous variables with highest variance and keep 14 as numericVars
             val <- grep("Min|Max",names(temp))
-            numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))]
-
-            # limited to 15 covariates in plotRiskProfile; subsetting to only min and max weather data
-            numericVars <- sample(numericVars,14)
+            # numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))]
+            numericVars <- names(sort(unlist(lapply(temp[val],function(x) var(x))), decreasing = TRUE)[1:14])
 
             # create directory using month number to name and changes to working directory
             dir.create(paste(month.name[x]))
