@@ -1,0 +1,41 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  Exp = col_character(),
+  Pedi = col_character(),
+  Repl = col_character(),
+  Harvest = col_character(),
+  plantHt = col_integer(),
+  earHt = col_integer(),
+  StatID = col_integer(),
+  Year = col_integer(),
+  Month = col_integer(),
+  humidMin = col_integer(),
+  solarMin = col_integer(),
+  solarMax = col_integer(),
+  rainMin = col_integer(),
+  rainMedian = col_integer(),
+  windDirMin = col_integer(),
+  windDirMax = col_integer()
+)
+See spec(...) for full column specifications.
+Warning: 7473 parsing failures.
+row # A tibble: 5 x 5 col     row col      expected               actual file                             expected   <int> <chr>    <chr>                  <chr>  <chr>                            actual 1  1492 humidMin no trailing characters .5     '../hybrid_bymonth_cleaned_weat… file 2  1493 humidMin no trailing characters .5     '../hybrid_bymonth_cleaned_weat… row 3  1494 humidMin no trailing characters .5     '../hybrid_bymonth_cleaned_weat… col 4  1495 humidMin no trailing characters .5     '../hybrid_bymonth_cleaned_weat… expected 5  1496 humidMin no trailing characters .5     '../hybrid_bymonth_cleaned_weat…
+... ................. ... ............................................................................... ........ ............................................................................... ...... ............................................................................... .... ........................................................ [... truncated]
+Warning message:
+In rbind(names(probs), probs_f) :
+  number of columns of result is not a multiple of vector length (arg 1)
+Error in seq.default(1, nrow(profileDF), 1) : wrong sign in 'by' argument
+Calls: g -> f -> plotRiskProfile -> seq -> seq.default
+Execution halted
