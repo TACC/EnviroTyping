@@ -1,9 +1,10 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
 repo_url: https://github.com/TACC/EnviroTyping
-docs_dir: 'source'
+
 pages:
     - Home: 'index.md'
+    - 'Project Scope': 'projectScope.md'
     - Tutorials: 'tutorials/tutorials.md'
         - 'Launcher Module': 'tutorials/launcherModule.md'
     - Update: 'updating.md'
