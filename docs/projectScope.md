@@ -8,7 +8,7 @@
 
 |                                   |    2014    |   2015    |   2016    |   2017    |
 |:----------------------------------|:----------:|:---------:|:---------:|:---------:|
-| No. of experiments                |	23       | 	28       |    40     |    43     |  
+| No. of experimentssss             |	23       | 	28       |    40     |    43     |  
 | No. of unique locations           |	19       | 	24       |    34     |    38     |  
 | No. of states/provinces           |   13       |   16      |    19     |    23     |  
 | No. of Principal  Investigators   |   19       |	25       |    29     |    32     |  
@@ -17,7 +17,7 @@
 | Ex-PVP                            |	25       |	55       | 	76       |	83       |
 | Biparental derived                |	302      |	301      |	44       |	42       |
 | Diverse	                        |    53      |	197      | 	193      |	170      |
--------------------------------------------------------------------------------------
+
 
 ## 2014 Experiment
 The 2014 GxE Experiment consisted of a large hybrid trialing effort and a smaller inbred trialing effort. For our first year of field experiments, 25 principal investigators in 14 states and one Canadian province tested over 900 hybrids, deployed as groups of 250 hybrids with two replications at each location. With 23 participating locations, a total of 12,678 plots were grown. As part of the 250 hybrids, a set of 10 diverse hybrids was tested across all locations; other hybrids were selected based on reasonable maturity for specific locations. Except for the set of common hybrids, testers included LH198, LH195, LH185, CG102 and PB80. In addition, 31 inbred lines were replicated 2 to 12 times over 15 locations for a total of 1,598 plots. Inbred lines tested in 2014 include recombinant inbred lines (RILs), Expired Plant Variety Protection (exPVP) inbreds and lines from collaborator breeding programs.
@@ -62,7 +62,7 @@ Each experiment is furnished with a WatchDog 2700 Weather Station by Spectrum Te
 The following table summarizes phenotypic traits measured by each GxE experiment cooperator at each location.
 
 |Trait|	Abbrv.|	Unit|	Timing|	Description/Procedure|
-|----------------------------------------------------|
+|:----|:-----:|:----|:--------|:---------------------|
 |Green Snap (optional)|	GSP|	Count and date of causal event [DD/MM/YY]|	Before flowering|	Number of plants broken between ground level and top ear node before flowering
 |Anthesis	|DMF	|Date [DD/MM/YY]	|At flowering	|Days between planting and 50% of plants of a plot exhibit anther exertion on more than half of the main tassel spike
 |Silking	|DFF	|Date [DD/MM/YY]	|At flowering	|Days between planting and 50% of plants of a plot show silk emergence
