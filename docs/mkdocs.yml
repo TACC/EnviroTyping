@@ -1,9 +1,9 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
-theme: readthedocs
 pages:
 - Home: 'index.md'
 - Tutorials: 'tutorials.md'
     - 'Launcher Module': 'tutorials/launcherModule.md'
 - History: 'history.md'
 - Update: 'updating.md'
+theme: readthedocs
