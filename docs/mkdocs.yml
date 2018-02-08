@@ -3,6 +3,6 @@ site_description: EnviroTyping Project Documentation
 
 pages:
     - Home: 'index.md'
-    - Tutorials: 'tutorials.md'
+    - Tutorials: 'tutorials/tutorials.md'
         - 'Launcher Module': 'tutorials/launcherModule.md'
     - Update: 'updating.md'
