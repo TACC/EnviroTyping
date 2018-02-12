@@ -5,7 +5,7 @@ This repository is home to .md files rendered to html at http://envirotyping.rea
 See "updating.md" for instructions to modify content in this repository.
 
 
-## EnviroTyping
+### EnviroTyping
 
 Genetically-Informed EnviroTyping Tools to Better Test and Target Environments
 

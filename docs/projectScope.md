@@ -8,7 +8,7 @@
 
 |                                   |    2014    |   2015    |   2016    |   2017    |
 |:----------------------------------|:----------:|:---------:|:---------:|:---------:|
-| No. of experimentssss             |	23       | 	28       |    40     |    43     |  
+| No. of experiments             |	23       | 	28       |    40     |    43     |  
 | No. of unique locations           |	19       | 	24       |    34     |    38     |  
 | No. of states/provinces           |   13       |   16      |    19     |    23     |  
 | No. of Principal  Investigators   |   19       |	25       |    29     |    32     |  
