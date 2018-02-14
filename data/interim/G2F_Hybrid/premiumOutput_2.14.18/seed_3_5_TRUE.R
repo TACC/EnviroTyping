@@ -1,8 +1,8 @@
 library(PReMiuM)
 library(dplyr)
 library(readr)
-install.packages("ggplus", repos = "https://cran.revolutionanalytics.com/")
-library(ggplus)
+# install.packages("ggplus", repos = "https://cran.revolutionanalytics.com/")
+# library(ggplus)
 
 setwd("/work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.14.18")
 
@@ -28,7 +28,7 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield',
                 nSweeps = 1000,
                 nBurn = 1000)
 
-save(runInfoObj, file = "runInfoObj.rda")
+saveRDS(runInfoObj, file = "runInfoObj.rda")
 
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 
@@ -48,16 +48,17 @@ clusterOrderObj<-plotRiskProfile(riskProfileOb,  whichCovariates = c("windSpdMin
                                  outFile = "windSpd_windDir_windGust_soilTemp_soilMoist.png")
 
 tmp_vp<-data.frame(opt=as.factor(optAlloc), outc=clusts$clusObjRunInfoObj$yMat, known=as.factor(temp$Pedi))
+saveRDS(tmp_vp, file = "temp_vp.rda")
 
-pdf("./violinPlots.pdf", paper="a4")
-p2 <- ggplot(tmp_vp, aes(x=opt, y=outc)) +
-    geom_violin(aes(fill = opt)) + 
-    geom_point(size = 1, stroke = 1, shape = 16) +
-    labs(x="clusters", y = "outcome") +
-    scale_y_continuous(breaks=seq(0, 300, 75))
-
-facet_multiple(plot = p2, 
-               facets = 'known', 
-               ncol = 3, 
-               nrow = 3)
-dev.off()
+# pdf("./violinPlots.pdf", paper="a4")
+# p2 <- ggplot(tmp_vp, aes(x=opt, y=outc)) +
+#     geom_violin(aes(fill = opt)) + 
+#     geom_point(size = 1, stroke = 1, shape = 16) +
+#     labs(x="clusters", y = "outcome") +
+#     scale_y_continuous(breaks=seq(0, 300, 75))
+# 
+# facet_multiple(plot = p2, 
+#                facets = 'known', 
+#                ncol = 3, 
+#                nrow = 3)
+# dev.off()
