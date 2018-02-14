@@ -7,8 +7,15 @@ library(readr)
 setwd("/work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.14.18")
 
 # read in data from analysis script
-df <- read_csv("../hybrid_by_weeksSincePlanted_cleaned_weather.csv")
-#df <- read_csv("data/interim/G2F_Hybrid/hybrid_by_weeksSincePlanted_cleaned_weather.csv")
+df <- read_csv("../hybrid_by_weeksSincePlanted_cleaned_weather.csv", 
+               col_types = cols("Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(),
+                                "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(),
+                                "solarMax" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number()))
+# df <- read_csv("data/interim/G2F_Hybrid/hybrid_by_weeksSincePlanted_cleaned_weather.csv", 
+#                col_types = cols("Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(),
+#                                 "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(),
+#                                 "solarMax" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number()))
+
 
 # creates a data frame for the month number
 temp <- df %>% filter(seed_3_5 == TRUE)
