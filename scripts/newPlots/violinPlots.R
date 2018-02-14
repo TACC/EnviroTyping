@@ -55,12 +55,12 @@ p <- ggplot(tmp_boxplot, aes(x=known, y=outc, fill=opt)) +
 # Use brewer color palettes
 p+scale_fill_brewer(palette="Set3")
 
+tmp_bp<-data.frame(opt=as.factor(optAlloc), outc=clusts$clusObjRunInfoObj$yMat, known=as.factor(temp$Pedi))
 
-pdf("hybrids_violinplots.pdf", paper="a4")
-tmp_bp<-data.frame(opt=as.factor(optAlloc), outc=mod$yMat, known=as.factor(temp$Pedi))
+pdf("./scripts/newPlots/hybrids_plots.pdf", paper="a4")
 p2 <- ggplot(tmp_bp, aes(x=opt, y=outc)) +
     geom_violin(aes(fill = opt)) + 
-    geom_jitter(height = 0, width = 0.1) +
+    geom_point(size = 1, stroke = 1, shape = 16) +
     labs(x="clusters", y = "outcome") +
     scale_y_continuous(breaks=seq(0, 300, 75))
     #facet_grid(~opt,scales='free',space='free') +
@@ -70,8 +70,8 @@ p2 <- ggplot(tmp_bp, aes(x=opt, y=outc)) +
 
 facet_multiple(plot = p2, 
                facets = 'known', 
-               ncol = 4, 
-               nrow = 4)
+               ncol = 3, 
+               nrow = 3)
 dev.off()
 
 
@@ -92,14 +92,4 @@ for (i in seq(1, length(unique(tmp_bp$known)), 6)) {
 dev.off()
 
 
-# tmp_bp %>%
-#     select_if(function(x) any(is.na(x))) %>%
-#     summarise_all(funs(sum(is.na(.))))
 
-print(ggplot(Baseball[Baseball$team87 %in% levels(Baseball$team87)[i:(i+5)], ], 
-             aes(hits86, sal87)) + 
-          geom_point() +
-          facet_wrap(~ team87) +
-          scale_y_continuous(limits=c(0, max(Baseball$sal87, na.rm=TRUE))) +
-          scale_x_continuous(limits=c(0, max(Baseball$hits86))) +
-          theme_bw())
