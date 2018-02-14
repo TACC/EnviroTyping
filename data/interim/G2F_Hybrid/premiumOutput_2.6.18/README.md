@@ -6,6 +6,5 @@ Questions?
 
 2.  Should I be using a max number of clusters based on the number of covariates? (i.e. if I have 14 weather variables and 1 phenotype variable should I set max clusters to 15)
 
-3.  Are the covariates in the regression limited for the sake of the plot?
 
-Hey 
+

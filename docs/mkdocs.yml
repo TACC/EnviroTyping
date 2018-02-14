@@ -1,8 +1,12 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
-theme: readthedocs
+repo_url: https://github.com/TACC/EnviroTyping
+
 pages:
-- ['index.md', 'Index']
-- ['updating.md', 'Updating the Docs']
-- ['tutorials/tutorials.md', 'Tutorials', 'Tutorials']
-- ['tutorials/launcherModule.md', 'Tutorials', 'TACC Launcher Module']
+    - Home: 'index.md'
+    - 'Project Scope': 'projectScope.md'
+    - Tutorials:
+        - 'Launcher Module': 'tutorials/launcherModule.md'
+    - Update: 'updating.md'
+
+site_author: 'Dave Hiltbrand'
