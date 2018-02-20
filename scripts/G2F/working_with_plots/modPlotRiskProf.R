@@ -1,325 +1,371 @@
-for (i in 1:length(riskProfObj)) assign(names(riskProfObj)[i],riskProfObj[[i]])
-for (i in 1:length(riskProfClusObj)) assign(names(riskProfClusObj)[i],riskProfClusObj[[i]])
-for (i in 1:length(clusObjRunInfoObj)) assign(names(clusObjRunInfoObj)[i],clusObjRunInfoObj[[i]])
-outfile = "summary.png"
-whichClusters=NULL
-orderBy=NULL
-if(!is.null(orderBy)){
-    if(!includeResponse){
-        if(orderBy!='Empirical'&&orderBy!='ClusterSize'&&!orderBy%in%covNames){
-            if(is.numeric(orderBy)){
-                if(length(orderBy)==nClusters){
-                    orderProvided<-T
-                    meanSortIndex<-orderBy
-                }else{
-                    cat("Order vector provided not of same length as number of clusters. Reverting to default ordering.\n")
-                    orderBy<-NULL
-                }
-                orderBy<-NULL
-            }
-            #orderBy<-NULL
-        }
-    }else{
-        if(orderBy!='Risk'&&orderBy!='Empirical'&&orderBy!='ClusterSize'&&!orderBy%in%covNames){
-            if(is.numeric(orderBy)){
-                if(length(orderBy)==nClusters){
-                    orderProvided<-T
-                    meanSortIndex<-orderBy
-                }else{
-                    cat("Order vector provided not of same length as number of clusters. Reverting to default ordering.\n")
-                    orderBy<-NULL
-                }
-                orderBy<-NULL
-            }
-            #orderBy<-NULL
-        }
-    }
 
-}
-if(!orderProvided){
-    if(!is.null(risk)){
-        if(is.null(orderBy)){
-            # Default is to order by posterior theta risk
-            # Compute the means
-            orderStat<-apply(risk,2,median)
-        }else{
-            if(orderBy=='Risk'){
+function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL, 
+          whichClusters = NULL, whichCovariates = NULL, useProfileStar = F, 
+          riskLim = NULL) 
+{
+    ###########################
+    # make some NULL objects
+    ###########################
+    
+    riskProfClusObj = NULL
+    clusObjRunInfoObj = NULL
+    includeResponse = NULL
+    yModel = NULL
+    profileStar = NULL
+    xModel = NULL
+    whicCov = NULL
+    nCategoriesY = NULL
+    cluster = NULL
+    prob = NULL
+    meanProb = NULL
+    fillColor = NULL
+    lowerProb = NULL
+    upperProb = NULL
+    meanRisk = NULL
+    lowerRisk = NULL
+    upperRisk = NULL
+    clusterSize = NULL
+    mu = NULL
+    meanMu = NULL
+    lowerMu = NULL
+    upperMu = NULL
+    sigma = NULL
+    meanSigma = NULL
+    lowerSigma = NULL
+    upperSigma = NULL
+    weibullFixedShape = NULL
+    nu = NULL
+    meanNu = NULL
+    lowerNu = NULL
+    upperNu = NULL
+    
+    ###########################
+    # Create Variables and DF's
+    ###########################
+    
+    for (i in 1:length(riskProfObj)) assign(names(riskProfObj)[i],riskProfObj[[i]])
+    for (i in 1:length(riskProfClusObj)) assign(names(riskProfClusObj)[i],riskProfClusObj[[i]])
+    for (i in 1:length(clusObjRunInfoObj)) assign(names(clusObjRunInfoObj)[i],clusObjRunInfoObj[[i]])
+    
+    orderProvided <- F
+    
+    if(!orderProvided){
+        if(!is.null(risk)){
+            if(is.null(orderBy)){
+                # Default is to order by posterior theta risk
+                # Compute the means
                 orderStat<-apply(risk,2,median)
-            }else if(orderBy=='Empirical'){
-                orderStat<-empiricals
-            }else if(orderBy=='ClusterSize'){
-                orderStat<-clusterSizes
-            }else{
-                whichCov<-match(orderBy,covNames)
-                if(xModel=='Normal'){
-                    orderStat<-apply(profile[,,whichCov],2,median)
-                }else{
-                    # This assumes that there is some order to the categories
-                    # and then uses an expected value
-                    tmpMat<-profile[,,whichCov,1]
-                    if(nCategories[whichCov]>1){
-                        for(k in 2:nCategories[whichCov]){
-                            tmpMat<-tmpMat+k*profile[,,whichCov,k]
-                        }
-                    }
-                    orderStat<-apply(tmpMat,2,median)
-                }
-            }
-        }
-    }else{
-        if(is.null(orderBy)){
-            # Default is to order by empirical risk
-            orderStat<-empiricals
-        }else{
-            if(orderBy=='Empirical'){
-                orderStat<-empiricals
-            }else if(orderBy=='ClusterSize'){
-                orderStat<-clusterSizes
-            }else{
-                whichCov<-match(orderBy,covNames)
-                if(xModel=='Normal'){
-                    orderStat<-apply(profile[,,whichCov],2,median)
-                }else{
-                    # This assumes that there is some order to the categories
-                    # and then uses an expected value
-                    tmpMat<-profile[,,whichCov,1]
-                    if(nCategories[whichCov]>1){
-                        for(k in 2:(nCategories[whichCov])){
-                            tmpMat<-tmpMat+k*profile[,,whichCov,k]
-                        }
-                    }
-                    orderStat<-apply(tmpMat,2,median)
-                }
-            }
+             }
+        # Sort into ascending mean size
+        meanSortIndex<-order(orderStat,decreasing=F)
         }
     }
-    # Sort into ascending mean size
-    meanSortIndex<-order(orderStat,decreasing=F)
-}
-
-png(outFile,width=1200,height=800)
-orderProvided<-F
-
-
-for(j in 1:nCovariates){
-    if (j<=nDiscreteCovs){
-            # profileDF<-data.frame("prob"=c(),"cluster"=c(),"category"=c(),"meanProb"=c(),
-            # 	"lowerProb"=c(),"upperProb"=c(),"fillColor"=c())
-
-            #################################################################
-            my.list <- vector('list', length(whichClusters)*nCategories[j])
-            z=1
-            #################################################################
-
-            for(k in 1:nCategories[j]){
-                if (nDiscreteCovs==1) {
-                    probMat<-profilePhi[,meanSortIndex,1,k]
-                } else {
-                    probMat<-profilePhi[,meanSortIndex,j,k]
-                }
-                nPoints<-nrow(probMat)
-                probMeans<-apply(probMat,2,mean)
-                probMean<-sum(probMeans*clusterSizes)/sum(clusterSizes)
-                probLower<-apply(probMat,2,quantile,0.05)
-                probUpper<-apply(probMat,2,quantile,0.95)
-
-                # Get the plot colors
-                probColor<-ifelse(probLower>rep(probMean,length(probLower)),"high",
-                                  ifelse(probUpper<rep(probMean,length(probUpper)),"low","avg"))
-
-
-
-                for(c in whichClusters){
-                    # profileDF<-rbind(profileDF,data.frame("prob"=probMat[,c],"cluster"=rep(c,nPoints),
-                    # 	"category"=rep(k-1,nPoints),
-                    # 	"meanProb"=rep(probMean,nPoints),
-                    # 	"lowerProb"=rep(probLower[c],nPoints),
-                    # 	"upperProb"=rep(probUpper[c],nPoints),
-                    # 	"fillColor"=rep(probColor[c],nPoints)))
-                    # 	 rownames(profileDF)<-seq(1,nrow(profileDF),1)
-
-                    #################################################################
-                    my.list[[z]] <- data.frame("prob"=probMat[,c],"cluster"=rep(c,nPoints),
-                                               "category"=rep(k-1,nPoints),
-                                               "meanProb"=rep(probMean,nPoints),
-                                               "lowerProb"=rep(probLower[c],nPoints),
-                                               "upperProb"=rep(probUpper[c],nPoints),
-                                               "fillColor"=rep(probColor[c],nPoints))
-                    z=z+1
-                    #################################################################
-                }
-            }
-
-            #################################################################
-            profileDF <- do.call('rbind', my.list)
-            rownames(profileDF)<-seq(1,nrow(profileDF),1)
-
-            #print(str(profileDF))
-            #print(head(profileDF))
-            #################################################################
-
-
-            plotObj<-ggplot(profileDF)
-            plotObj<-plotObj+facet_wrap(~category,ncol=1,as.table=F,scales="free_y")
-            plotObj<-plotObj+geom_hline(aes(yintercept=meanProb))
-            plotObj<-plotObj+geom_violin(aes(x=as.factor(cluster),y=prob,fill=as.factor(fillColor)),outlier.size=0.5)
-            plotObj<-plotObj+geom_point(aes(x=as.factor(cluster),y=lowerProb,colour=as.factor(fillColor)),size=1.5)
-            plotObj<-plotObj+geom_point(aes(x=as.factor(cluster),y=upperProb,colour=as.factor(fillColor)),size=1.5)
-            plotObj<-plotObj+
-                scale_fill_manual(values = c(high ="#CC0033",low ="#0066CC", avg ="#33CC66"))+
-                scale_colour_manual(values = c(high ="#CC0033",low ="#0066CC", avg ="#33CC66"))+
-                theme(legend.position="none")+labs(x="Cluster")+theme(axis.title.x=element_text(size=10))
-            if(j==1){
-                plotObj<-plotObj+labs(y="Probability")+theme(axis.title.y=element_text(size=10,angle=90))
-            }else{
-                plotObj<-plotObj+theme(axis.title.y=element_blank())
-            }
-            plotObj<-plotObj+labs(title=covNames[j],plot.title=element_text(size=10))
-            plotObj<-plotObj+theme(plot.margin=unit(c(0.5,ifelse(j==nCovariates,1,0),0.5,ifelse(j==1,0.5,0)),'lines'))+
-                theme(plot.margin=unit(c(0,0,0,0),'lines'))
-
-            print(plotObj,vp=viewport(layout.pos.row=1:6,layout.pos.col=j+2))
-        } else {
-            # Plot the means
-            # profileDF<-data.frame("mu"=c(),"cluster"=c(),"muMean"=c(),
-            # 	"lowerMu"=c(),"upperMu"=c(),"fillColor"=c())
-            #################################################################
-            my.list <- vector('list', length(whichClusters))
-            z=1
-            #################################################################
-            if (nContinuousCovs==1){
-                muMat<-profileMu[,meanSortIndex,1]
-            } else {
-                muMat<-profileMu[,meanSortIndex,(j-nDiscreteCovs)]
-            }
-            muMeans<-apply(muMat,2,mean)
-            muMean<-sum(muMeans*clusterSizes)/sum(clusterSizes)
-            muLower<-apply(muMat,2,quantile,0.05)
-            muUpper<-apply(muMat,2,quantile,0.95)
-            # The next line is to avoid outliers spoiling plot scales
-            plotMax<-max(muUpper)
-            plotMin<-min(muLower)
-
-            # Get the plot colors
-            muColor<-ifelse(muLower>rep(muMean,length(muLower)),"high",
-                            ifelse(muUpper<rep(muMean,length(muUpper)),"low","avg"))
-            for(c in whichClusters){
-                plotMu<-muMat[,c]
-                plotMu<-plotMu[plotMu<plotMax&plotMu>plotMin]
-                nPoints<-length(plotMu)
-                # profileDF<-rbind(profileDF,data.frame("mu"=plotMu,"cluster"=rep(c,nPoints),
-                # 	"meanMu"=rep(muMean,nPoints),
-                # 	"lowerMu"=rep(muLower[c],nPoints),
-                # 	"upperMu"=rep(muUpper[c],nPoints),
-                # 	"fillColor"=rep(muColor[c],nPoints)))
-                #################################################################
-                my.list[[z]] <- data.frame("mu"=plotMu,"cluster"=rep(c,nPoints),
-                                           "meanMu"=rep(muMean,nPoints),
-                                           "lowerMu"=rep(muLower[c],nPoints),
-                                           "upperMu"=rep(muUpper[c],nPoints),
-                                           "fillColor"=rep(muColor[c],nPoints))
-                z=z+1
-                #################################################################
-
-            }
-            #rownames(profileDF)<-seq(1,nrow(profileDF),1)
-            #################################################################
-            profileDF <- do.call('rbind', my.list)
-            rownames(profileDF)<-seq(1,nrow(profileDF),1)
-
-            #print(str(profileDF))
-            #print(head(profileDF))
-            #################################################################
-            plotObj<-ggplot(profileDF)
-            plotObj<-plotObj+geom_hline(aes(yintercept=meanMu))
-            plotObj<-plotObj+geom_violin(aes(x=as.factor(cluster),y=mu,fill=as.factor(fillColor)),outlier.size=0.5)
-            plotObj<-plotObj+geom_point(aes(x=as.factor(cluster),y=lowerMu,colour=as.factor(fillColor)),size=1.5)
-            plotObj<-plotObj+geom_point(aes(x=as.factor(cluster),y=upperMu,colour=as.factor(fillColor)),size=1.5)
-            plotObj<-plotObj+
-                scale_fill_manual(values = c(high ="#CC0033",low ="#0066CC", avg ="#33CC66"))+
-                scale_colour_manual(values = c(high ="#CC0033",low ="#0066CC", avg ="#33CC66"))+
-                theme(legend.position="none")+labs(x="Cluster")+theme(axis.title.x=element_text(size=10))
-            if(j==1){
-                plotObj<-plotObj+labs(y="Mean")+theme(axis.title.y=element_text(size=10,angle=90))
-            }else{
-                plotObj<-plotObj+theme(axis.title.y=element_blank())
-            }
-            plotObj<-plotObj+labs(title=covNames[j],plot.title=element_text(size=10))
-            plotObj<-plotObj+
-                theme(plot.margin=unit(c(0.5,ifelse(j==nCovariates,1,0),0.5,ifelse(j==1,0.5,0)),'lines'))+
-                theme(plot.margin=unit(c(0,0,0,0),'lines'))
-
-            print(plotObj,vp=viewport(layout.pos.row=1:3,layout.pos.col=j+2))
-
-            # Plot the variances
-            # profileDF<-data.frame("sigma"=c(),"cluster"=c(),"sigmaMean"=c(),
-            # 	"lowerSigma"=c(),"upperSigma"=c(),"fillColor"=c())
-            #################################################################
-            my.list <- vector('list', length(whichClusters))
-            z=1
-            #################################################################
-            if (nContinuousCovs==1){
-                sigmaMat<-profileStdDev[,meanSortIndex,1,1]
-            } else {
-                sigmaMat<-profileStdDev[,meanSortIndex,(j-nDiscreteCovs),(j-nDiscreteCovs)]
-            }
-            sigmaMeans<-apply(sigmaMat,2,mean)
-            sigmaMean<-sum(sigmaMeans*clusterSizes)/sum(clusterSizes)
-            sigmaLower<-apply(sigmaMat,2,quantile,0.05)
-            sigmaUpper<-apply(sigmaMat,2,quantile,0.95)
-            # The next line is to avoid outliers spoiling plot scales
-            plotMax<-max(sigmaUpper)
-
-            # Get the plot colors
-            sigmaColor<-ifelse(sigmaLower>rep(sigmaMean,length(sigmaLower)),"high",
-                               ifelse(sigmaUpper<rep(sigmaMean,length(sigmaUpper)),"low","avg"))
-            for(c in whichClusters){
-                plotSigma<-sigmaMat[,c]
-                plotSigma<-plotSigma[plotSigma<plotMax]
-                nPoints<-length(plotSigma)
-                # profileDF<-rbind(profileDF,data.frame("sigma"=plotSigma,"cluster"=rep(c,nPoints),
-                # 	"meanSigma"=rep(sigmaMean,nPoints),
-                # 	"lowerSigma"=rep(sigmaLower[c],nPoints),
-                # 	"upperSigma"=rep(sigmaUpper[c],nPoints),
-                # 	"fillColor"=rep(sigmaColor[c],nPoints)))
-                #################################################################
-                my.list[[z]] <- data.frame("sigma"=plotSigma,"cluster"=rep(c,nPoints),
-                                           "meanSigma"=rep(sigmaMean,nPoints),
-                                           "lowerSigma"=rep(sigmaLower[c],nPoints),
-                                           "upperSigma"=rep(sigmaUpper[c],nPoints),
-                                           "fillColor"=rep(sigmaColor[c],nPoints))
-                z=z+1
-                #################################################################
-            }
-            # rownames(profileDF)<-seq(1,nrow(profileDF),1)
-            #################################################################
-            profileDF <- do.call('rbind', my.list)
-            rownames(profileDF)<-seq(1,nrow(profileDF),1)
-
-            #print(str(profileDF))
-            #print(head(profileDF))
-            #################################################################
-
-            plotObj<-ggplot(profileDF)
-            plotObj<-plotObj+geom_hline(aes(yintercept=meanSigma))
-            plotObj<-plotObj+geom_violin(aes(x=as.factor(cluster),y=sigma,fill=as.factor(fillColor)),outlier.size=0.5)
-            plotObj<-plotObj+geom_point(aes(x=as.factor(cluster),y=lowerSigma,colour=as.factor(fillColor)),size=1.5)
-            plotObj<-plotObj+geom_point(aes(x=as.factor(cluster),y=upperSigma,colour=as.factor(fillColor)),size=1.5)
-            plotObj<-plotObj+
-                scale_fill_manual(values = c(high ="#CC0033",low ="#0066CC", avg ="#33CC66"))+
-                scale_colour_manual(values = c(high ="#CC0033",low ="#0066CC", avg ="#33CC66"))+
-                theme(legend.position="none")+labs(x="Cluster")+theme(axis.title.x=element_text(size=10))
-            if(j==1){
-                plotObj<-plotObj+labs(y="Std Dev")+theme(axis.title.y=element_text(size=10,angle=90))
-            }else{
-                plotObj<-plotObj+theme(axis.title.y=element_blank())
-            }
-            plotObj<-plotObj+
-                theme(plot.margin=unit(c(0.5,ifelse(j==nCovariates,1,0),0.5,ifelse(j==1,0.5,0)),'lines'))+
-                theme(plot.margin=unit(c(0,0,0,0),'lines'))
-
-            print(plotObj,vp=viewport(layout.pos.row=4:6,layout.pos.col=j+2))
+    
+    
+    if (includeResponse) {
+        riskDim <- dim(risk)
+        risk <- array(risk[, meanSortIndex, ], dim = riskDim)
+    }
+    
+    clusterSizes <- clusterSizes[meanSortIndex]
+    empiricals <- empiricals[meanSortIndex]
+    meanEmpirical <- sum(empiricals * clusterSizes)/sum(clusterSizes)
+    if (is.null(whichClusters)) {
+        whichClusters <- 1:nClusters
+    }
+    nClusters <- length(whichClusters)
+    
+    if (includeResponse) {
+        riskMeans <- apply(risk, 2, mean, trim = 0.005)
+        riskMean <- sum(riskMeans * clusterSizes)/sum(clusterSizes)
+        riskLower <- apply(risk, 2, quantile, 0.05)
+        riskUpper <- apply(risk, 2, quantile, 0.95)
+        plotMax <- max(riskUpper)
+        riskColor <- ifelse(riskLower > rep(riskMean, nClusters), 
+                            "high", ifelse(riskUpper < rep(riskMean, nClusters), 
+                                           "low", "avg"))
+      
+    }
+    my.list <- vector("list", length(whichClusters))
+    
+    my.list.nu <- vector("list", length(whichClusters))
+    my.list.empirical <- vector("list", length(whichClusters))
+    my.list.size <- vector("list", length(whichClusters))
+    z = 1
+    z.other = 1
+    
+    for (c in whichClusters) {
+        if (includeResponse) {
+                plotRisk <- risk[, c, ]
+                plotRisk <- plotRisk[plotRisk < plotMax]
+                nPoints <- length(plotRisk)
+                my.list[[z]] <- data.frame(risk = plotRisk, cluster = rep(c, 
+                                                                          nPoints), meanRisk = rep(riskMean, nPoints), 
+                                           lowerRisk = rep(riskLower[c], nPoints), upperRisk = rep(riskUpper[c], 
+                                                                                                   nPoints), fillColor = rep(riskColor[c], nPoints))
+                z = z + 1
+            
+            
         }
-
+        my.list.empirical[[z.other]] <- data.frame(empiricals = empiricals[c], 
+                                                   meanEmpirical = meanEmpirical, cluster = c, fillColor = riskColor[c])
+        my.list.size[[z.other]] <- data.frame(clusterSize = clusterSizes[c], 
+                                              cluster = c, fillColor = riskColor[c])
+        z.other = z.other + 1
+    }
+    
+    if (includeResponse) {
+        riskDF <- do.call("rbind", my.list)
+        nuDF <- do.call("rbind", my.list.nu)
+        empiricalDF <- do.call("rbind", my.list.empirical)
+    }
+    sizeDF <- do.call("rbind", my.list.size)
+    
+    ###########################
+    # Risk plot
+    ###########################
+    
+        rownames(riskDF) <- seq(1, nrow(riskDF), by = 1)
+        plotObj <- ggplot(riskDF)
+        plotObj <- plotObj + geom_hline(aes(yintercept = meanRisk))
+        plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
+                                              y = risk, fill = as.factor(fillColor)), outlier.size = 0.5)
+        if (!is.null(riskLim)) 
+            plotObj <- plotObj + coord_cartesian(ylim = riskLim)
+        plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                            y = lowerRisk, colour = as.factor(fillColor)), 
+                                        size = 1.5)
+        plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                            y = upperRisk, colour = as.factor(fillColor)), 
+                                        size = 1.5)
+        plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
+                                                          low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
+                                                                                                                              low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+            labs(x = "Cluster", y = ifelse(showRelativeRisk, 
+                                           "RR", ifelse(yModel == "Categorical" || yModel == 
+                                                            "Bernoulli" || yModel == "Binomial", "Probability", 
+                                                        "E[Y]")))
+        plotObj <- plotObj + theme(axis.title.y = element_text(size = 10, 
+                                                               angle = 90), axis.title.x = element_text(size = 10))
+        plotObj <- plotObj + labs(title = ifelse(showRelativeRisk, 
+                                                 "Relative Risk", "Risk"), plot.title = element_text(size = 10))
+        plotObj <- plotObj + theme(plot.margin = unit(c(0, 
+                                                        0, 0, 0), "lines")) + theme(plot.margin = unit(c(0.5, 
+                                                                                                         0.15, 0.5, 0.15), "lines"))
+        print(plotObj, vp = viewport(layout.pos.row = 1:6, 
+                                     layout.pos.col = 2))
+    
+    ###########################
+    # First 2 plots 
+    ###########################
+    
+    plotObj2 <- ggplot(sizeDF)
+    plotObj2 <- plotObj2 + geom_point(aes(x = as.factor(cluster), 
+                                        y = clusterSize, colour = as.factor(fillColor)), size = 3)
+    plotObj2 <- plotObj2 + scale_colour_manual(values = c(high = "#CC0033", 
+                                                        low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none")
+    plotObj2 <- plotObj2 + labs(title = "Size", plot.title = element_text(size = 10))
+    plotObj2 <- plotObj2 + theme(axis.title.x = element_text(size = 10), 
+                               axis.title.y = element_text(size = 10, angle = 90))
+    plotObj2 <- plotObj2 + labs(y = "No. of Subjects", x = "Cluster")
+    plotObj2 <- plotObj2 + theme(plot.margin = unit(c(0, 0, 0, 
+                                                    0), "lines")) + theme(plot.margin = unit(c(0.15, 0.5, 
+                                                                                               0.5, 1), "lines"))
+    print(plotObj2, vp = viewport(layout.pos.row = 4:6, layout.pos.col = 1))
+    
+    ###########################
+    # Mean and SD Plots
+    ###########################
+    
+    
+    for (j in 1:nCovariates) {
+        # first if loop only runs once 
+            if (j <= nDiscreteCovs) {
+                my.list <- vector("list", length(whichClusters) * 
+                                      nCategories[j])
+                z = 1
+                for (k in 1:nCategories[j]) {
+                    if (nDiscreteCovs == 1) {
+                        probMat <- profilePhi[, meanSortIndex, 1, 
+                                              k]
+                    }
+                    
+                    nPoints <- nrow(probMat)
+                    probMeans <- apply(probMat, 2, mean)
+                    probMean <- sum(probMeans * clusterSizes)/sum(clusterSizes)
+                    probLower <- apply(probMat, 2, quantile, 0.05)
+                    probUpper <- apply(probMat, 2, quantile, 0.95)
+                    probColor <- ifelse(probLower > rep(probMean, 
+                                                        length(probLower)), "high", ifelse(probUpper < 
+                                                                                               rep(probMean, length(probUpper)), "low", 
+                                                                                           "avg"))
+                    for (c in whichClusters) {
+                        my.list[[z]] <- data.frame(prob = probMat[, 
+                                                                  c], cluster = rep(c, nPoints), category = rep(k - 
+                                                                                                                    1, nPoints), meanProb = rep(probMean, nPoints), 
+                                                   lowerProb = rep(probLower[c], nPoints), 
+                                                   upperProb = rep(probUpper[c], nPoints), 
+                                                   fillColor = rep(probColor[c], nPoints))
+                        z = z + 1
+                    }
+                }
+                profileDF <- do.call("rbind", my.list)
+                rownames(profileDF) <- seq(1, nrow(profileDF), 
+                                           1)
+                plotObj <- ggplot(profileDF)
+                plotObj <- plotObj + facet_wrap(~category, ncol = 1, 
+                                                as.table = F, scales = "free_y")
+                plotObj <- plotObj + geom_hline(aes(yintercept = meanProb))
+                plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
+                                                      y = prob, fill = as.factor(fillColor)), outlier.size = 0.5)
+                plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                                    y = lowerProb, colour = as.factor(fillColor)), 
+                                                size = 1.5)
+                plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                                    y = upperProb, colour = as.factor(fillColor)), 
+                                                size = 1.5)
+                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
+                                                                  low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
+                                                                                                                                      low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+                    labs(x = "Cluster") + theme(axis.title.x = element_text(size = 10))
+                if (j == 1) {
+                    plotObj <- plotObj + labs(y = "Probability") + 
+                        theme(axis.title.y = element_text(size = 10, 
+                                                          angle = 90))
+                }
+                else {
+                    plotObj <- plotObj + theme(axis.title.y = element_blank())
+                }
+                plotObj <- plotObj + labs(title = covNames[j], 
+                                          plot.title = element_text(size = 10))
+                plotObj <- plotObj + theme(plot.margin = unit(c(0.5, 
+                                                                ifelse(j == nCovariates, 1, 0), 0.5, ifelse(j == 
+                                                                                                                1, 0.5, 0)), "lines")) + theme(plot.margin = unit(c(0, 
+                                                                                                                                                                    0, 0, 0), "lines"))
+                print(plotObj, vp = viewport(layout.pos.row = 1:6, 
+                                             layout.pos.col = j + 2))
+            }
+            else {
+                
+                #############
+                # Mean plots
+                #############
+                my.list <- vector("list", length(whichClusters))
+                z = 1
+            
+                muMat <- profileMu[, meanSortIndex, (j - nDiscreteCovs)]
+                
+                muMeans <- apply(muMat, 2, mean)
+                muMean <- sum(muMeans * clusterSizes)/sum(clusterSizes)
+                muLower <- apply(muMat, 2, quantile, 0.05)
+                muUpper <- apply(muMat, 2, quantile, 0.95)
+                plotMax <- max(muUpper)
+                plotMin <- min(muLower)
+                muColor <- ifelse(muLower > rep(muMean, length(muLower)), 
+                                  "high", ifelse(muUpper < rep(muMean, length(muUpper)), 
+                                                 "low", "avg"))
+                for (c in whichClusters) {
+                    plotMu <- muMat[, c]
+                    plotMu <- plotMu[plotMu < plotMax & plotMu > 
+                                         plotMin]
+                    nPoints <- length(plotMu)
+                    my.list[[z]] <- data.frame(mu = plotMu, cluster = rep(c, 
+                                                                          nPoints), meanMu = rep(muMean, nPoints), 
+                                               lowerMu = rep(muLower[c], nPoints), upperMu = rep(muUpper[c], 
+                                                                                                 nPoints), fillColor = rep(muColor[c], nPoints))
+                    z = z + 1
+                }
+                profileDF <- do.call("rbind", my.list)
+                rownames(profileDF) <- seq(1, nrow(profileDF), 1)
+                
+                plotObj <- ggplot(profileDF)
+                plotObj <- plotObj + geom_hline(aes(yintercept = meanMu))
+                plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
+                                                      y = mu, fill = as.factor(fillColor)), outlier.size = 0.5)
+                plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                                    y = lowerMu, colour = as.factor(fillColor)), 
+                                                size = 1.5)
+                plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                                    y = upperMu, colour = as.factor(fillColor)), 
+                                                size = 1.5)
+                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
+                                                                  low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
+                                                                                                                                      low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+                    labs(x = "Cluster") + theme(axis.title.x = element_text(size = 10))
+                if (j == 1) {
+                    plotObj <- plotObj + labs(y = "Mean") + theme(axis.title.y = element_text(size = 10, 
+                                                                                              angle = 90))
+                }
+                else {
+                    plotObj <- plotObj + theme(axis.title.y = element_blank())
+                }
+                plotObj <- plotObj + labs(title = covNames[j], 
+                                          plot.title = element_text(size = 10))
+                plotObj <- plotObj + theme(plot.margin = unit(c(0.5, 
+                                                                ifelse(j == nCovariates, 1, 0), 0.5, ifelse(j == 
+                                                                                                                1, 0.5, 0)), "lines")) + theme(plot.margin = unit(c(0, 
+                                                                                                                                                                    0, 0, 0), "lines"))
+                print(plotObj, vp = viewport(layout.pos.row = 1:3, 
+                                             layout.pos.col = j + 2))
+                
+                #############
+                # SD plots
+                #############
+                my.list <- vector("list", length(whichClusters))
+                z = 1
+             
+                sigmaMat <- profileStdDev[, meanSortIndex, 
+                                              (j - nDiscreteCovs), (j - nDiscreteCovs)]
+                
+                sigmaMeans <- apply(sigmaMat, 2, mean)
+                sigmaMean <- sum(sigmaMeans * clusterSizes)/sum(clusterSizes)
+                sigmaLower <- apply(sigmaMat, 2, quantile, 0.05)
+                sigmaUpper <- apply(sigmaMat, 2, quantile, 0.95)
+                plotMax <- max(sigmaUpper)
+                sigmaColor <- ifelse(sigmaLower > rep(sigmaMean, 
+                                                      length(sigmaLower)), "high", ifelse(sigmaUpper < 
+                                                                                              rep(sigmaMean, length(sigmaUpper)), "low", 
+                                                                                          "avg"))
+                for (c in whichClusters) {
+                    plotSigma <- sigmaMat[, c]
+                    plotSigma <- plotSigma[plotSigma < plotMax]
+                    nPoints <- length(plotSigma)
+                    my.list[[z]] <- data.frame(sigma = plotSigma, 
+                                               cluster = rep(c, nPoints), meanSigma = rep(sigmaMean, 
+                                                                                          nPoints), lowerSigma = rep(sigmaLower[c], 
+                                                                                                                     nPoints), upperSigma = rep(sigmaUpper[c], 
+                                                                                                                                                nPoints), fillColor = rep(sigmaColor[c], 
+                                                                                                                                                                          nPoints))
+                    z = z + 1
+                }
+                profileDF <- do.call("rbind", my.list)
+                rownames(profileDF) <- seq(1, nrow(profileDF), 
+                                           1)
+                plotObj <- ggplot(profileDF)
+                plotObj <- plotObj + geom_hline(aes(yintercept = meanSigma))
+                plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
+                                                      y = sigma, fill = as.factor(fillColor)), outlier.size = 0.5)
+                plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                                    y = lowerSigma, colour = as.factor(fillColor)), 
+                                                size = 1.5)
+                plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                                    y = upperSigma, colour = as.factor(fillColor)), 
+                                                size = 1.5)
+                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
+                                                                  low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
+                                                                                                                                      low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+                    labs(x = "Cluster") + theme(axis.title.x = element_text(size = 10))
+            
+                plotObj <- plotObj + theme(axis.title.y = element_blank())
+                
+                plotObj <- plotObj + theme(plot.margin = unit(c(0.5, 
+                                                                ifelse(j == nCovariates, 1, 0), 0.5, ifelse(j == 
+                                                                                                                1, 0.5, 0)), "lines")) + theme(plot.margin = unit(c(0, 
+                                                                                                                                                                    0, 0, 0), "lines"))
+                print(plotObj, vp = viewport(layout.pos.row = 4:6, 
+                                             layout.pos.col = j + 2))
+            }
+        
+    }
 
 }
