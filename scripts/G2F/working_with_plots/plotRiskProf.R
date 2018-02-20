@@ -1,4 +1,4 @@
-function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL, 
+plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL, 
           whichClusters = NULL, whichCovariates = NULL, useProfileStar = F, 
           riskLim = NULL) 
 {

@@ -1,12 +1,13 @@
 
-function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL, 
+modplotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL, 
           whichClusters = NULL, whichCovariates = NULL, useProfileStar = F, 
           riskLim = NULL) 
 {
-    ###########################
-    # make some NULL objects
-    ###########################
-    
+    ##### make some NULL objects  #####
+   
+    showRelativeRisk = F; orderBy = NULL; whichClusters = NULL; whichCovariates = NULL;
+        useProfileStar = F
+    riskLim = NULL
     riskProfClusObj = NULL
     clusObjRunInfoObj = NULL
     includeResponse = NULL
@@ -39,14 +40,13 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
     lowerNu = NULL
     upperNu = NULL
     
-    ###########################
-    # Create Variables and DF's
-    ###########################
+    ##### Create Variables and DF's #####
     
     for (i in 1:length(riskProfObj)) assign(names(riskProfObj)[i],riskProfObj[[i]])
     for (i in 1:length(riskProfClusObj)) assign(names(riskProfClusObj)[i],riskProfClusObj[[i]])
     for (i in 1:length(clusObjRunInfoObj)) assign(names(clusObjRunInfoObj)[i],clusObjRunInfoObj[[i]])
     
+    png(outFile, width = 1200, height = 800)
     orderProvided <- F
     
     if(!orderProvided){
@@ -121,43 +121,40 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
     }
     sizeDF <- do.call("rbind", my.list.size)
     
-    ###########################
-    # Risk plot
-    ###########################
+    ##### Create Risk Plot #####
     
-        rownames(riskDF) <- seq(1, nrow(riskDF), by = 1)
-        plotObj <- ggplot(riskDF)
-        plotObj <- plotObj + geom_hline(aes(yintercept = meanRisk))
-        plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
-                                              y = risk, fill = as.factor(fillColor)), outlier.size = 0.5)
-        if (!is.null(riskLim)) 
-            plotObj <- plotObj + coord_cartesian(ylim = riskLim)
-        plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
-                                            y = lowerRisk, colour = as.factor(fillColor)), 
-                                        size = 1.5)
-        plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
-                                            y = upperRisk, colour = as.factor(fillColor)), 
-                                        size = 1.5)
-        plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
-                                                          low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
-                                                                                                                              low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
-            labs(x = "Cluster", y = ifelse(showRelativeRisk, 
-                                           "RR", ifelse(yModel == "Categorical" || yModel == 
-                                                            "Bernoulli" || yModel == "Binomial", "Probability", 
-                                                        "E[Y]")))
-        plotObj <- plotObj + theme(axis.title.y = element_text(size = 10, 
-                                                               angle = 90), axis.title.x = element_text(size = 10))
-        plotObj <- plotObj + labs(title = ifelse(showRelativeRisk, 
-                                                 "Relative Risk", "Risk"), plot.title = element_text(size = 10))
-        plotObj <- plotObj + theme(plot.margin = unit(c(0, 
-                                                        0, 0, 0), "lines")) + theme(plot.margin = unit(c(0.5, 
-                                                                                                         0.15, 0.5, 0.15), "lines"))
-        print(plotObj, vp = viewport(layout.pos.row = 1:6, 
-                                     layout.pos.col = 2))
+    rownames(riskDF) <- seq(1, nrow(riskDF), by = 1)
+    plotObj <- ggplot(riskDF)
+    plotObj <- plotObj + geom_hline(aes(yintercept = meanRisk))
+    plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
+                                          y = risk, fill = as.factor(fillColor)), outlier.size = 0.5)
+    if (!is.null(riskLim)) 
+        plotObj <- plotObj + coord_cartesian(ylim = riskLim)
+    plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                        y = lowerRisk, colour = as.factor(fillColor)), 
+                                    size = 1.5)
+    plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
+                                        y = upperRisk, colour = as.factor(fillColor)), 
+                                    size = 1.5)
+    plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
+                                                      low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
+                                                                                                                          low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+        labs(x = "Cluster", y = ifelse(showRelativeRisk, 
+                                       "RR", ifelse(yModel == "Categorical" || yModel == 
+                                                        "Bernoulli" || yModel == "Binomial", "Probability", 
+                                                    "E[Y]")))
+    plotObj <- plotObj + theme(axis.title.y = element_text(size = 10, 
+                                                           angle = 90), axis.title.x = element_text(size = 10))
+    plotObj <- plotObj + labs(title = ifelse(showRelativeRisk, 
+                                             "Relative Risk", "Risk"), plot.title = element_text(size = 10))
+    plotObj <- plotObj + theme(plot.margin = unit(c(0, 
+                                                    0, 0, 0), "lines")) + theme(plot.margin = unit(c(0.5, 
+                                                                                                     0.15, 0.5, 0.15), "lines"))
+    print(plotObj, vp = viewport(layout.pos.row = 1:6, 
+                                 layout.pos.col = 2))
     
-    ###########################
-    # First 2 plots 
-    ###########################
+    ##### First 2 plots #####
+    
     
     plotObj2 <- ggplot(sizeDF)
     plotObj2 <- plotObj2 + geom_point(aes(x = as.factor(cluster), 
@@ -173,10 +170,7 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
                                                                                                0.5, 1), "lines"))
     print(plotObj2, vp = viewport(layout.pos.row = 4:6, layout.pos.col = 1))
     
-    ###########################
-    # Mean and SD Plots
-    ###########################
-    
+    ##### Mean and SD Plots #####
     
     for (j in 1:nCovariates) {
         # first if loop only runs once 
@@ -210,8 +204,8 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
                     }
                 }
                 profileDF <- do.call("rbind", my.list)
-                rownames(profileDF) <- seq(1, nrow(profileDF), 
-                                           1)
+                rownames(profileDF) <- seq(1, nrow(profileDF), 1)
+                
                 plotObj <- ggplot(profileDF)
                 plotObj <- plotObj + facet_wrap(~category, ncol = 1, 
                                                 as.table = F, scales = "free_y")
@@ -247,9 +241,8 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
             }
             else {
                 
-                #############
-                # Mean plots
-                #############
+                ##### Mean plots ######
+                
                 my.list <- vector("list", length(whichClusters))
                 z = 1
             
@@ -275,11 +268,11 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
                                                                                                  nPoints), fillColor = rep(muColor[c], nPoints))
                     z = z + 1
                 }
-                profileDF <- do.call("rbind", my.list)
+                profileDF <<- do.call("rbind", my.list)
                 rownames(profileDF) <- seq(1, nrow(profileDF), 1)
                 
                 plotObj <- ggplot(profileDF)
-                plotObj <- plotObj + geom_hline(aes(yintercept = meanMu))
+                plotObj <- plotObj + geom_hline() #aes(yintercept = meanMu)
                 plotObj <- plotObj + geom_boxplot(aes(x = as.factor(cluster), 
                                                       y = mu, fill = as.factor(fillColor)), outlier.size = 0.5)
                 plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
@@ -308,9 +301,8 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
                 print(plotObj, vp = viewport(layout.pos.row = 1:3, 
                                              layout.pos.col = j + 2))
                 
-                #############
-                # SD plots
-                #############
+                ##### SD plots ######
+                
                 my.list <- vector("list", length(whichClusters))
                 z = 1
              
@@ -367,5 +359,6 @@ function (riskProfObj, outFile, showRelativeRisk = F, orderBy = NULL,
             }
         
     }
+    dev.off()
 
 }
