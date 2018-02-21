@@ -5,7 +5,7 @@
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
-#SBATCH -t 03:00:00
+#SBATCH -t 12:00:00
 #SBATCH -A Envriotype
 #SBATCH -o slurm.%N.%j.out
 #------------------------------------------------------
