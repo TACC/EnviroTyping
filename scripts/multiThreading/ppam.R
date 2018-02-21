@@ -101,7 +101,11 @@ calcOptimalClustering<-function(disSimObj,maxNClusters=NULL,useLS=F){
         cat(paste("Max no of possible clusters:",maxNClusters,"\n"))
         for(c in 2:maxNClusters){
             cat(paste("Trying",c,"clusters\n"))
+<<<<<<< HEAD
             tmpObj<-ppam(disSimMat, k = as.integer(c))
+=======
+            tmpObj<-ppam(disSimMat, k = 5, is_dist = TRUE)
+>>>>>>> 3c9366d56f04a5393e0a4aaf4e7c4c837f478914
             # Check whether the silhouette width from this clustering improves previous best
             if(avgSilhouetteWidth<tmpObj$silinfo$avg.width){
                 avgSilhouetteWidth<-tmpObj$silinfo$avg.width
