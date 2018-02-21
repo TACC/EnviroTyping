@@ -1,4 +1,4 @@
-library(ClusterR)
+library(sprint)
 library(parallel)
 
 calcOptimalClustering<-function(disSimObj,maxNClusters=NULL,useLS=F){
@@ -98,11 +98,10 @@ calcOptimalClustering<-function(disSimObj,maxNClusters=NULL,useLS=F){
         
         # Loop over the possible number of clusters
         avgSilhouetteWidth<--1.0;
-        diss <- as.matrix(disSimObj$disSimMat) # convert to matrix
         cat(paste("Max no of possible clusters:",maxNClusters,"\n"))
         for(c in 2:maxNClusters){
             cat(paste("Trying",c,"clusters\n"))
-            tmpObj<-Cluster_Medoids(diss, clusters = c, verbose = TRUE)
+            tmpObj<-ppam(disSimMat, k = c)
             # Check whether the silhouette width from this clustering improves previous best
             if(avgSilhouetteWidth<tmpObj$silinfo$avg.width){
                 avgSilhouetteWidth<-tmpObj$silinfo$avg.width
@@ -113,7 +112,7 @@ calcOptimalClustering<-function(disSimObj,maxNClusters=NULL,useLS=F){
                 clustMedoids<-tmpObj$id.med
             }
         }
-        #pterminate()
+        pterminate()
         # Work out the clustering of the prediction objects
         clusteringPred<-NULL
         if(nPredictSubjects>0){
