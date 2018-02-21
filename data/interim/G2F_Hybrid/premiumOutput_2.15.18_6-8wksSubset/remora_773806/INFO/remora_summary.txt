@@ -1,0 +1,12 @@
+=============================== REMORA SUMMARY ===============================
+ Max Memory Used Per Node     : 23.40 GB
+ Total Elapsed Time           : 0d 5h 4m 18s 18ms
+------------------------------------------------------------------------------
+ Max IO Load / home1          :      56 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / scratch        :       0 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / work           :       9 IOPS       1 RD(MB/S)       3 WR(MB/S)
+==============================================================================
+ Sampling Period              : 10 seconds
+ Complete Report Data         : /work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/remora_773806
+ Graphical Results At         : /work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/remora_773806/remora_summary.html
+==============================================================================
