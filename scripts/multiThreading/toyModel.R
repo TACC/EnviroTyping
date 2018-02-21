@@ -1,13 +1,14 @@
 library(PReMiuM)
-library(profvis)
-library(ClusterR)
+#library(profvis)
+#library(ClusterR)
+library(sprint)
 
 inputs <- generateSampleDataFile(clusSummaryNormalDiscrete())
 
-setwd("scripts/multiThreading/")
-source("pamParallel.R")
+setwd("/work/04734/dhbrand/stampede2/EnviroTyping/scripts/multiThreading")
+source("ppam.R")
 
-setwd("Output")
+setwd("/work/04734/dhbrand/stampede2/EnviroTyping/scripts/multiThreading/Output")
 
 runInfoObj<-profRegr(yModel=inputs$yModel, xModel=inputs$xModel, nSweeps=100, nClusInit=15,
                      nBurn=300, data=inputs$inputData, output="output", covNames = inputs$covNames,
