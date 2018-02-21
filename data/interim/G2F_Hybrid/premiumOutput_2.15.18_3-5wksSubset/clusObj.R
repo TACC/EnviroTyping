@@ -6,6 +6,8 @@ runInfoObj <- readRDS("runInfoObj.rda")
 
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 
-clusObj <- calcOptimalClustering(calcDists)
+System.time({
+	clusObj <- calcOptimalClustering(calcDists)
+	)}
 
 saveRDS(clusObj, file = "clusObj.rda")
