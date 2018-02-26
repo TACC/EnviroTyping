@@ -41,5 +41,14 @@ wth2 <- wth1 %>%
               soilMoistMin = min(soilMoist), soilMoistMax = max(soilMoist), soilMoistMean = mean(soilMoist), 
                 soilMoistMedian = median(soilMoist))
 
+# Split Exp with multiple sites
+wth3 <- wth2 %>% 
+    ungroup(Exp) %>% 
+    mutate(Exp = strsplit(as.character(Exp), " ") ) %>% 
+    unnest(Exp) %>% 
+    select(Exp, everything()) %>% 
+    drop_na(Exp)
 
+wth3$Exp[wth3$Exp == ""] <- "NA"
 
+wth4 <- wth3 %>% filter(Exp != "NA")

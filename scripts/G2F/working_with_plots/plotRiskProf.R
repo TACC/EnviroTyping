@@ -791,5 +791,3 @@ plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy
     dev.off()
     return(meanSortIndex)
 }
-<bytecode: 0x10db662a0>
-    <environment: namespace:PReMiuM>

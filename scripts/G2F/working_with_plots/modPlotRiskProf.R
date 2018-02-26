@@ -173,7 +173,7 @@ modplotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orde
     ##### Mean and SD Plots #####
     
     for (j in 1:nCovariates) {
-        # first if loop only runs once 
+        # first loop is for probability plots of discrete covariates
             if (j <= nDiscreteCovs) {
                 my.list <- vector("list", length(whichClusters) * 
                                       nCategories[j])

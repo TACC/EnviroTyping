@@ -4,7 +4,7 @@ library(readr)
 # install.packages("ggplus", repos = "https://cran.revolutionanalytics.com/")
 # library(ggplus)
 
-setwd("/work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.14.18")
+setwd("/work/04734/dhbrand/stampede2/EnviroTyping/data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset")
 
 # read in data from analysis script
 df <- read_csv("../hybrid_by_weeksSincePlanted_cleaned_weather.csv", 

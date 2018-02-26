@@ -4,6 +4,7 @@ library(dplyr)
 library(ggplot2)
 library(ggplus)
 library(optCluster)
+library(grid)
 
 df <- read_csv("data/interim/G2F_Hybrid/hybrid_bymonth_cleaned_weather.csv",
                col_types = cols( humidMin = col_double(),
@@ -40,7 +41,7 @@ clusObj <- calcOptimalClustering(calcDists)
 
 riskProfObj <- calcAvgRiskAndProfile(clusObj)
 
-#png("outFile", width = 1200, height = 800)
+pdf("outFile", width = 1200, height = 800)
 for (i in 1:length(riskProfObj)) assign(names(riskProfObj)[i],riskProfObj[[i]])
 for (i in 1:length(riskProfClusObj)) assign(names(riskProfClusObj)[i],riskProfClusObj[[i]])
 for (i in 1:length(clusObjRunInfoObj)) assign(names(clusObjRunInfoObj)[i],clusObjRunInfoObj[[i]])
@@ -78,10 +79,13 @@ for (k in 1:nCategories) {
 profileDF <- do.call("rbind", my.list)
 rownames(profileDF) <- seq(1, nrow(profileDF), 1)
 
+# subset <- profileDF %>% 
+#     filter(between(category, 1, 10)) %>% 
+#     group_by(category, cluster) %>% 
+#     summarise(n = n())
+
 subset <- profileDF %>% 
-    filter(between(category, 1, 10)) %>% 
-    group_by(category, cluster) %>% 
-    summarise(n = n())
+    filter(cluster==1)
 
 plotObj <- ggplot(subset)
 plotObj <- plotObj + facet_wrap(~category, as.table = F, scales = "free_y")
@@ -101,6 +105,8 @@ plotObj <- plotObj + theme(plot.margin = unit(c(0.5, ifelse(j == nCovariates, 1,
 print(plotObj)
 dev.off()
 
+p <- ggplot(subset)
+p <- p + geom(boxplot)
 
 
 
@@ -156,3 +162,6 @@ optC <- optCluster(tmp_vp, 2:10, clMethods = "pam")
 summary(optC)
 assg <- optAssign(optC)
 table(assg$cluster)
+
+
+modplotRiskProfile(riskProfObj, "summary.png")
