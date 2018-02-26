@@ -10,4 +10,4 @@
 #SBATCH -o slurm.%N.%j.out
 #------------------------------------------------------
 
-remora Rscript --vanilla --verbose ./fullYear.R > fullYear/output.Rout
+remora Rscript --vanilla --verbose ./fullYear.R > ./output.Rout
