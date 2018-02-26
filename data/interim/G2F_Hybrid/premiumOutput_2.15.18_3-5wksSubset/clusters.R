@@ -1,4 +1,3 @@
-library(PReMiuM)
 library(dplyr)
 library(readr)
 library(ggplus)
@@ -20,12 +19,15 @@ optAlloc <- clusObj$clustering
 
 tmp_vp<-data.frame(opt=as.integer(as.factor(optAlloc)), outc=clusObj$clusObjRunInfoObj$yMat, known=as.integer(as.factor(temp$Pedi)))
 
-clus <- optCluster(tmp_vp, 2:10, clMethods = "hierarchical")
+clus <- optCluster(tmp_vp, 2:10, clMethods = "sota")
+optA <- optAssign(clus)
+table(optA$cluster)
+
 
 d <- dist(tmp_vp)
 clusters <- hclust(d)
 plot(clusters)
-
+saveRDS(clus, "clus.rda")
 # library("NbClust")
 # nb <- NbClust(data = tmp_vp, min.nc = 2, max.nc = 10, method = "kmeans")
 
