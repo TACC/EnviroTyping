@@ -1,0 +1,118 @@
+Date and time: 2018-02-26 15:0214
+
+Data file path: output_input.txt
+
+Output file path: output
+
+Predict file path: No predictions run.
+
+Seed: 1519675334
+
+Number of sweeps: 100
+Burn in sweeps: 100
+Output filter: 1
+Proposal Type: gibbsForVActive, Acceptance Rate: 1
+Proposal Type: updateForPhiActive, Acceptance Rate: 1
+Proposal Type: gibbsForMuActive, Acceptance Rate: 1
+Proposal Type: gibbsForTauActive, Acceptance Rate: 1
+Proposal Type: metropolisHastingsForThetaActive, Acceptance Rate: 0.467403
+Proposal Type: gibbsForU, Acceptance Rate: 1
+Proposal Type: metropolisHastingsForAlpha, Acceptance Rate: 0.385
+Proposal Type: gibbsForVInActive, Acceptance Rate: 1
+Proposal Type: gibbsForPhiInActive, Acceptance Rate: 1
+Proposal Type: gibbsForMuInActive, Acceptance Rate: 1
+Proposal Type: gibbsForTauInActive, Acceptance Rate: 1
+Proposal Type: metropolisHastingsForLabels123, Acceptance Rate: 0.823529
+Proposal Type: gibbsForThetaInActive, Acceptance Rate: 1
+Proposal Type: gibbsForSigmaSqY, Acceptance Rate: 1
+Proposal Type: gibbsForZ, Acceptance Rate: 1
+Number of subjects: 5437
+Number of prediction subjects: 0
+Prediction type: RaoBlackwell
+Sampler type: SliceDependent
+Number of initial clusters: 59 (Random, Unif[50,60])
+Covariates: 
+Number of discrete covariates: 1
+Number of continuous covariates: 14
+	Pedi (categorical)
+	tempMin
+	tempMax
+	dewMin
+	dewMax
+	humidMin
+	humidMax
+	solarMax
+	rainMax
+	windSpdMin
+	windSpdMax
+	windDirMin
+	windDirMax
+	windGustMin
+	windGustMax
+No fixed effects
+Model for Y: Normal
+Extra Y variance: False
+Include response: True
+Update alpha: True
+Compute allocation entropy: False
+Model for X: Mixed
+Variable selection: None
+
+Hyperparameters:
+shapeAlpha: 2
+rateAlpha: 1
+aPhi[j]: 1 
+mu0: 
+8.87647
+30.0007
+2.83981
+21.3179
+30.4091
+99.5709
+1028.94
+11.7791
+0.47422
+6.98453
+5.20438
+355.318
+1.27734
+ 13.196
+Tau0:
+ 0.00741883           0           0           0           0           0           0           0           0           0           0           0           0           0
+          0  0.00562781           0           0           0           0           0           0           0           0           0           0           0           0
+          0           0   0.0028874           0           0           0           0           0           0           0           0           0           0           0
+          0           0           0   0.0248783           0           0           0           0           0           0           0           0           0           0
+          0           0           0           0 0.000171771           0           0           0           0           0           0           0           0           0
+          0           0           0           0           0    0.173611           0           0           0           0           0           0           0           0
+          0           0           0           0           0           0 1.09188e-06           0           0           0           0           0           0           0
+          0           0           0           0           0           0           0 0.000489207           0           0           0           0           0           0
+          0           0           0           0           0           0           0           0     2.68745           0           0           0           0           0
+          0           0           0           0           0           0           0           0           0   0.0191834           0           0           0           0
+          0           0           0           0           0           0           0           0           0           0  0.00147929           0           0           0
+          0           0           0           0           0           0           0           0           0           0           0  0.00118906           0           0
+          0           0           0           0           0           0           0           0           0           0           0           0      0.3121           0
+          0           0           0           0           0           0           0           0           0           0           0           0           0   0.0090876
+R0: 
+ 4.36018e+10 -7.25948e+09  8.54338e+09 -7.66415e+10  -6.8111e+09 -2.63376e+10  -8.4797e+07  2.89104e+09 -2.16078e+11 -2.88801e+10  3.75751e+09  1.11025e+10  1.71745e+11  3.36036e+10
+-7.29438e+09  2.18385e+10 -1.65306e+09 -4.51545e+09   3.3404e+09  8.46779e+09 -3.08333e+08 -3.46565e+09 -4.84692e+11  3.05348e+10 -2.36191e+09 -2.78214e+09 -5.01932e+10  4.10405e+08
+ 8.48724e+09 -1.62221e+09  -4.1232e+09  1.86135e+09 -1.00155e+09 -1.09345e+10  1.44849e+08  6.82115e+08  2.78467e+11 -1.24474e+10  1.87345e+09    1.846e+09  6.11307e+10  8.98959e+09
+ -7.6453e+10 -4.62451e+09  1.80613e+09  9.98257e+10  9.99094e+09  6.14709e+10 -1.19206e+07 -2.64952e+09  -1.8826e+11  5.13345e+10 -9.34998e+09 -1.82909e+10 -3.61694e+11 -7.24777e+10
+-6.80972e+09  3.31889e+09 -1.00796e+09  1.00227e+10  7.56216e+08  3.62947e+09 -4.28823e+07 -8.69491e+08  1.84885e+10  5.59708e+09 -2.59574e+08 -1.50301e+09 -3.08726e+10  -4.0143e+09
+-2.63966e+10  8.43481e+09 -1.09741e+10  6.16916e+10  3.63635e+09  7.93516e+09  1.15297e+08 -2.48052e+09  4.85718e+11  1.10465e+10 -8.90591e+07 -6.47379e+09 -8.11166e+10 -1.48514e+10
+-8.26667e+07 -3.09512e+08  1.45477e+08 -1.53185e+07 -4.34508e+07  1.13719e+08       601006  3.65208e+07   1.3665e+09 -2.17245e+08  3.12516e+06  9.68927e+06 -7.42878e+08 -2.09035e+08
+ 2.89728e+09 -3.46738e+09  6.89857e+08 -2.67476e+09 -8.73152e+08 -2.48334e+09  3.62886e+07  6.04352e+08  6.71037e+10 -5.91548e+09  5.90744e+08  9.34133e+08   1.4071e+10  1.45974e+09
+-2.12315e+11 -4.84593e+11  2.78892e+11 -1.94304e+11  1.78164e+10  4.82847e+11  1.35186e+09  6.72196e+10 -9.65886e+12   8.0535e+10 -1.01463e+11  -4.8204e+10 -1.77718e+12 -5.36941e+11
+ -2.8981e+10  3.04866e+10 -1.25086e+10    5.166e+10  5.62426e+09  1.10912e+10 -2.14506e+08 -5.90918e+09  8.31724e+10  3.57894e+10 -1.11637e+09 -7.68714e+09 -1.10197e+11 -9.06831e+09
+ 3.76951e+09 -2.34709e+09  1.87785e+09 -9.39034e+09 -2.60517e+08 -9.25429e+07  2.76056e+06  5.88939e+08 -1.01986e+11 -1.10368e+09 -3.93119e+08  7.55236e+08  1.14436e+10  1.08483e+09
+ 1.10999e+10 -2.76309e+09  1.85827e+09 -1.83369e+10 -1.50269e+09 -6.45877e+09  9.01785e+06  9.30826e+08 -4.92198e+10 -7.65259e+09  7.52376e+08  2.66504e+09  4.62922e+10  7.98428e+09
+  1.7205e+11 -5.01794e+10  6.14284e+10 -3.62959e+11 -3.09335e+10 -8.10646e+10 -7.51137e+08  1.40771e+10 -1.79265e+12 -1.10071e+11  1.14246e+10  4.63839e+10  5.69594e+11  1.14547e+11
+ 3.36155e+10  4.50449e+08  9.02573e+09   -7.264e+10 -4.00916e+09 -1.48051e+10 -2.10543e+08  1.45477e+09 -5.40444e+11 -8.96709e+09  1.07059e+09  7.98461e+09  1.14388e+11  2.55176e+10
+kappa0: 14
+nu0: 0.01
+muTheta: 0
+sigmaTheta: 2.5
+dofTheta: 7
+shapeSigmaSqY: 2.5
+scaleSigmaSqY: 2.5
+
+200 sweeps done in 6 seconds

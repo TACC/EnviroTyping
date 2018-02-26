@@ -1,0 +1,19 @@
+x
+---CLUSTER 1 ---
+c
+c
+c
+c
+c
+---CLUSTER 2 ---
+a
+a
+a
+a
+a
+---CLUSTER 3 ---
+b
+b
+b
+b
+b
