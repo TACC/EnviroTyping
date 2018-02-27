@@ -2,12 +2,12 @@
 
 library(readr)
 
-df1 <- read_csv("data/interim/G2F_Hybrid/hybrid_bymonth_cleaned_weather.csv",
-               col_types = cols("Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(),
-                                "rainMean" = col_number(), "rainMedian" = col_number(),"humidMin" = col_number(), "solarMin" = col_number(),
-                                "solarMax" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number()))
+clusObj <- readRDS("data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/clusObj.rda")
 
-temp <- df1 %>% filter(Month == 5)
+df1 <- read_csv("data/interim/G2F_Hybrid/hybrid_by_weeksSincePlanted_cleaned_weather.csv", col_types = cols("Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(),"rainMean" = col_number(), "rainMedian" = col_number(),"humidMin" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number()))
+
+temp <- df1 %>% filter(seed_3_5 == TRUE)
+
 val <- grep("Min|Max",names(temp))
 numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))]
 
@@ -27,13 +27,12 @@ clusObj <- calcOptimalClustering(calcDists)
 
 riskProfObj <- calcAvgRiskAndProfile(clusObj)
 
-plotRiskProfile(riskProfObj, "premium1.png")
+plotRiskProfile(riskProfObj, "premium1.png", whichCovariates = c('Exp', 'tempMin', 'tempMax'))
 
 # Clusters 3, 4, and 5 have highest yields while clusters 3 and 5 have similar profiles
-ct <- data.frame(Pedi = riskProfObj$riskProfClusObj$clusObjRunInfoObj$xMat$Pedi,
-                 temp = riskProfObj$riskProfClusObj$clusObjRunInfoObj$xMat$tempMean,
-                 clus = riskProfObj$riskProfClusObj$clustering, Exp = temp$Exp,
-                 yield = riskProfObj$riskProfClusObj$clusObjRunInfoObj$yMat)
+ct <- data.frame(Pedi = clusObj$clusObjRunInfoObj$xMat$Pedi,
+                 tempMin = clusObj$clusObjRunInfoObj$xMat$tempMin,
+                 yield = clusObj$clusObjRunInfoObj$yMat)
 
 
 table(ct$Exp)
@@ -54,7 +53,7 @@ ohh1 <- c5 %>% filter(Exp == "OHH1")
 var1 <- unique(nch1$Pedi)
 var2 <- unique(ohh1$Pedi)
 comnPedi <- intersect(var1,var2)
-unq = ct$Pedi[comnPedi]
+
 # 181 hybrids are found in both locations of cluster 5
 
 # find mean of each covariate for cluster 5
