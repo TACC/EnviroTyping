@@ -18,7 +18,7 @@ numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logic
 
 setwd("./output")
 
-runInfoObj <- profRegr(covNames = numericVars, outcome = 'Yield',
+runInfoObj <- profRegr(numericVars, outcome = 'Yield',
                 yModel = 'Normal', xModel = "Normal",
                 data = temp, nSweeps = 1000, nBurn = 1000)
 
