@@ -126,3 +126,5 @@ data/interim/G2F_Hybrid/premiumOutput_2.26.18/output/output_thetaProp.txt
 data/interim/G2F_Hybrid/premiumOutput_2.26.18/output/output_z.txt
 data/interim/G2F_Hybrid/premiumOutput_2.26.18/output/riskProfObj.rda
 data/interim/G2F_Hybrid/premiumOutput_2.26.18/output/runInfoObj.rda
+
+data/interim/G2F_Hybrid/hybrid_by_weeksSincePlanted_cleaned_weather.csv
