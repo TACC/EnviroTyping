@@ -66,3 +66,42 @@ vignettes/*.pdf
 
 # End of https://www.gitignore.io/api/r,macos
 .Rproj.user
+
+# Job output can be found on Dave's cyverse data store
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_Sigma.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_alpha.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_alphaProp.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_beta.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_betaProp.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_entropy.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_input.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_log.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_logPost.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_mu.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_nClusters.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_nMembers.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_phi.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_psi.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_sigmaSqY.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_theta.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_thetaProp.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_3-5wksSubset/output_seed_3_5/output_z.txt
+
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_Sigma.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_alpha.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_alphaProp.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_beta.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_betaProp.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_entropy.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_input.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_log.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_logPost.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_mu.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_nClusters.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_nMembers.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_phi.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_psi.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_sigmaSqY.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_theta.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_thetaProp.txt
+data/interim/G2F_Hybrid/premiumOutput_2.15.18_6-8wksSubset/output_seed_6_8/output_z.txt
