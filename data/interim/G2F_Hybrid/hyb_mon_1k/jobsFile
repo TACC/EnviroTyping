@@ -1,0 +1,9 @@
+Rscript --vanilla --verbose ./job.R > ./march.Rout 3
+Rscript --vanilla --verbose ./job.R > ./april.Rout 4
+Rscript --vanilla --verbose ./job.R > ./may.Rout 5
+Rscript --vanilla --verbose ./job.R > ./june.Rout 6
+Rscript --vanilla --verbose ./job.R > ./july.Rout 7
+Rscript --vanilla --verbose ./job.R > ./aug.Rout 8
+Rscript --vanilla --verbose ./job.R > ./sept.Rout 9
+Rscript --vanilla --verbose ./job.R > ./oct.Rout 10
+Rscript --vanilla --verbose ./job.R > ./nov.Rout 11

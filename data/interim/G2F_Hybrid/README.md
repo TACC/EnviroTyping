@@ -19,3 +19,7 @@
 2. Hybrid data
     *   deleted hybridXmonth.csv
     *   add new csv's to reflect changes in weather data
+
+2/27
+1. Retained previously omitted NA's for all Y variables except Yield
+    *   did not updated calibrated weather
