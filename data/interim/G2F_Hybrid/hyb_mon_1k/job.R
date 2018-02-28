@@ -24,8 +24,8 @@ g <- function(y){
 
             # find continous variables with highest variance and keep 14 as numericVars
             val <- grep("Min|Max",names(temp))
-            # numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))]
-            numericVars <- names(df[val])[vapply(df[val], function(x) var(x) != 0, logical(1))]
+            numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))]
+            #numericVars <- names(df[val])[vapply(df[val], function(x) var(x) != 0, logical(1))]
 
             # create directory using month number to name and changes to working directory
             dir.create(paste(month.name[x]))
