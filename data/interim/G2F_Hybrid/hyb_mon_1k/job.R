@@ -59,5 +59,9 @@ g <- function(y){
 }
 
 # runs the workflow
-g(mon)
+p <- profvis({
+    g(mon)
+})
+
+htmlwidgets::saveWidget(p, "profile.html")
 
