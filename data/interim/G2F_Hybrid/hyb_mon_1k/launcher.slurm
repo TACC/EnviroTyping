@@ -16,13 +16,13 @@
 #SBATCH -J hyb_mon_1k
 #SBATCH -N 9
 #SBATCH -n 9
-#SBATCH -p normal
-#SBATCH -t 1:00:00
-#SBATCH -A <allocation>
+#SBATCH -p skx-normal
+#SBATCH -t 12:00:00
+#SBATCH -A Envriotype
 #------------------------------------------------------
 
 export LAUNCHER_PLUGIN_DIR=$LAUNCHER_DIR/plugins
 export LAUNCHER_RMI=SLURM
-export LAUNCHER_JOB_FILE="$WORK/GitHub/EniroTyping/data/intermin/G2F_Hybrid/hyb_mon_1k/jobsFile"
+export LAUNCHER_JOB_FILE="$WORK/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_mon_1k/jobsFile"
 
 $LAUNCHER_DIR/paramrun

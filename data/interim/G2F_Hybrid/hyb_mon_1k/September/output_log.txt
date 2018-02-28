@@ -1,0 +1,130 @@
+Date and time: 2018-02-28 15:3511
+
+Data file path: output_input.txt
+
+Output file path: output
+
+Predict file path: No predictions run.
+
+Seed: 1519853711
+
+Number of sweeps: 1000
+Burn in sweeps: 1000
+Output filter: 1
+Proposal Type: gibbsForVActive, Acceptance Rate: 1
+Proposal Type: updateForPhiActive, Acceptance Rate: 1
+Proposal Type: gibbsForMuActive, Acceptance Rate: 1
+Proposal Type: gibbsForTauActive, Acceptance Rate: 1
+Proposal Type: metropolisHastingsForThetaActive, Acceptance Rate: 0.445795
+Proposal Type: gibbsForU, Acceptance Rate: 1
+Proposal Type: metropolisHastingsForAlpha, Acceptance Rate: 0.433
+Proposal Type: gibbsForVInActive, Acceptance Rate: 1
+Proposal Type: gibbsForPhiInActive, Acceptance Rate: 1
+Proposal Type: gibbsForMuInActive, Acceptance Rate: 1
+Proposal Type: gibbsForTauInActive, Acceptance Rate: 1
+Proposal Type: metropolisHastingsForLabels123, Acceptance Rate: 1
+Proposal Type: gibbsForThetaInActive, Acceptance Rate: 1
+Proposal Type: gibbsForSigmaSqY, Acceptance Rate: 1
+Proposal Type: gibbsForZ, Acceptance Rate: 1
+Number of subjects: 3474
+Number of prediction subjects: 0
+Prediction type: RaoBlackwell
+Sampler type: SliceDependent
+Number of initial clusters: 58 (Random, Unif[50,60])
+Covariates: 
+Number of discrete covariates: 1
+Number of continuous covariates: 17
+	Pedi (categorical)
+	tempMin
+	tempMax
+	dewMin
+	dewMax
+	humidMin
+	humidMax
+	solarMax
+	rainMax
+	windSpdMax
+	windDirMin
+	windDirMax
+	windGustMin
+	windGustMax
+	soilTempMin
+	soilTempMax
+	soilMoistMin
+	soilMoistMax
+No fixed effects
+Model for Y: Normal
+Extra Y variance: False
+Include response: True
+Update alpha: True
+Compute allocation entropy: False
+Model for X: Mixed
+Variable selection: None
+
+Hyperparameters:
+shapeAlpha: 2
+rateAlpha: 1
+aPhi[j]: 1 
+mu0: 
+10.9828
+35.4627
+ 1.9599
+ 22.721
+22.6212
+99.3695
+922.365
+11.8376
+3.82438
+13.0446
+332.617
+1.14849
+8.42769
+15.7946
+26.6827
+16.7156
+39.1957
+Tau0:
+  0.0337911           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0
+          0   0.0382964           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0
+          0           0   0.0660847           0           0           0           0           0           0           0           0           0           0           0           0           0           0
+          0           0           0   0.0793493           0           0           0           0           0           0           0           0           0           0           0           0           0
+          0           0           0           0   0.0222767           0           0           0           0           0           0           0           0           0           0           0           0
+          0           0           0           0           0    0.346021           0           0           0           0           0           0           0           0           0           0           0
+          0           0           0           0           0           0 0.000244141           0           0           0           0           0           0           0           0           0           0
+          0           0           0           0           0           0           0  0.00158147           0           0           0           0           0           0           0           0           0
+          0           0           0           0           0           0           0           0    0.139229           0           0           0           0           0           0           0           0
+          0           0           0           0           0           0           0           0           0 0.000251953           0           0           0           0           0           0           0
+          0           0           0           0           0           0           0           0           0           0 7.56144e-05           0           0           0           0           0           0
+          0           0           0           0           0           0           0           0           0           0           0     4.93827           0           0           0           0           0
+          0           0           0           0           0           0           0           0           0           0           0           0   0.0348073           0           0           0           0
+          0           0           0           0           0           0           0           0           0           0           0           0           0   0.0548459           0           0           0
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0   0.0263535           0           0
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0           0  0.00173611           0
+          0           0           0           0           0           0           0           0           0           0           0           0           0           0           0           0 0.000654104
+R0: 
+ 3.38288e+11  2.11767e+10  2.90472e+11  5.33314e+11 -1.78326e+11 -1.13571e+11  1.03122e+10 -4.28165e+09  -2.9113e+11 -8.23168e+09 -2.95463e+09 -1.08181e+12  2.56255e+11 -7.51256e+11 -6.35128e+10  1.59795e+10  8.38135e+10
+ 2.58633e+10 -4.17501e+11  2.88008e+11  2.30692e+11 -1.92711e+10  7.68331e+10 -2.62104e+09  1.67326e+10  1.77116e+11 -1.39971e+10 -8.00411e+09  1.52413e+12  1.82633e+11  4.94496e+09  6.34297e+10 -5.88545e+10  4.66208e+10
+ 2.90149e+11   2.8424e+11 -3.91758e+11  8.23324e+10 -1.20069e+11 -2.07362e+11  1.45839e+10 -1.04137e+10 -4.65096e+11  2.04845e+10  1.09142e+10  -1.7159e+12   5.6584e+10 -2.79892e+11 -7.09709e+10  4.43341e+10  1.45954e+10
+ 5.35853e+11  2.25651e+11  8.46505e+10 -1.21048e+11  7.81413e+10  4.73805e+10 -1.38192e+10  9.26812e+10 -3.49152e+11  3.57338e+10  2.79743e+10 -1.95989e+12  4.09372e+11  -6.2497e+11 -1.48762e+11 -1.11535e+11 -1.51502e+09
+-1.81645e+11 -1.88977e+10 -1.21765e+11  7.75213e+10 -1.36242e+11 -8.92031e+10  1.00883e+10  -6.6448e+10  1.08587e+11  -1.4564e+10 -9.07629e+09  6.95109e+11 -1.74182e+11  2.20008e+11  1.16397e+11   8.4593e+10  9.80256e+08
+-1.13998e+11  7.89607e+10 -2.09091e+11  4.55619e+10 -8.85854e+10 -1.53723e+11   1.8141e+10 -4.90852e+10 -1.11946e+11  -1.0923e+10 -4.92028e+09 -4.28523e+10 -2.06946e+11   1.6482e+11 -2.72526e+10  9.80393e+10  -1.4295e+10
+ 1.02739e+10 -2.79555e+09  1.47176e+10 -1.35517e+10  9.92518e+09  1.80991e+10 -2.07613e+09  5.65134e+09  2.10211e+10   9.6267e+08  4.34324e+08  2.76823e+10  1.44631e+10 -1.37936e+10  2.42439e+09 -9.64323e+09  3.48654e+08
+-5.19161e+09  1.65308e+10 -1.11159e+10  9.16932e+10  -6.5835e+10 -4.90874e+10   5.6889e+09  -1.8815e+10  -5.1548e+10 -5.19069e+09 -2.24235e+09 -2.37172e+11 -2.37376e+10 -2.61705e+10 -1.07464e+10  3.82128e+10   7.5577e+09
+-2.90512e+11  1.78456e+11 -4.64867e+11 -3.49671e+11  1.08169e+11 -1.08971e+11  2.07086e+10 -5.09893e+10  -2.0508e+11  5.77288e+09  -8.4474e+09 -7.80215e+11  -2.3602e+11   3.6842e+11 -1.64295e+11  1.09575e+11 -3.21596e+10
+ -8.6791e+09 -1.45433e+10  2.05609e+10  3.54222e+10  -1.4283e+10 -1.07558e+10   9.6144e+08  -5.1677e+09  6.24334e+09  7.13194e+07 -2.34873e+08 -6.60581e+09  1.16731e+09 -7.05052e+08  3.93081e+09  7.43487e+09  4.21597e+09
+-3.10458e+09 -8.18278e+09  1.08926e+10  2.77532e+10 -8.88362e+09 -4.87935e+09  4.36542e+08 -2.21867e+09 -8.30196e+09 -2.22188e+08 -3.95316e+08 -2.78775e+10  5.16859e+09 -5.88631e+09  2.14229e+09   2.1411e+09  3.47982e+09
+-1.09577e+12  1.55397e+12 -1.74065e+12 -1.98529e+12  6.93843e+11 -3.34002e+10   2.6588e+10  -2.3843e+11  -7.8756e+11 -9.41593e+09 -2.87018e+10 -1.29064e+13 -1.66699e+12  1.99537e+12 -5.92233e+11   5.7645e+11 -3.17079e+11
+ 2.53006e+11  1.79338e+11  5.45905e+10  4.03249e+11 -1.70666e+11 -2.05717e+11  1.44524e+10 -2.32691e+10 -2.36258e+11   1.2285e+09  5.20219e+09 -1.64497e+12 -3.98061e+10 -4.18614e+11 -6.89754e+10  8.40796e+10  3.23667e+10
+-7.54093e+11  1.34814e+10 -2.83633e+11  -6.2509e+11  2.16456e+11  1.64276e+11 -1.38044e+10  -2.7648e+10  3.69928e+11 -1.43984e+09  -6.1776e+09  1.97858e+12 -4.26732e+11  1.08229e+12  1.49357e+11 -1.05528e+10 -1.15275e+11
+-6.11741e+10  6.71075e+10 -7.20927e+10 -1.50991e+11  1.16916e+11 -2.63844e+10   2.2618e+09 -1.02853e+10 -1.66377e+11  3.98727e+09  2.24791e+09 -6.06259e+11 -6.84534e+10  1.46426e+11  6.22611e+08 -6.96297e+09 -3.12944e+10
+ 1.73235e+10 -5.97123e+10  4.62101e+10 -1.08859e+11  8.34034e+10  9.78825e+10 -9.67525e+09  3.81838e+10  1.11023e+11  7.48642e+09  2.16395e+09  5.77853e+11  8.52351e+10 -1.29433e+10 -6.28649e+09 -6.52678e+10  2.08472e+08
+ 8.37382e+10  4.54258e+10   1.4943e+10 -1.76071e+09  1.21153e+09 -1.38268e+10  3.05195e+08  7.71148e+09 -3.18828e+10  4.22676e+09  3.49231e+09 -3.10519e+11  3.32132e+10 -1.14525e+11 -3.09026e+10 -2.52984e+08  1.87424e+09
+kappa0: 17
+nu0: 0.01
+muTheta: 0
+sigmaTheta: 2.5
+dofTheta: 7
+shapeSigmaSqY: 2.5
+scaleSigmaSqY: 2.5
+
+2000 sweeps done in 12 seconds
