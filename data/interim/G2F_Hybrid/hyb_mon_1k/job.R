@@ -44,7 +44,7 @@ g <- function(y){
 
             clusObj <- calcOptimalClustering(calcDists)
 
-            riskProfileOb <- calcAvgRiskAndProfile(clusObj)
+            riskProfObj <- calcAvgRiskAndProfile(clusObj)
             
             saveRDS(riskProfObj, file = "riskProfObj.rda")
 
