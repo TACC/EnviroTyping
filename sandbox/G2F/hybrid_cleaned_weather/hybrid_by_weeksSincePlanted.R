@@ -29,11 +29,11 @@ hybrid %>%
     summarise_all(funs(sum(is.na(.))))
 
 hybrid <- hybrid %>% 
-    mutate(seed_3_5 = (Date >= Planted + weeks(3) & Date <= Planted + weeks(5)), seed_6_8 = (Date >= Planted + weeks(6) & Date <= Planted + weeks(8)))
+    mutate(wks3_4 = (Date >= Planted + weeks(3) & Date <= Planted + weeks(4)), wks5_6 = (Date >= Planted + weeks(5) & Date <= Planted + weeks(6)), wks7_8 = (Date >= Planted + weeks(7) & Date <= Planted + weeks(8)))
 
-# filter(hybrid, seed_3_5 == TRUE)
-# filter(hybrid, seed_6_8 == TRUE)
-
+# filter(hybrid, wks3_4 == TRUE) 38,080 x 55
+# filter(hybrid, wks5_6 == TRUE) 39,712 x 55
+# filter(hybrid, wks7_8 == TRUE) 41,028 x 55
 
 # write the data to csv
 write_csv(hybrid, "data/interim/G2F_Hybrid/hybrid_by_weeksSincePlanted_cleaned_weather.csv")
