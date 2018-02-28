@@ -8,7 +8,7 @@ setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid
 df <- read_csv("./data.csv",col_types = cols("Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(), "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number()))
 
 # creates a data frame for the month number
-temp <- df %>% filter(seed_3_4 == TRUE)
+temp <- df %>% filter(wks3_4 == TRUE)
 
 # find continous variables with variance
 val <- grep("Min|Max",names(temp))
