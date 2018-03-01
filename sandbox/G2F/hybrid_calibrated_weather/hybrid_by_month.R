@@ -19,9 +19,9 @@ hyb1 <- hyb %>%
 
 # joining the tidy weather data with min/max variables
 # right join to preserve weather data and fill matching hybrid data to each expermient
-hybrid <- right_join(hyb1, wth2, by = "Exp") %>%  
+hybrid <- right_join(hyb1, wth4, by = "Exp") %>%  
     
-    drop_na(-Repl)
+    drop_na(Yield)
 
 # check for NA's
 hybrid %>% 
@@ -29,7 +29,7 @@ hybrid %>%
     summarise_all(funs(sum(is.na(.))))
 
 # write the data to csv
-write_csv(hybrid, "data/interim/G2F_Hybrid/hybrid_bymonth_calibrated_weather.csv")
+write_csv(hybrid, "data/interim/G2F_Hybrid/hybrid_by_month_calibrated_weather.csv")
 
 
 

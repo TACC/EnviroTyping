@@ -1,7 +1,6 @@
 # imports all the packages i'll need
 library(tidyverse)
-
-setwd("~/Stapleton_Lab/Premium/EnviroTyping")
+library(lubridate)
 
 # import cleaned weather dataset
 wth <- read_csv("data/external/G2F from Cyverse DataStore/g2f_2015_weather_calibrated.csv")
@@ -10,18 +9,19 @@ wth <- read_csv("data/external/G2F from Cyverse DataStore/g2f_2015_weather_calib
 wth1 <- wth %>% 
     
     # choosing variables to keep and renaming
-    select(Exp = "Experiment(s)", StatID = "Station ID", Day, Month, Year, Temp = "Calibrated Temperature [C]",
-            Dew = "Calibrated Dew Point [C]", Humid = "Calibrated Relative Humidity [%]",
-           Solar = "Solar Radiation [W/m2]", Rain = "Rainfall [mm]", 
-           windSpd = "Calibrated Wind Speed [m/s]", windDir = "Calibrated Wind Direction [degrees]", 
-            windGust = "Calibrated Wind Gust [m/s]", soilTemp = "Soil Temperature [C]",
-           soilMoist = "Soil Moisture [%]") %>% 
+    select(Exp = "Experiment(s)", StatID = "Station ID", Day, Month, Year, DoY = "Day of Year", Temp = "Calibrated Temperature [C]",
+           Dew = "Calibrated Dew Point [C]", Humid = "Calibrated Relative Humidity [%]", Solar = "Solar Radiation [W/m2]", 
+           Rain = "Rainfall [mm]", windSpd = "Calibrated Wind Speed [m/s]", windDir = "Calibrated Wind Direction [degrees]", 
+           windGust = "Calibrated Wind Gust [m/s]", soilTemp = "Soil Temperature [C]", soilMoist = "Soil Moisture [%]") %>% 
+    
+    # get the week since the start of the year
+    mutate(Date = make_date(Year, Month, Day)) %>% 
     
     # grouping by variables for making summary statistics
-    group_by(Exp, StatID, Year, Month) %>% 
+    group_by(Exp, StatID, Date) %>% 
 
     # changing the sort    
-    arrange(Exp, StatID, Year, Month ) %>% 
+    arrange(Exp, StatID, Date) %>% 
     
     # removes NA's
     drop_na()
@@ -44,4 +44,13 @@ wth2 <- wth1 %>%
                 soilMoistMedian = median(soilMoist))
 
 
+# Split Exp with multiple sites
+wth3 <- wth2 %>% 
+    ungroup(Exp) %>% 
+    mutate(Exp = strsplit(as.character(Exp), " ") ) %>% 
+    unnest(Exp) %>% 
+    select(Exp, everything())
 
+wth3$Exp[wth3$Exp == ""] <- "NA"
+
+wth4 <- wth3 %>% filter(Exp != "NA")
