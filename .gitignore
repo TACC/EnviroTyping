@@ -72,4 +72,4 @@ vignettes/*.pdf
 data/interim/G2F_Hybrid/hybrid_by_week_cleaned_weather.csv
 data/interim/G2F_Hybrid/hybrid_by_day_cleaned_weather.csv
 data/interim/G2F_Hybrid/hybrid_by_month_cleaned_weather.csv
-data/interim/G2F_Hybrid/hybrid_by_week_calibrated_weather.csv
+data/interim/G2F_Hybrid/hybrid_by_month_calibrated_weather.csv
