@@ -1,10 +1,12 @@
 library(readr)
 library(dplyr)
 library(lubridate)
+
+setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid")
 df <- read_csv("hybrid_by_day_cleaned_weather.csv")
 df1 <- read_csv("hybrid_by_week_cleaned_weather.csv")
 
-subset <- df %>% filter(Date >= Planted + weeks(4) & Date <= Planted + weeks(5))
+ss <- df %>% filter(Date >= Planted + weeks(3) & Date <= Planted + weeks(5))
 ss <- df %>% filter(Date >= Planted + weeks(7) & Date <= Planted + weeks(8))
 ss <- df %>% filter(Date >= Planted + weeks(7) & Date <= Planted + weeks(8))
 
@@ -26,3 +28,5 @@ sss10 <- df1 %>% filter(Month == 10)
 unique(df1$Harvest)
 
 season <- df %>% filter(Date >= Planted & Date <=Harvest)
+
+wks3_5 <- df1 %>% filter(Week >= isoweek(Planted)+3 & Week <= isoweek(Planted)+5)

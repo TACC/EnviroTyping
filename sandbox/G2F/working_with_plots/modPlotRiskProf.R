@@ -343,9 +343,7 @@ modplotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orde
                 plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
                                                     y = upperSigma, colour = as.factor(fillColor)), 
                                                 size = 1.5)
-                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
-                                                                  low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
-                                                                                                                                      low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033",low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
                     labs(x = "Cluster") + theme(axis.title.x = element_text(size = 10))
             
                 plotObj <- plotObj + theme(axis.title.y = element_blank())

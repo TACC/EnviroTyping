@@ -260,12 +260,7 @@ plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy
                 plotRisk <- risk[, c, ]
                 nPoints <- dim(plotRisk)[1]
                 for (k in 1:nCategoriesY) {
-                    my.list[[z]] <- data.frame(risk = plotRisk[, 
-                                                               k], category = rep(k, nPoints), cluster = rep(c, 
-                                                                                                             nPoints), meanRisk = rep(riskMean, nPoints), 
-                                               lowerRisk = rep(riskLower[c], nPoints), upperRisk = rep(riskUpper[c], 
-                                                                                                       nPoints), fillColor = rep(riskColor[c], 
-                                                                                                                                 nPoints))
+                    my.list[[z]] <- data.frame(risk = plotRisk[,k], category = rep(k, nPoints), cluster = rep(c, nPoints), meanRisk = rep(riskMean, nPoints), lowerRisk = rep(riskLower[c], nPoints), upperRisk = rep(riskUpper[c],  nPoints), fillColor = rep(riskColor[c], nPoints))
                     z = z + 1
                 }
             }
@@ -273,10 +268,8 @@ plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy
                 plotRisk <- risk[, c, ]
                 plotRisk <- plotRisk[plotRisk < plotMax]
                 nPoints <- length(plotRisk)
-                my.list[[z]] <- data.frame(risk = plotRisk, cluster = rep(c, 
-                                                                          nPoints), meanRisk = rep(riskMean, nPoints), 
-                                           lowerRisk = rep(riskLower[c], nPoints), upperRisk = rep(riskUpper[c], 
-                                                                                                   nPoints), fillColor = rep(riskColor[c], nPoints))
+                my.list[[z]] <- data.frame(risk = plotRisk, cluster = rep(c, nPoints), meanRisk = rep(riskMean, nPoints), 
+                                           lowerRisk = rep(riskLower[c], nPoints), upperRisk = rep(riskUpper[c], nPoints), fillColor = rep(riskColor[c], nPoints))
                 z = z + 1
             }
             if (yModel == "Survival" && !weibullFixedShape) {
@@ -400,13 +393,7 @@ plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy
                                       plot.title = element_text(size = 10))
             plotObj <- plotObj + theme(axis.title.x = element_text(size = 10), 
                                        axis.title.y = element_text(size = 10, angle = 90))
-            plotObj <- plotObj + labs(y = ifelse(yModel == "Bernoulli", 
-                                                 "Proportion of cases", ifelse(yModel == "Binomial", 
-                                                                               "Avg Proportion of occurrence", ifelse(yModel == 
-                                                                                                                          "Poisson", "Avg Count", ifelse(yModel == 
-                                                                                                                                                             "Survival", "Avg Survival Time", ifelse(yModel == 
-                                                                                                                                                                                                         "Categorical", "Avg Proportion of occurrence", 
-                                                                                                                                                                                                     "Avg Y"))))), x = "Cluster")
+            plotObj <- plotObj + labs(y = ifelse(yModel == "Bernoulli", "Proportion of cases", ifelse(yModel == "Binomial",  "Avg Proportion of occurrence", ifelse(yModel == "Poisson", "Avg Count", ifelse(yModel == "Survival", "Avg Survival Time", ifelse(yModel == "Categorical", "Avg Proportion of occurrence",  "Avg Y"))))), x = "Cluster")
             plotObj <- plotObj + theme(plot.margin = unit(c(0, 
                                                             0, 0, 0), "lines")) + theme(plot.margin = unit(c(0.15, 
                                                                                                              0.5, 0.5, 1), "lines"))
@@ -704,9 +691,7 @@ plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy
                 plotObj <- plotObj + geom_point(aes(x = as.factor(cluster), 
                                                     y = upperMu, colour = as.factor(fillColor)), 
                                                 size = 1.5)
-                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", 
-                                                                  low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033", 
-                                                                                                                                      low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
+                plotObj <- plotObj + scale_fill_manual(values = c(high = "#CC0033", low = "#0066CC", avg = "#33CC66")) + scale_colour_manual(values = c(high = "#CC0033",  low = "#0066CC", avg = "#33CC66")) + theme(legend.position = "none") + 
                     labs(x = "Cluster") + theme(axis.title.x = element_text(size = 10))
                 if (j == 1) {
                     plotObj <- plotObj + labs(y = "Mean") + theme(axis.title.y = element_text(size = 10, 
@@ -717,9 +702,7 @@ plotRiskProfile <- function (riskProfObj, outFile, showRelativeRisk = F, orderBy
                 }
                 plotObj <- plotObj + labs(title = covNames[j], 
                                           plot.title = element_text(size = 10))
-                plotObj <- plotObj + theme(plot.margin = unit(c(0.5, 
-                                                                ifelse(j == nCovariates, 1, 0), 0.5, ifelse(j == 
-                                                                                                                1, 0.5, 0)), "lines")) + theme(plot.margin = unit(c(0, 
+                plotObj <- plotObj + theme(plot.margin = unit(c(0.5, ifelse(j == nCovariates, 1, 0), 0.5, ifelse(j == 1, 0.5, 0)), "lines")) + theme(plot.margin = unit(c(0, 
                                                                                                                                                                     0, 0, 0), "lines"))
                 print(plotObj, vp = viewport(layout.pos.row = 1:3, 
                                              layout.pos.col = j + 2))
