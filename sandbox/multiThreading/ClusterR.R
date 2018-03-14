@@ -48,6 +48,4 @@ lowerTriangle(x) = upperTriangle(x, byrow=TRUE)
 diag(x) <- 0
 x
 empty <- Matrix(0, nrow = length(diss)+1, ncol = length(diss)+1, sparse = TRUE)
-empty[lower.tri(empty)] <- NA
-
-empty[lowerTriangle(empty)] <- NA
+object.size(empty)
