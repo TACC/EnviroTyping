@@ -1,6 +1,6 @@
 #install.packages("hierNet")
 library(hierNet)
-library(glinternet)
+#library(glinternet)
 library(tidyverse)
 library(tictoc)
 
@@ -20,31 +20,33 @@ hybridByWeekSubset$Exp <- as.numeric(hybridByWeekSubset$Exp)
 x.matrix <- scale(as.matrix(select(hybridByWeekSubset, Exp, Hyb, numericVars)))
 y.vector <- hybridByWeekSubset$Yield
 # set lambda to the Frobenius norm of the X matrix
-lambda <- norm(x.matrix, type = "F")
+# lambda <- norm(x.matrix, type = "F")
 
-set.seed(1234)
+# set.seed(1234)
+# tic()
+# hierFit <- hierNet(x.matrix, y.vector, lam = lambda)
+# toc()
+# saveRDS(hierFit, "hierFitLamNorm.rda")
+# 
+# varimp <- hierNet.varimp(hierFit, x.matrix, y.vector)
+# saveRDS(varimp, "varimpLabNorm.rda")
+# print(varimp)
+# 
+# varimpRank <- varimp[order(varimp[,1]),]
+# print(varimpRank)
+# 
+# varRank <- data.frame(names(hybridByWeekSubset[-3]),varimp) %>% arrange(Predictor)
+
 tic()
-hierFit <- hierNet(x.matrix, y.vector, lam = lambda)
+hierFitPath <- hierNet.path(x.matrix, y.vector, minlam = 800, maxlam = 1500, maxiter = 5000)
 toc()
-saveRDS(hierFit, "hierFitLamNorm.rda")
+saveRDS(hierFitPath, "hierFitPath.rda")
+#print(fit)
 
-varimp <- hierNet.varimp(hierFit, x.matrix, y.vector)
-saveRDS(varimp, "varimpLabNorm.rda")
-print(varimp)
-
-varimpRank <- varimp[order(varimp[,1]),]
-print(varimpRank)
-
-varRank <- data.frame(names(hybridByWeekSubset[-3]),varimp) %>% arrange(Predictor)
-
-tic()
-fit <- hierNet.path(x.matrix, y.vector, minlam = 50, maxlam = 5000, trace = 1)
-toc()
-saveRDS(fit, "fit.rda")
-print(fit)
-fitcv=hierNet.cv(fit,x.matrix,y.vector)
-lamhat=fitcv$lamhat.1se
-fit2=hierNet(x,y,lam=lamhat)
-yhat=predict.hierNet(fit2,x)
+# hierNetFit <- readRDS("fit.rda")
+# fitcv=hierNet.cv(hierNetFit,x.matrix,y.vector, trace = 1)
+# lamhat=fitcv$lamhat.1se
+# fit2=hierNet(x,y,lam=lamhat)
+# yhat=predict.hierNet(fit2,x)
 
 
