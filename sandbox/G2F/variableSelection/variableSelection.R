@@ -37,15 +37,16 @@ y.vector <- hybridByWeekSubset$Yield
 # 
 # varRank <- data.frame(names(hybridByWeekSubset[-3]),varimp) %>% arrange(Predictor)
 
-tic()
-hierFitPath <- hierNet.path(x.matrix, y.vector, minlam = 800, maxlam = 1500, maxiter = 5000)
-toc()
-saveRDS(hierFitPath, "hierFitPath.rda")
-#print(fit)
+# tic()
+# hierFitPath <- hierNet.path(x.matrix, y.vector, minlam = 800, maxlam = 1500, maxiter = 5000)
+# toc()
+# saveRDS(hierFitPath, "hierFitPath.rda")
 
-# hierNetFit <- readRDS("fit.rda")
-# fitcv=hierNet.cv(hierNetFit,x.matrix,y.vector, trace = 1)
+hierFitPath <- readRDS("hierFitPath.rda")
+fitcv=hierNet.cv(hierNetFit,x.matrix,y.vector)
+saveRDS(fitcv, "fitcv.rda")
 # lamhat=fitcv$lamhat.1se
+# 
 # fit2=hierNet(x,y,lam=lamhat)
 # yhat=predict.hierNet(fit2,x)
 
