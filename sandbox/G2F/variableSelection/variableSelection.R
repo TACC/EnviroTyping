@@ -4,7 +4,7 @@ library(hierNet)
 library(tidyverse)
 library(tictoc)
 
-setwd("sandbox/G2F/variableSelection/")
+#setwd("sandbox/G2F/variableSelection/")
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection")
 
 hybridByWeek <- read_csv("../../../data/interim/G2F_Hybrid/hybrid_by_week_cleaned_weather.csv",col_types = cols("Exp" = col_factor(levels = NULL),"Pedi" = col_factor(levels = NULL), "Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(), "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "solarMedian" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number(), "windDirMedian" = col_number()))

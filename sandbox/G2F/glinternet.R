@@ -1,7 +1,5 @@
 library(glinternet)
-library(readr)
-library(dplyr)
-library(forcats)
+library(tidyverse)
 setwd("sandbox/G2F/hierNet")
 
 
@@ -9,11 +7,14 @@ hybridByWeek <- read_csv("../../../data/interim/G2F_Hybrid/hybrid_by_week_cleane
 
 val <- grep("Min|Max",names(hybridByWeek))
 numericVars <- names(hybridByWeek[val])[vapply(hybridByWeek[val], function(x) var(x) != 0, logical(1))]
+
 hybridByWeekSubset <- hybridByWeek %>% select(Exp, Hyb =Pedi,Yield, numericVars)
-hybridByWeekSubset$Hyb <- as.integer(as_factor(hybridByWeekSubset$Hyb))
-hybridByWeekSubset$Exp <- as.integer(as_factor(hybridByWeekSubset$Exp))
-x.matrix <- as.matrix(select(hybridByWeekSubset, Exp, Hyb, numericVars))
+hybridByWeekSubset$Hyb <- as.numeric(hybridByWeekSubset$Hyb)
+hybridByWeekSubset$Exp <- as.numeric(hybridByWeekSubset$Exp)
+
+x.matrix <- scale(as.matrix(select(hybridByWeekSubset, Exp, Hyb, numericVars)))
 y.vector <- hybridByWeekSubset$Yield
+lambda <- norm(x.matrix, type = "F")
 numLevels <- c(length(unique(x.matrix[,1])),length(unique(x.matrix[,2])),rep(1,20))
-numLevels <- c(rep(1,22))
-glinFit <- glinternet(x.matrix, y.vector, numLevels)
+cores <- parallel::detectCores()-1
+glinFit <- glinternet(x.matrix, y.vector, numLevels, lambda = lambda, numCores = cores, verbose = TRUE)
