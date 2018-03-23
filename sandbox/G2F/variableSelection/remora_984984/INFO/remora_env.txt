@@ -1,0 +1,30 @@
+export REMORA_OUTDIR=/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection/remora_984984
+export REMORA_TMPDIR=/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection/remora_984984
+export REMORA_WARNING=1
+export REMORA_MODE=FULL
+export REMORA_PERIOD=10
+export REMORA_VERBOSE=0
+export REMORA_MONITOR_PERIOD=10
+export REMORA_SCHEDULER=slurm
+export REMORA_JOB_ID=984984
+export REMORA_PARALLEL=0
+export REMORA_SYMMETRIC=0
+export REMORA_EFFECTIVE_PERIOD=9
+export REMORA_PLOT_RESULTS=1
+export REMORA_CUDA=0
+export REMORA_LUSTRE=1
+export REMORA_DVS=0
+export I_MPI_STATS=ipm
+export I_MPI_STATS_FILE=impi_data.txt
+export REMORA_POWER_IGNORE=0
+export REMORA_TEMPERATURE_IGNORE=141
+#EOF
+#EOF
+#EOF
+#EOF
+#EOF
+#EOF
+#EOF
+#EOF
+#EOF
+#EOF
