@@ -1,3 +1,0 @@
-TIMESTAMP        home1-RQ         home1-RD         home1-WR         work-RQ          work-RD          work-WR          scratch-RQ       scratch-RD       scratch-WR       
-1521826902        10530            262616            0                6534              169777854        11790340          37119            2749048709        7075789428       
-1521826912        10530            262616            0                6573              169780532        11793942          37119            2749048709        7075789428       

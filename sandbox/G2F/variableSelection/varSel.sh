@@ -2,8 +2,8 @@
 #
 #
 #SBATCH -J varSel
-#SBATCH -N 10
-#SBATCH -n 10
+#SBATCH -N 1
+#SBATCH -n 1
 #SBATCH -p skx-normal
 #SBATCH -t 48:00:00
 #SBATCH -A Envriotype

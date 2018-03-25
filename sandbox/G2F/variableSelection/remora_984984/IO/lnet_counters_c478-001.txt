@@ -1,3 +1,0 @@
-time              msgs_alloc        msgs_max          errors            send_count        recv_count        route_count       drop_count        send_length       recv_length       route_length      drop_length      
-1521826901        0                 21299             0                 3846105           3893851           0                 1                 9365573099        40272610609       0                 384              
-1521826911        0                 21299             0                 3846180           3893924           0                 1                 9365650596        40272635196       0                 384              

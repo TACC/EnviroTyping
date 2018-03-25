@@ -43,7 +43,7 @@ y.vector <- hybridByWeekSubset$Yield
 # saveRDS(hierFitPath, "hierFitPath.rda")
 
 hierFitPath <- readRDS("hierFitPath.rda")
-fitcv=hierNet.cv(hierNetFit,x.matrix,y.vector)
+fitcv=hierNet.cv(hierFitPath,x.matrix,y.vector)
 saveRDS(fitcv, "fitcv.rda")
 # lamhat=fitcv$lamhat.1se
 # 

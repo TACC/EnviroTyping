@@ -1,2 +1,0 @@
-TIMESTAMP        scratch-RQ       scratch-RD       scratch-WR       
-1521826902 77054131 6603877014039 1056824042338

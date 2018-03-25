@@ -1,4 +1,4 @@
-i,lam= 1 1500
+Fold 1 :i,lam= 1 1500
 i,lam= 2 1451.18
 i,lam= 3 1403.96
 i,lam= 4 1358.27
@@ -18,18 +18,207 @@ i,lam= 17 883.48
 i,lam= 18 854.73
 i,lam= 19 826.91
 i,lam= 20 800
-19896.487 sec elapsed
+
+Fold 2 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 3 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 4 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 5 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 6 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 7 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 8 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 9 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
+Fold 10 :i,lam= 1 1500
+i,lam= 2 1451.18
+i,lam= 3 1403.96
+i,lam= 4 1358.27
+i,lam= 5 1314.07
+i,lam= 6 1271.3
+i,lam= 7 1229.93
+i,lam= 8 1189.9
+i,lam= 9 1151.18
+i,lam= 10 1113.72
+i,lam= 11 1077.47
+i,lam= 12 1042.41
+i,lam= 13 1008.48
+i,lam= 14 975.67
+i,lam= 15 943.91
+i,lam= 16 913.2
+i,lam= 17 883.48
+i,lam= 18 854.73
+i,lam= 19 826.91
+i,lam= 20 800
+
 
 =============================== REMORA SUMMARY ===============================
- Max Memory Used Per Node     : 2.13 GB
- Total Elapsed Time           : 0d 5h 31m 41s 637ms
+ Max Memory Used Per Node     : 2.36 GB
+ Total Elapsed Time           : 1d 13h 24m 6s 925ms
 ------------------------------------------------------------------------------
- Max IO Load / home1          :     185 IOPS       0 RD(MB/S)       0 WR(MB/S)
- Max IO Load / scratch        :       8 IOPS       0 RD(MB/S)       0 WR(MB/S)
- Max IO Load / work           :      56 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / home1          :      74 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / scratch        :       1 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / work           :       6 IOPS       0 RD(MB/S)       0 WR(MB/S)
 ==============================================================================
  Sampling Period              : 10 seconds
- Complete Report Data         : /work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection/remora_981171
- Graphical Results At         : /work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection/remora_981171/remora_summary.html
+ Complete Report Data         : /work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection/remora_985018
+ Graphical Results At         : /work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection/remora_985018/remora_summary.html
 ==============================================================================
 
