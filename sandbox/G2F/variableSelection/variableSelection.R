@@ -42,12 +42,20 @@ y.vector <- hybridByWeekSubset$Yield
 # toc()
 # saveRDS(hierFitPath, "hierFitPath.rda")
 
-hierFitPath <- readRDS("hierFitPath.rda")
-fitcv=hierNet.cv(hierFitPath,x.matrix,y.vector)
-saveRDS(fitcv, "fitcv.rda")
-# lamhat=fitcv$lamhat.1se
-# 
-# fit2=hierNet(x,y,lam=lamhat)
-# yhat=predict.hierNet(fit2,x)
+# hierFitPath <- readRDS("hierFitPath.rda")
+# fitcv=hierNet.cv(hierFitPath,x.matrix,y.vector)
+# saveRDS(fitcv, "fitcv.rda")
+
+fitcv <- readRDS("fitcv.rda")
+lamhat=fitcv$lamhat.1se
+fitcv$lamlist
+
+fit2=hierNet(x = x.matrix, y = y.vector, lam=lamhat, maxiter = 5000)
+
+yhat=predict.hierNet(fit2,x = x.matrix)
+saveRDS(yhat, "yhat.rda")
+
+varImp <- hierNet.varimp(fit2, x = x.matrix, y = y.vector)
+saveRDS(varImp, "varImp.rda")
 
 
