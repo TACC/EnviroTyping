@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J varSel
+#SBATCH -J prune
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
@@ -10,4 +10,4 @@
 #SBATCH -o slurm.%N.%j.out
 #------------------------------------------------------
 mkdir output
-remora Rscript --vanilla --verbose ./variableSelection.R > ./output.Rout
+remora Rscript --vanilla --verbose ./profileByGroup.R > ./output.Rout
