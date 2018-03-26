@@ -5,9 +5,9 @@ library(tidyverse)
 library(tictoc)
 
 #setwd("sandbox/G2F/variableSelection/")
-setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/G2F/variableSelection")
+setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/variableSelection")
 
-hybridByWeek <- read_csv("../../../data/interim/G2F_Hybrid/hybrid_by_week_cleaned_weather.csv",col_types = cols("Exp" = col_factor(levels = NULL),"Pedi" = col_factor(levels = NULL), "Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(), "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "solarMedian" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number(), "windDirMedian" = col_number()))
+hybridByWeek <- read_csv("../../data/interim/G2F_Hybrid/hybrid_by_week_cleaned_weather.csv",col_types = cols("Exp" = col_factor(levels = NULL),"Pedi" = col_factor(levels = NULL), "Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(), "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "solarMedian" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number(), "windDirMedian" = col_number()))
 
 val <- grep("Min|Max",names(hybridByWeek))
 
@@ -52,7 +52,7 @@ fitcv$lamlist
 
 fit2=hierNet(x = x.matrix, y = y.vector, lam=lamhat, maxiter = 5000)
 
-yhat=predict.hierNet(fit2,x = x.matrix)
+yhat=predict(fit2,newx = x.matrix)
 saveRDS(yhat, "yhat.rda")
 
 varImp <- hierNet.varimp(fit2, x = x.matrix, y = y.vector)

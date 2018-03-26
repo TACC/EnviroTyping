@@ -9,7 +9,7 @@ library(dynamicTreeCut)
 # library(viridis)
 # library(gridExtra)
 # library(reshape2)
-setwd("work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/hybridGroups")
+setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/hybridGroups")
 
 hybridByWeek <- read_csv("../../data/interim/G2F_Hybrid/hybrid_by_week_cleaned_weather.csv",col_types = cols("Pedi" = col_factor(levels = NULL), "Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(), "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "solarMedian" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number(), "windDirMedian" = col_number()))
 
