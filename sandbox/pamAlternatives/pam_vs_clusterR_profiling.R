@@ -55,8 +55,3 @@ plot(pm)
 tic()
 opt_md <- Optimal_Clusters_Medoids(test1, 30, 'euclidean', plot_clusters = FALSE)
 toc()
-
-
-
-
-# riskProfileObj<-calcAvgRiskAndProfile(clusObj)
