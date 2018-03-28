@@ -5,12 +5,14 @@ library(profvis)
 library(lubridate)
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k")
 
+setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k/")
+
 # read in data from analysis script
-df <- read_csv("../hybrid_by_week_cleaned_weather.csv",col_types = cols("Repl" = col_integer(), "rainMin" = col_number(), "rainMax" = col_number(), "rainMean" = col_number(), "rainMedian" = col_number(), "solarMin" = col_number(), "solarMax" = col_number(), "solarMedian" = col_number(), "windDirMin" = col_number(), "windDirMax" = col_number(), "windDirMedian" = col_number()))
+hybridWeek <- read_rds("../hybrid_by_week_cleaned_weather.Rds")
 
 # creates a data frame for the month number
-temp <- df %>% filter(Week >= isoweek(Planted)+3 & Week <= isoweek(Planted)+5)
-
+temp <- hybridWeek %>% filter(Week >= isoweek(Planted)+3 & Week <= isoweek(Planted)+5)
+unique(temp$Week)
 # find continous variables with variance
 val <- grep("Min|Max",names(temp))
 

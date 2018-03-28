@@ -2,6 +2,7 @@
 library(tidyverse)
 library(lubridate)
 
+setwd("~/GitHub/EnviroTyping/")
 # import cleaned weather dataset
 wth <- read_csv("data/external/G2F from Cyverse DataStore/g2f_2015_weather_clean.csv")
 
