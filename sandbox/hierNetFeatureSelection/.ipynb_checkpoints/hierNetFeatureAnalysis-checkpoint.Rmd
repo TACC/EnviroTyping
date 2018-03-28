@@ -1,0 +1,93 @@
+---
+title: "hierNet Feature Results"
+output: html_notebook
+---
+```{r}
+library(hierNet)
+library(tidyverse)
+library(tictoc)
+```
+
+```{r}
+setwd("~/GitHub/EnviroTyping/sandbox/hierNetFeatureSelection/")
+```
+
+```{r}
+hybridByWeek <- read_rds("../../data/interim/G2F_Hybrid/hybrid_by_week_cleaned_weather.Rds")
+```
+```{r}
+val <- grep("Min|Max",names(hybridByWeek))
+numericVars <- names(hybridByWeek[val])[vapply(hybridByWeek[val], function(x) var(x) != 0, logical(1))]
+```
+
+```{r}
+hybridByWeek$Pedi <- as.numeric(hybridByWeek$Pedi)
+hybridByWeek$Exp <- as.numeric(hybridByWeek$Exp)
+hybridByWeekSubset <- hybridByWeek %>% select(Hyb = Pedi, Yield, numericVars)
+hybridByWeekSubsetE <- hybridByWeek %>% select(Exp, Hyb = Pedi, Yield, numericVars)
+```
+
+Scaling all the inputs as a single matrix.
+```{r}
+x.matrix <- scale(as.matrix(select(hybridByWeekSubset, Hyb, numericVars)))
+x.matrixE <- scale(as.matrix(select(hybridByWeekSubsetE, Exp, Hyb, numericVars)))
+y.vector <- hybridByWeekSubset$Yield
+```
+
+Set lambda to the Frobenius norm of the X matrices
+```{r}
+lambda <- norm(x.matrix, type = "F")
+lambdaE <- norm(x.matrixE, type = "F")
+lambda;lambdaE
+```
+
+Running the model fitted with lambda above.
+```{r}
+hierFit <- hierNet(x.matrix, y.vector, lam = lambda)
+write_rds(hierFit, "hierFitNorm.rds")
+```
+
+
+```{r}
+# varimp <- hierNet.varimp(hierFit, x.matrix, y.vector)
+# saveRDS(varimp, "varimpLabNorm.rda")
+varImpNorm <- read_rds("varimpLabNorm.rda")
+varRankFit1 <- data.frame(names(hybridByWeekSubset[-3]),varImpNorm) %>% arrange(Predictor)
+varRankFit1
+```
+
+```{r}
+tic()
+hierFitPath <- hierNet.path(x.matrix, y.vector, minlam = 800, maxlam = 1500, maxiter = 5000)
+toc()
+saveRDS(hierFitPath, "hierFitPath.rda")
+```
+
+```{r}
+hierFitPath <- readRDS("hierFitPath.rda")
+fitcv=hierNet.cv(hierFitPath,x.matrix,y.vector)
+saveRDS(fitcv, "fitcv.rda")
+```
+
+```{r}
+fitcv <- readRDS("fitcv.rda")
+lamhat=fitcv$lamhat.1se
+fitcv$lamlist
+# fit2=hierNet(x = x.matrix, y = y.vector, lam=lamhat, maxiter = 5000)
+```
+
+```{r}
+# yhat=predict(fit2,newx = x.matrix)
+# saveRDS(yhat, "yhat.rda")
+yhat <- read_rds("yhat.rda")
+yhat[1:20]
+```
+
+```{r}
+# varImp <- hierNet.varimp(hierFit, x.matrix, y.vector)
+# saveRDS("varImp.rda")
+varImp <- read_rds("varImp.rda")
+varRankFit2 <- data.frame(names(hybridByWeekSubset[-3]),varImp) %>% arrange(Predictor)
+varRankFit2
+```
+
