@@ -4,7 +4,7 @@ repo_url: https://github.com/TACC/EnviroTyping
 
 pages:
     - Home: 'index.md'
-    - 'Project Scope': 'projectScope.md'
+    - Project Scope: 'projectScope.md'
     - Tutorials:
         - 'Launcher Module': 'tutorials/launcherModule.md'
     - Update: 'updating.md'
