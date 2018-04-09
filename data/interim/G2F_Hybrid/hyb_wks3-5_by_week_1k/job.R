@@ -8,7 +8,7 @@ setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid
 setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k/")
 
 # read in data from analysis script
-hybridWeek <- read_rds("../hybrid_by_week_cleaned_weather.Rds")
+hybridWeek <- read_rds("../hybrid_by_month_calibrated_weather.rds")
 
 # creates a data frame for the month number
 temp <- hybridWeek %>% filter(Week >= isoweek(Planted) + 3 & Week <= isoweek(Planted) + 5 )
