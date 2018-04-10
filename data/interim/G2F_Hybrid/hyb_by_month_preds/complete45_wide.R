@@ -4,7 +4,7 @@ library(tictoc)
 
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_by_month_preds/complete45_wide")
 
-df45widewide <- read_rds("../../hybrid_by_month_calibrated_weather_wide_45subset.rds")
+df45wide <- read_rds("../../hybrid_by_month_calibrated_weather_wide_45subset.rds")
 #df45wide <- df45wide[sample(1:nrow(df45wide),.2*dim(df45wide)[1]),]
 set.seed(1234)
 train_index <- sample(1:nrow(df45wide), 0.5 * nrow(df45wide))

@@ -10,4 +10,4 @@
 #SBATCH -o slurm.%N.%j.out
 #------------------------------------------------------
 mkdir complete45_wide
-Rscript --vanilla --verbose ./complete45_long.R > ./output_long.Rout
+Rscript --vanilla --verbose ./complete45_wide.R > ./output_wide.Rout

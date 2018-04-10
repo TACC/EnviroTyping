@@ -9,5 +9,4 @@
 #SBATCH -A Envriotype
 #SBATCH -o slurm.%N.%j.out
 #------------------------------------------------------
-mkdir complete45_long
-Rscript --vanilla --verbose ./statifiedCV_45.R > ./output_stratifedCV_45.Rout
+Rscript --vanilla --verbose ./stratifiedCV_45.R > ./output_stratifedCV_45.Rout
