@@ -9,4 +9,4 @@
 #SBATCH -A Envriotype
 #SBATCH -o slurm.%N.%j.out
 #------------------------------------------------------
-remora Rscript --vanilla --verbose ./complete45.R > ./output.Rout
+remora Rscript --vanilla --verbose ./complete45_long.R > ./output_long.Rout
