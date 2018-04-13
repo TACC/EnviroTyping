@@ -74,7 +74,7 @@ data/interim/G2F_Hybrid/hybrid_by_month_cleaned_weather.csv
 
 data/interim/G2F_Hybrid/hybrid_by_day_calibrated_weather.csv
 data/interim/G2F_Hybrid/hybrid_by_week_calibrated_weather.csv
-data/interim/G2F_Hybrid/hybrid_by_month_calibrated_weather.cs
+data/interim/G2F_Hybrid/hybrid_by_month_calibrated_weather.csv
 
 # job output files are on Cyverse Data Store in shared folder dhbrand/Premium/jobOuput
 
@@ -87,3 +87,8 @@ data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k/
 data/interim/G2F_Hybrid/wks3-5_by_week_1k/
 data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k_con/
 data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k_bin/
+<<<<<<< HEAD
+=======
+
+sandbox/plotError
+>>>>>>> 558e7dd5b97262f6cb5335315789aad6fe728449

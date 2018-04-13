@@ -1,23 +1,24 @@
 library(PReMiuM)
-library(dplyr)
-library(readr)
+library(tidyverse)
 library(profvis)
 library(lubridate)
+library(tictoc)
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k")
 
 setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_wks3-5_by_week_1k/")
 
 # read in data from analysis script
-hybridWeek <- read_rds("../hybrid_by_week_cleaned_weather.Rds")
+hybridWeek <- read_rds("../hybrid_by_month_calibrated_weather.rds")
 
 # creates a data frame for the month number
-temp <- hybridWeek %>% filter(Week >= isoweek(Planted)+3 & Week <= isoweek(Planted)+5)
+temp <- hybridWeek %>% filter(Week >= isoweek(Planted) + 3 & Week <= isoweek(Planted) + 5 )
 unique(temp$Week)
 # find continous variables with variance
 val <- grep("Min|Max",names(temp))
 
-numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))]
-
+tic(); numericVars <- names(temp[val])[vapply(temp[val], function(x) var(x) != 0, logical(1))];toc() # 0.006 sec elapsed
+tic(); nv <- names(which(map_dbl(temp[val], var) != 0));toc() # 0.004 sec elapsed
+tic(); nv1 <- names(which(map_lgl(temp[val],~ var(.) != 0))); toc() # 0.005 sec elapsed
 
 setwd("./output")
 
