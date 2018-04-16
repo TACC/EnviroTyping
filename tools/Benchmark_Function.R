@@ -95,3 +95,4 @@ VarSelectBernoulliDiscrete = tester[which(tester == "clusSummaryVarSelectBernoul
 BernoulliMixed = tester[which(tester == "clusSummaryBernoulliMixed"),-1]
 
 save.image("tester.Rdata", compress = "xz")
+
