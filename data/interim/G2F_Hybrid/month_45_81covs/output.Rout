@@ -1,0 +1,984 @@
+[1] "Recoding of covariate number Pedi as follows"
+ [1] "Replacing level (LAMA2002-35-2-B-B-B-B_CG44)-1-3-B-1-1-B24-B5-B16/LH195 with 0"
+ [2] "Replacing level 2369/PHZ51 with 1"                                             
+ [3] "Replacing level B14A/H95 with 2"                                               
+ [4] "Replacing level B14A/OH43 with 3"                                              
+ [5] "Replacing level B37/C103 with 4"                                               
+ [6] "Replacing level B37/H95 with 5"                                                
+ [7] "Replacing level B37/OH43 with 6"                                               
+ [8] "Replacing level B73/MO17 with 7"                                               
+ [9] "Replacing level B73/PHG35 with 8"                                              
+[10] "Replacing level B73/PHM49 with 9"                                              
+[11] "Replacing level B73/PHN82 with 10"                                             
+[12] "Replacing level B73/PHZ51 with 11"                                             
+[13] "Replacing level B73/TX205 with 12"                                             
+[14] "Replacing level B97/PHB47 with 13"                                             
+[15] "Replacing level BSSSC0_029/PHZ51 with 14"                                      
+[16] "Replacing level BSSSC0_044/LH82 with 15"                                       
+[17] "Replacing level BSSSC0_048/PHZ51 with 16"                                      
+[18] "Replacing level F42/MO17 with 17"                                              
+[19] "Replacing level F42/OH43 with 18"                                              
+[20] "Replacing level LH132/LH51 with 19"                                            
+[21] "Replacing level LH195/PHZ51 with 20"                                           
+[22] "Replacing level LH195/TX777 with 21"                                           
+[23] "Replacing level LH198/CGR01 with 22"                                           
+[24] "Replacing level LH198/PHZ51 with 23"                                           
+[25] "Replacing level LH212HT/LH195 with 24"                                         
+[26] "Replacing level LH74/PHG35 with 25"                                            
+[27] "Replacing level LH74/PHM49 with 26"                                            
+[28] "Replacing level LH74/PHN82 with 27"                                            
+[29] "Replacing level LH82/TX777 with 28"                                            
+[30] "Replacing level PB80/PHZ51 with 29"                                            
+[31] "Replacing level PHB47/PHZ51 with 30"                                           
+[32] "Replacing level PHG39/PHG35 with 31"                                           
+[33] "Replacing level PHG39/PHM49 with 32"                                           
+[34] "Replacing level PHG39/PHN82 with 33"                                           
+[35] "Replacing level PHG80/PHZ51 with 34"                                           
+[36] "Replacing level PHN11_PHW65_0323/LH195 with 35"                                
+[37] "Replacing level PHW52/PHG35 with 36"                                           
+[38] "Replacing level PHW52/PHM49 with 37"                                           
+[39] "Replacing level PHW52/PHN82 with 38"                                           
+[40] "Replacing level PHW52/TX205 with 39"                                           
+[41] "Replacing level REDEAR2-2-2-1-1-2-B-B-1-B10/LH195 with 40"                     
+[42] "Replacing level TX303/LH82 with 41"                                            
+[43] "Replacing level TX714/PHZ51 with 42"                                           
+[44] "Replacing level W10001_0022/PHB47 with 43"                                     
+[45] "Replacing level WF9/H95 with 44"                                               
+Random number seed: 1234
+Sweep: 1
+Sweep: 25
+Sweep: 50
+Sweep: 75
+Sweep: 100
+Sweep: 125
+Sweep: 150
+Sweep: 175
+Sweep: 200
+Sweep: 225
+Sweep: 250
+Sweep: 275
+Sweep: 300
+Sweep: 325
+Sweep: 350
+Sweep: 375
+Sweep: 400
+Sweep: 425
+Sweep: 450
+Sweep: 475
+Sweep: 500
+Sweep: 525
+Sweep: 550
+Sweep: 575
+Sweep: 600
+Sweep: 625
+Sweep: 650
+Sweep: 675
+Sweep: 700
+Sweep: 725
+Sweep: 750
+Sweep: 775
+Sweep: 800
+Sweep: 825
+Sweep: 850
+Sweep: 875
+Sweep: 900
+Sweep: 925
+Sweep: 950
+Sweep: 975
+Sweep: 1000
+56671.707 sec elapsed
+Stage 1:1 samples out of 100
+Stage 2:1 samples out of 100
+Max no of possible clusters: 878 
+Trying 2 clusters
+Trying 3 clusters
+Trying 4 clusters
+Trying 5 clusters
+Trying 6 clusters
+Trying 7 clusters
+Trying 8 clusters
+Trying 9 clusters
+Trying 10 clusters
+Trying 11 clusters
+Trying 12 clusters
+Trying 13 clusters
+Trying 14 clusters
+Trying 15 clusters
+Trying 16 clusters
+Trying 17 clusters
+Trying 18 clusters
+Trying 19 clusters
+Trying 20 clusters
+Trying 21 clusters
+Trying 22 clusters
+Trying 23 clusters
+Trying 24 clusters
+Trying 25 clusters
+Trying 26 clusters
+Trying 27 clusters
+Trying 28 clusters
+Trying 29 clusters
+Trying 30 clusters
+Trying 31 clusters
+Trying 32 clusters
+Trying 33 clusters
+Trying 34 clusters
+Trying 35 clusters
+Trying 36 clusters
+Trying 37 clusters
+Trying 38 clusters
+Trying 39 clusters
+Trying 40 clusters
+Trying 41 clusters
+Trying 42 clusters
+Trying 43 clusters
+Trying 44 clusters
+Trying 45 clusters
+Trying 46 clusters
+Trying 47 clusters
+Trying 48 clusters
+Trying 49 clusters
+Trying 50 clusters
+Trying 51 clusters
+Trying 52 clusters
+Trying 53 clusters
+Trying 54 clusters
+Trying 55 clusters
+Trying 56 clusters
+Trying 57 clusters
+Trying 58 clusters
+Trying 59 clusters
+Trying 60 clusters
+Trying 61 clusters
+Trying 62 clusters
+Trying 63 clusters
+Trying 64 clusters
+Trying 65 clusters
+Trying 66 clusters
+Trying 67 clusters
+Trying 68 clusters
+Trying 69 clusters
+Trying 70 clusters
+Trying 71 clusters
+Trying 72 clusters
+Trying 73 clusters
+Trying 74 clusters
+Trying 75 clusters
+Trying 76 clusters
+Trying 77 clusters
+Trying 78 clusters
+Trying 79 clusters
+Trying 80 clusters
+Trying 81 clusters
+Trying 82 clusters
+Trying 83 clusters
+Trying 84 clusters
+Trying 85 clusters
+Trying 86 clusters
+Trying 87 clusters
+Trying 88 clusters
+Trying 89 clusters
+Trying 90 clusters
+Trying 91 clusters
+Trying 92 clusters
+Trying 93 clusters
+Trying 94 clusters
+Trying 95 clusters
+Trying 96 clusters
+Trying 97 clusters
+Trying 98 clusters
+Trying 99 clusters
+Trying 100 clusters
+Trying 101 clusters
+Trying 102 clusters
+Trying 103 clusters
+Trying 104 clusters
+Trying 105 clusters
+Trying 106 clusters
+Trying 107 clusters
+Trying 108 clusters
+Trying 109 clusters
+Trying 110 clusters
+Trying 111 clusters
+Trying 112 clusters
+Trying 113 clusters
+Trying 114 clusters
+Trying 115 clusters
+Trying 116 clusters
+Trying 117 clusters
+Trying 118 clusters
+Trying 119 clusters
+Trying 120 clusters
+Trying 121 clusters
+Trying 122 clusters
+Trying 123 clusters
+Trying 124 clusters
+Trying 125 clusters
+Trying 126 clusters
+Trying 127 clusters
+Trying 128 clusters
+Trying 129 clusters
+Trying 130 clusters
+Trying 131 clusters
+Trying 132 clusters
+Trying 133 clusters
+Trying 134 clusters
+Trying 135 clusters
+Trying 136 clusters
+Trying 137 clusters
+Trying 138 clusters
+Trying 139 clusters
+Trying 140 clusters
+Trying 141 clusters
+Trying 142 clusters
+Trying 143 clusters
+Trying 144 clusters
+Trying 145 clusters
+Trying 146 clusters
+Trying 147 clusters
+Trying 148 clusters
+Trying 149 clusters
+Trying 150 clusters
+Trying 151 clusters
+Trying 152 clusters
+Trying 153 clusters
+Trying 154 clusters
+Trying 155 clusters
+Trying 156 clusters
+Trying 157 clusters
+Trying 158 clusters
+Trying 159 clusters
+Trying 160 clusters
+Trying 161 clusters
+Trying 162 clusters
+Trying 163 clusters
+Trying 164 clusters
+Trying 165 clusters
+Trying 166 clusters
+Trying 167 clusters
+Trying 168 clusters
+Trying 169 clusters
+Trying 170 clusters
+Trying 171 clusters
+Trying 172 clusters
+Trying 173 clusters
+Trying 174 clusters
+Trying 175 clusters
+Trying 176 clusters
+Trying 177 clusters
+Trying 178 clusters
+Trying 179 clusters
+Trying 180 clusters
+Trying 181 clusters
+Trying 182 clusters
+Trying 183 clusters
+Trying 184 clusters
+Trying 185 clusters
+Trying 186 clusters
+Trying 187 clusters
+Trying 188 clusters
+Trying 189 clusters
+Trying 190 clusters
+Trying 191 clusters
+Trying 192 clusters
+Trying 193 clusters
+Trying 194 clusters
+Trying 195 clusters
+Trying 196 clusters
+Trying 197 clusters
+Trying 198 clusters
+Trying 199 clusters
+Trying 200 clusters
+Trying 201 clusters
+Trying 202 clusters
+Trying 203 clusters
+Trying 204 clusters
+Trying 205 clusters
+Trying 206 clusters
+Trying 207 clusters
+Trying 208 clusters
+Trying 209 clusters
+Trying 210 clusters
+Trying 211 clusters
+Trying 212 clusters
+Trying 213 clusters
+Trying 214 clusters
+Trying 215 clusters
+Trying 216 clusters
+Trying 217 clusters
+Trying 218 clusters
+Trying 219 clusters
+Trying 220 clusters
+Trying 221 clusters
+Trying 222 clusters
+Trying 223 clusters
+Trying 224 clusters
+Trying 225 clusters
+Trying 226 clusters
+Trying 227 clusters
+Trying 228 clusters
+Trying 229 clusters
+Trying 230 clusters
+Trying 231 clusters
+Trying 232 clusters
+Trying 233 clusters
+Trying 234 clusters
+Trying 235 clusters
+Trying 236 clusters
+Trying 237 clusters
+Trying 238 clusters
+Trying 239 clusters
+Trying 240 clusters
+Trying 241 clusters
+Trying 242 clusters
+Trying 243 clusters
+Trying 244 clusters
+Trying 245 clusters
+Trying 246 clusters
+Trying 247 clusters
+Trying 248 clusters
+Trying 249 clusters
+Trying 250 clusters
+Trying 251 clusters
+Trying 252 clusters
+Trying 253 clusters
+Trying 254 clusters
+Trying 255 clusters
+Trying 256 clusters
+Trying 257 clusters
+Trying 258 clusters
+Trying 259 clusters
+Trying 260 clusters
+Trying 261 clusters
+Trying 262 clusters
+Trying 263 clusters
+Trying 264 clusters
+Trying 265 clusters
+Trying 266 clusters
+Trying 267 clusters
+Trying 268 clusters
+Trying 269 clusters
+Trying 270 clusters
+Trying 271 clusters
+Trying 272 clusters
+Trying 273 clusters
+Trying 274 clusters
+Trying 275 clusters
+Trying 276 clusters
+Trying 277 clusters
+Trying 278 clusters
+Trying 279 clusters
+Trying 280 clusters
+Trying 281 clusters
+Trying 282 clusters
+Trying 283 clusters
+Trying 284 clusters
+Trying 285 clusters
+Trying 286 clusters
+Trying 287 clusters
+Trying 288 clusters
+Trying 289 clusters
+Trying 290 clusters
+Trying 291 clusters
+Trying 292 clusters
+Trying 293 clusters
+Trying 294 clusters
+Trying 295 clusters
+Trying 296 clusters
+Trying 297 clusters
+Trying 298 clusters
+Trying 299 clusters
+Trying 300 clusters
+Trying 301 clusters
+Trying 302 clusters
+Trying 303 clusters
+Trying 304 clusters
+Trying 305 clusters
+Trying 306 clusters
+Trying 307 clusters
+Trying 308 clusters
+Trying 309 clusters
+Trying 310 clusters
+Trying 311 clusters
+Trying 312 clusters
+Trying 313 clusters
+Trying 314 clusters
+Trying 315 clusters
+Trying 316 clusters
+Trying 317 clusters
+Trying 318 clusters
+Trying 319 clusters
+Trying 320 clusters
+Trying 321 clusters
+Trying 322 clusters
+Trying 323 clusters
+Trying 324 clusters
+Trying 325 clusters
+Trying 326 clusters
+Trying 327 clusters
+Trying 328 clusters
+Trying 329 clusters
+Trying 330 clusters
+Trying 331 clusters
+Trying 332 clusters
+Trying 333 clusters
+Trying 334 clusters
+Trying 335 clusters
+Trying 336 clusters
+Trying 337 clusters
+Trying 338 clusters
+Trying 339 clusters
+Trying 340 clusters
+Trying 341 clusters
+Trying 342 clusters
+Trying 343 clusters
+Trying 344 clusters
+Trying 345 clusters
+Trying 346 clusters
+Trying 347 clusters
+Trying 348 clusters
+Trying 349 clusters
+Trying 350 clusters
+Trying 351 clusters
+Trying 352 clusters
+Trying 353 clusters
+Trying 354 clusters
+Trying 355 clusters
+Trying 356 clusters
+Trying 357 clusters
+Trying 358 clusters
+Trying 359 clusters
+Trying 360 clusters
+Trying 361 clusters
+Trying 362 clusters
+Trying 363 clusters
+Trying 364 clusters
+Trying 365 clusters
+Trying 366 clusters
+Trying 367 clusters
+Trying 368 clusters
+Trying 369 clusters
+Trying 370 clusters
+Trying 371 clusters
+Trying 372 clusters
+Trying 373 clusters
+Trying 374 clusters
+Trying 375 clusters
+Trying 376 clusters
+Trying 377 clusters
+Trying 378 clusters
+Trying 379 clusters
+Trying 380 clusters
+Trying 381 clusters
+Trying 382 clusters
+Trying 383 clusters
+Trying 384 clusters
+Trying 385 clusters
+Trying 386 clusters
+Trying 387 clusters
+Trying 388 clusters
+Trying 389 clusters
+Trying 390 clusters
+Trying 391 clusters
+Trying 392 clusters
+Trying 393 clusters
+Trying 394 clusters
+Trying 395 clusters
+Trying 396 clusters
+Trying 397 clusters
+Trying 398 clusters
+Trying 399 clusters
+Trying 400 clusters
+Trying 401 clusters
+Trying 402 clusters
+Trying 403 clusters
+Trying 404 clusters
+Trying 405 clusters
+Trying 406 clusters
+Trying 407 clusters
+Trying 408 clusters
+Trying 409 clusters
+Trying 410 clusters
+Trying 411 clusters
+Trying 412 clusters
+Trying 413 clusters
+Trying 414 clusters
+Trying 415 clusters
+Trying 416 clusters
+Trying 417 clusters
+Trying 418 clusters
+Trying 419 clusters
+Trying 420 clusters
+Trying 421 clusters
+Trying 422 clusters
+Trying 423 clusters
+Trying 424 clusters
+Trying 425 clusters
+Trying 426 clusters
+Trying 427 clusters
+Trying 428 clusters
+Trying 429 clusters
+Trying 430 clusters
+Trying 431 clusters
+Trying 432 clusters
+Trying 433 clusters
+Trying 434 clusters
+Trying 435 clusters
+Trying 436 clusters
+Trying 437 clusters
+Trying 438 clusters
+Trying 439 clusters
+Trying 440 clusters
+Trying 441 clusters
+Trying 442 clusters
+Trying 443 clusters
+Trying 444 clusters
+Trying 445 clusters
+Trying 446 clusters
+Trying 447 clusters
+Trying 448 clusters
+Trying 449 clusters
+Trying 450 clusters
+Trying 451 clusters
+Trying 452 clusters
+Trying 453 clusters
+Trying 454 clusters
+Trying 455 clusters
+Trying 456 clusters
+Trying 457 clusters
+Trying 458 clusters
+Trying 459 clusters
+Trying 460 clusters
+Trying 461 clusters
+Trying 462 clusters
+Trying 463 clusters
+Trying 464 clusters
+Trying 465 clusters
+Trying 466 clusters
+Trying 467 clusters
+Trying 468 clusters
+Trying 469 clusters
+Trying 470 clusters
+Trying 471 clusters
+Trying 472 clusters
+Trying 473 clusters
+Trying 474 clusters
+Trying 475 clusters
+Trying 476 clusters
+Trying 477 clusters
+Trying 478 clusters
+Trying 479 clusters
+Trying 480 clusters
+Trying 481 clusters
+Trying 482 clusters
+Trying 483 clusters
+Trying 484 clusters
+Trying 485 clusters
+Trying 486 clusters
+Trying 487 clusters
+Trying 488 clusters
+Trying 489 clusters
+Trying 490 clusters
+Trying 491 clusters
+Trying 492 clusters
+Trying 493 clusters
+Trying 494 clusters
+Trying 495 clusters
+Trying 496 clusters
+Trying 497 clusters
+Trying 498 clusters
+Trying 499 clusters
+Trying 500 clusters
+Trying 501 clusters
+Trying 502 clusters
+Trying 503 clusters
+Trying 504 clusters
+Trying 505 clusters
+Trying 506 clusters
+Trying 507 clusters
+Trying 508 clusters
+Trying 509 clusters
+Trying 510 clusters
+Trying 511 clusters
+Trying 512 clusters
+Trying 513 clusters
+Trying 514 clusters
+Trying 515 clusters
+Trying 516 clusters
+Trying 517 clusters
+Trying 518 clusters
+Trying 519 clusters
+Trying 520 clusters
+Trying 521 clusters
+Trying 522 clusters
+Trying 523 clusters
+Trying 524 clusters
+Trying 525 clusters
+Trying 526 clusters
+Trying 527 clusters
+Trying 528 clusters
+Trying 529 clusters
+Trying 530 clusters
+Trying 531 clusters
+Trying 532 clusters
+Trying 533 clusters
+Trying 534 clusters
+Trying 535 clusters
+Trying 536 clusters
+Trying 537 clusters
+Trying 538 clusters
+Trying 539 clusters
+Trying 540 clusters
+Trying 541 clusters
+Trying 542 clusters
+Trying 543 clusters
+Trying 544 clusters
+Trying 545 clusters
+Trying 546 clusters
+Trying 547 clusters
+Trying 548 clusters
+Trying 549 clusters
+Trying 550 clusters
+Trying 551 clusters
+Trying 552 clusters
+Trying 553 clusters
+Trying 554 clusters
+Trying 555 clusters
+Trying 556 clusters
+Trying 557 clusters
+Trying 558 clusters
+Trying 559 clusters
+Trying 560 clusters
+Trying 561 clusters
+Trying 562 clusters
+Trying 563 clusters
+Trying 564 clusters
+Trying 565 clusters
+Trying 566 clusters
+Trying 567 clusters
+Trying 568 clusters
+Trying 569 clusters
+Trying 570 clusters
+Trying 571 clusters
+Trying 572 clusters
+Trying 573 clusters
+Trying 574 clusters
+Trying 575 clusters
+Trying 576 clusters
+Trying 577 clusters
+Trying 578 clusters
+Trying 579 clusters
+Trying 580 clusters
+Trying 581 clusters
+Trying 582 clusters
+Trying 583 clusters
+Trying 584 clusters
+Trying 585 clusters
+Trying 586 clusters
+Trying 587 clusters
+Trying 588 clusters
+Trying 589 clusters
+Trying 590 clusters
+Trying 591 clusters
+Trying 592 clusters
+Trying 593 clusters
+Trying 594 clusters
+Trying 595 clusters
+Trying 596 clusters
+Trying 597 clusters
+Trying 598 clusters
+Trying 599 clusters
+Trying 600 clusters
+Trying 601 clusters
+Trying 602 clusters
+Trying 603 clusters
+Trying 604 clusters
+Trying 605 clusters
+Trying 606 clusters
+Trying 607 clusters
+Trying 608 clusters
+Trying 609 clusters
+Trying 610 clusters
+Trying 611 clusters
+Trying 612 clusters
+Trying 613 clusters
+Trying 614 clusters
+Trying 615 clusters
+Trying 616 clusters
+Trying 617 clusters
+Trying 618 clusters
+Trying 619 clusters
+Trying 620 clusters
+Trying 621 clusters
+Trying 622 clusters
+Trying 623 clusters
+Trying 624 clusters
+Trying 625 clusters
+Trying 626 clusters
+Trying 627 clusters
+Trying 628 clusters
+Trying 629 clusters
+Trying 630 clusters
+Trying 631 clusters
+Trying 632 clusters
+Trying 633 clusters
+Trying 634 clusters
+Trying 635 clusters
+Trying 636 clusters
+Trying 637 clusters
+Trying 638 clusters
+Trying 639 clusters
+Trying 640 clusters
+Trying 641 clusters
+Trying 642 clusters
+Trying 643 clusters
+Trying 644 clusters
+Trying 645 clusters
+Trying 646 clusters
+Trying 647 clusters
+Trying 648 clusters
+Trying 649 clusters
+Trying 650 clusters
+Trying 651 clusters
+Trying 652 clusters
+Trying 653 clusters
+Trying 654 clusters
+Trying 655 clusters
+Trying 656 clusters
+Trying 657 clusters
+Trying 658 clusters
+Trying 659 clusters
+Trying 660 clusters
+Trying 661 clusters
+Trying 662 clusters
+Trying 663 clusters
+Trying 664 clusters
+Trying 665 clusters
+Trying 666 clusters
+Trying 667 clusters
+Trying 668 clusters
+Trying 669 clusters
+Trying 670 clusters
+Trying 671 clusters
+Trying 672 clusters
+Trying 673 clusters
+Trying 674 clusters
+Trying 675 clusters
+Trying 676 clusters
+Trying 677 clusters
+Trying 678 clusters
+Trying 679 clusters
+Trying 680 clusters
+Trying 681 clusters
+Trying 682 clusters
+Trying 683 clusters
+Trying 684 clusters
+Trying 685 clusters
+Trying 686 clusters
+Trying 687 clusters
+Trying 688 clusters
+Trying 689 clusters
+Trying 690 clusters
+Trying 691 clusters
+Trying 692 clusters
+Trying 693 clusters
+Trying 694 clusters
+Trying 695 clusters
+Trying 696 clusters
+Trying 697 clusters
+Trying 698 clusters
+Trying 699 clusters
+Trying 700 clusters
+Trying 701 clusters
+Trying 702 clusters
+Trying 703 clusters
+Trying 704 clusters
+Trying 705 clusters
+Trying 706 clusters
+Trying 707 clusters
+Trying 708 clusters
+Trying 709 clusters
+Trying 710 clusters
+Trying 711 clusters
+Trying 712 clusters
+Trying 713 clusters
+Trying 714 clusters
+Trying 715 clusters
+Trying 716 clusters
+Trying 717 clusters
+Trying 718 clusters
+Trying 719 clusters
+Trying 720 clusters
+Trying 721 clusters
+Trying 722 clusters
+Trying 723 clusters
+Trying 724 clusters
+Trying 725 clusters
+Trying 726 clusters
+Trying 727 clusters
+Trying 728 clusters
+Trying 729 clusters
+Trying 730 clusters
+Trying 731 clusters
+Trying 732 clusters
+Trying 733 clusters
+Trying 734 clusters
+Trying 735 clusters
+Trying 736 clusters
+Trying 737 clusters
+Trying 738 clusters
+Trying 739 clusters
+Trying 740 clusters
+Trying 741 clusters
+Trying 742 clusters
+Trying 743 clusters
+Trying 744 clusters
+Trying 745 clusters
+Trying 746 clusters
+Trying 747 clusters
+Trying 748 clusters
+Trying 749 clusters
+Trying 750 clusters
+Trying 751 clusters
+Trying 752 clusters
+Trying 753 clusters
+Trying 754 clusters
+Trying 755 clusters
+Trying 756 clusters
+Trying 757 clusters
+Trying 758 clusters
+Trying 759 clusters
+Trying 760 clusters
+Trying 761 clusters
+Trying 762 clusters
+Trying 763 clusters
+Trying 764 clusters
+Trying 765 clusters
+Trying 766 clusters
+Trying 767 clusters
+Trying 768 clusters
+Trying 769 clusters
+Trying 770 clusters
+Trying 771 clusters
+Trying 772 clusters
+Trying 773 clusters
+Trying 774 clusters
+Trying 775 clusters
+Trying 776 clusters
+Trying 777 clusters
+Trying 778 clusters
+Trying 779 clusters
+Trying 780 clusters
+Trying 781 clusters
+Trying 782 clusters
+Trying 783 clusters
+Trying 784 clusters
+Trying 785 clusters
+Trying 786 clusters
+Trying 787 clusters
+Trying 788 clusters
+Trying 789 clusters
+Trying 790 clusters
+Trying 791 clusters
+Trying 792 clusters
+Trying 793 clusters
+Trying 794 clusters
+Trying 795 clusters
+Trying 796 clusters
+Trying 797 clusters
+Trying 798 clusters
+Trying 799 clusters
+Trying 800 clusters
+Trying 801 clusters
+Trying 802 clusters
+Trying 803 clusters
+Trying 804 clusters
+Trying 805 clusters
+Trying 806 clusters
+Trying 807 clusters
+Trying 808 clusters
+Trying 809 clusters
+Trying 810 clusters
+Trying 811 clusters
+Trying 812 clusters
+Trying 813 clusters
+Trying 814 clusters
+Trying 815 clusters
+Trying 816 clusters
+Trying 817 clusters
+Trying 818 clusters
+Trying 819 clusters
+Trying 820 clusters
+Trying 821 clusters
+Trying 822 clusters
+Trying 823 clusters
+Trying 824 clusters
+Trying 825 clusters
+Trying 826 clusters
+Trying 827 clusters
+Trying 828 clusters
+Trying 829 clusters
+Trying 830 clusters
+Trying 831 clusters
+Trying 832 clusters
+Trying 833 clusters
+Trying 834 clusters
+Trying 835 clusters
+Trying 836 clusters
+Trying 837 clusters
+Trying 838 clusters
+Trying 839 clusters
+Trying 840 clusters
+Trying 841 clusters
+Trying 842 clusters
+Trying 843 clusters
+Trying 844 clusters
+Trying 845 clusters
+Trying 846 clusters
+Trying 847 clusters
+Trying 848 clusters
+Trying 849 clusters
+Trying 850 clusters
+Trying 851 clusters
+Trying 852 clusters
+Trying 853 clusters
+Trying 854 clusters
+Trying 855 clusters
+Trying 856 clusters
+Trying 857 clusters
+Trying 858 clusters
+Trying 859 clusters
+Trying 860 clusters
+Trying 861 clusters
+Trying 862 clusters
+Trying 863 clusters
+Trying 864 clusters
+Trying 865 clusters
+Trying 866 clusters
+Trying 867 clusters
+Trying 868 clusters
+Trying 869 clusters
+Trying 870 clusters
+Trying 871 clusters
+Trying 872 clusters
+Trying 873 clusters
+Trying 874 clusters
+Trying 875 clusters
+Trying 876 clusters
+Trying 877 clusters
+Trying 878 clusters
+Processing sweep 1 of  100 
+
+=============================== REMORA SUMMARY ===============================
+ Max Memory Used Per Node     : 4.97 GB
+ Total Elapsed Time           : 0d 17h 24m 34s 387ms
+------------------------------------------------------------------------------
+ Max IO Load / home1          :     139 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / scratch        :       1 IOPS       0 RD(MB/S)       0 WR(MB/S)
+ Max IO Load / work           :       9 IOPS      39 RD(MB/S)      26 WR(MB/S)
+==============================================================================
+ Sampling Period              : 10 seconds
+ Complete Report Data         : /work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_81covs/remora_1122407
+ Graphical Results At         : /work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_81covs/remora_1122407/remora_summary.html
+==============================================================================
+

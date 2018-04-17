@@ -10,4 +10,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir output
-Rscript --vanilla --verbose ./month_45_81covs.R > ./output.Rout
+remora Rscript --vanilla --verbose ./month_45_81covs.R > ./output.Rout

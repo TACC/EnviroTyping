@@ -4,7 +4,7 @@ library(tictoc)
 
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_81covs/output")
 
-setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_81covs/output")
+# setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_81covs/output")
 
 df <- read_rds("../../hybrid_by_month_calibrated_45subset_81covMedian.rds")
 

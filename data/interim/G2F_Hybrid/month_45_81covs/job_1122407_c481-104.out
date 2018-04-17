@@ -1,0 +1,13 @@
+Warning: Permanently added 'c481-104' (ECDSA) to the list of known hosts.
+running
+  '/opt/apps/intel17/impi17_0/Rstats/3.4.0/lib64/R/bin/R --slave --no-restore --vanilla --file=./month_45_81covs.R'
+
+── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
+✔ ggplot2 2.2.1     ✔ purrr   0.2.4
+✔ tibble  1.4.2     ✔ dplyr   0.7.4
+✔ tidyr   0.7.2     ✔ stringr 1.2.0
+✔ readr   1.1.1     ✔ forcats 0.2.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+Loading required package: methods
