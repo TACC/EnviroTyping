@@ -1,0 +1,61 @@
+[1] "Recoding of covariate number Pedi as follows"
+ [1] "Replacing level (LAMA2002-35-2-B-B-B-B_CG44)-1-3-B-1-1-B24-B5-B16/LH195 with 0"
+ [2] "Replacing level 2369/PHZ51 with 1"                                             
+ [3] "Replacing level B14A/H95 with 2"                                               
+ [4] "Replacing level B14A/OH43 with 3"                                              
+ [5] "Replacing level B37/C103 with 4"                                               
+ [6] "Replacing level B37/H95 with 5"                                                
+ [7] "Replacing level B37/OH43 with 6"                                               
+ [8] "Replacing level B73/MO17 with 7"                                               
+ [9] "Replacing level B73/PHG35 with 8"                                              
+[10] "Replacing level B73/PHM49 with 9"                                              
+[11] "Replacing level B73/PHN82 with 10"                                             
+[12] "Replacing level B73/PHZ51 with 11"                                             
+[13] "Replacing level B73/TX205 with 12"                                             
+[14] "Replacing level B97/PHB47 with 13"                                             
+[15] "Replacing level BSSSC0_029/PHZ51 with 14"                                      
+[16] "Replacing level BSSSC0_044/LH82 with 15"                                       
+[17] "Replacing level BSSSC0_048/PHZ51 with 16"                                      
+[18] "Replacing level F42/MO17 with 17"                                              
+[19] "Replacing level F42/OH43 with 18"                                              
+[20] "Replacing level LH132/LH51 with 19"                                            
+[21] "Replacing level LH195/PHZ51 with 20"                                           
+[22] "Replacing level LH195/TX777 with 21"                                           
+[23] "Replacing level LH198/CGR01 with 22"                                           
+[24] "Replacing level LH198/PHZ51 with 23"                                           
+[25] "Replacing level LH212HT/LH195 with 24"                                         
+[26] "Replacing level LH74/PHG35 with 25"                                            
+[27] "Replacing level LH74/PHM49 with 26"                                            
+[28] "Replacing level LH74/PHN82 with 27"                                            
+[29] "Replacing level LH82/TX777 with 28"                                            
+[30] "Replacing level PB80/PHZ51 with 29"                                            
+[31] "Replacing level PHB47/PHZ51 with 30"                                           
+[32] "Replacing level PHG39/PHG35 with 31"                                           
+[33] "Replacing level PHG39/PHM49 with 32"                                           
+[34] "Replacing level PHG39/PHN82 with 33"                                           
+[35] "Replacing level PHG80/PHZ51 with 34"                                           
+[36] "Replacing level PHN11_PHW65_0323/LH195 with 35"                                
+[37] "Replacing level PHW52/PHG35 with 36"                                           
+[38] "Replacing level PHW52/PHM49 with 37"                                           
+[39] "Replacing level PHW52/PHN82 with 38"                                           
+[40] "Replacing level PHW52/TX205 with 39"                                           
+[41] "Replacing level REDEAR2-2-2-1-1-2-B-B-1-B10/LH195 with 40"                     
+[42] "Replacing level TX303/LH82 with 41"                                            
+[43] "Replacing level TX714/PHZ51 with 42"                                           
+[44] "Replacing level W10001_0022/PHB47 with 43"                                     
+[45] "Replacing level WF9/H95 with 44"                                               
+Random number seed: 1234
+Sweep: 1
+Sweep: 25
+Sweep: 50
+Sweep: 75
+Sweep: 100
+Sweep: 125
+Sweep: 150
+Sweep: 175
+Sweep: 200
+Sweep: 225
+Sweep: 250
+Sweep: 275
+Sweep: 300
+Sweep: 325

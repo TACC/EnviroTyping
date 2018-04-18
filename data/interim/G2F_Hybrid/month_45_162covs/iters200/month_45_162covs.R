@@ -2,11 +2,11 @@ library(tidyverse)
 library(PReMiuM)
 library(tictoc)
 
-setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_162covs/output")
+setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_162covs/iters200/output")
 
 #setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/month_45_162covs/output")
 
-df <- read_rds("../../hybrid_by_month_calibrated_45subset_162covMinMax.rds")
+df <- read_rds("../../../hybrid_by_month_calibrated_45subset_162covMinMax.rds")
 
 set.seed(1234)
 tic()
@@ -14,16 +14,13 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield',
                        yModel = 'Normal', xModel = "Mixed",
                        discreteCovs = "Pedi",
                        continuousCovs = names(df[,16:177]),
-                       data = df, nSweeps = 60, nBurn = 540,
-                       nProgress = 10, seed = 1234)
+                       data = df, nSweeps = 20, nBurn = 100,
+                       nProgress = 25, seed = 1234)
 toc()
 write_rds(runInfoObj, path = "../runInfoObj.rds", compress = "xz")
-
-tic();calcDists <- calcDissimilarityMatrix(runInfoObj);toc()
-
-tic();clusObj <- calcOptimalClustering(calcDists);toc()
-
-tic();riskProfObj <- calcAvgRiskAndProfile(clusObj);toc()
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj <- calcOptimalClustering(calcDists)
+riskProfObj <- calcAvgRiskAndProfile(clusObj)
 write_rds(riskProfObj, "../riskProfObj.rds", compress = "xz")
 
 
