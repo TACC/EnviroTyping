@@ -3,10 +3,10 @@ site_description: EnviroTyping Project Documentation
 repo_url: https://github.com/TACC/EnviroTyping
 
 pages:
-- Home: 'index.md'
-- Project Scope: 'projectScope.md'
+    - Home: index.md
+    - 'Project Scope': 'project_scope.md'
 - Tutorials:
-    - 'Launcher Module': 'tutorials/launcherModule.md'
-- Update: 'updating.md'
+    - 'Launcher Module': tutorials/launcherModule.md
+- Update: updating.md
 
 site_author: 'Dave Hiltbrand'
