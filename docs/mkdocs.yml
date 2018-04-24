@@ -4,9 +4,12 @@ repo_url: https://github.com/TACC/EnviroTyping
 
 pages:
     - Home: index.md
-    - 'Project Scope': 'project_scope.md'
-- Tutorials:
-    - 'Launcher Module': tutorials/launcherModule.md
-- Update: updating.md
+    - Project Scope: project_scope.md
+    - Tutorials:
+        - 'Launcher Module': tutorials/launcherModule.md
+    - Update: updating.md
+    - Workflow:
+        - Post hoc Analysis: profile_by_group.md
+
 
 site_author: 'Dave Hiltbrand'
