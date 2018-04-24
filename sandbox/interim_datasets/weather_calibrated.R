@@ -4,9 +4,9 @@ library(lubridate)
 
 setwd("~/GitHub/EnviroTyping/")
 # import cleaned weather dataset
-wth <- read_csv("data/external/G2F from Cyverse DataStore/g2f_2015_weather_calibrated.csv")
+wth <- read_csv("data/external/G2F/g2f_2015_weather_calibrated.csv")
 
-meta <- read_csv("data/external/G2F from Cyverse DataStore/g2f_2015_field_metadata.csv")
+meta <- read_csv("data/external/G2F/g2f_2015_field_metadata.csv")
 
 meta <- meta %>% select(Exp = "Experiment", City, Lat = "WS Lat", Lon = "WS Lon")
 

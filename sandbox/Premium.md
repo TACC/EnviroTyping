@@ -1,3 +1,9 @@
+---
+output: 
+  html_document: 
+    self_contained: no
+    theme: cerulean
+---
 1. ggTimeSeries
 2. change color mapping to exp variable
 3. ggStance - make horizontal violin plots
@@ -15,3 +21,16 @@
 2. Sharing and storing data with worldwide users:alternative email accounts
 
 Tues at noon review everything
+
+
+
+4/13
+1.  Ran subsets of the data to test the predictions options
+2.  Used both the long and wide data formats
+3.  Used the built in simulations with 50/50 split and 80/20 5 fold CV
+    *   around 89 R2 and 1.3 RMSE
+4.  Also tested using the subset of 45 samples across each location
+    *   results were comparable in all trials with subset data
+    *   both clusters and runtime increases with more columns
+
+

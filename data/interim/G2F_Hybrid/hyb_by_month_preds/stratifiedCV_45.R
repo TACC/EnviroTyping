@@ -4,10 +4,11 @@ library(PReMiuM)
 # library(sampling)
 library(splitstackshape)
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_by_month_preds/stratifiedCV_45")
-# setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_by_month_preds/stratifiedCV_45")
+
+setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hyb_by_month_preds/stratifiedCV_45")
 # dfl <- read_rds("../../hybrid_by_month_calibrated_weather_long_45subset.rds")
 # table(dfl$Exp, dfl$Month)
-# 
+
 df <- read_rds("../../hybrid_by_month_calibrated_weather_wide_45subset.rds")
 # location_subset <- c("INH1", "KSH1", "MNH1", "MOH1", "OHH1")
 # df1 <-  df %>% filter(Repl == 1)
@@ -51,16 +52,20 @@ df <- read_rds("../../hybrid_by_month_calibrated_weather_wide_45subset.rds")
 # length(table(df1s$Pedi))
 # 174/927
 
+sub <- stratified(df, "Pedi", .25)
 
-# test <- stratified(df, "Pedi", .2)
-# train <- anti_join(df, test)
-
+test <- stratified(sub, "Pedi", .3)
+train <- anti_join(sub, test)
+sum(table(test$Pedi))
+sum(table(train$Pedi))
+n_distinct(train$Pedi)
+n_distinct(test$Pedi)
 rSqrd=NULL
 predErr=NULL
 nfolds <- 5
 for(k in 1:nfolds){
-    test <- stratified(df, "Pedi", .2)
-    train <- anti_join(df, test)
+    test <- stratified(sub, "Pedi", .2)
+    train <- anti_join(sub, test)
     contVars <- names(which(map_dbl(train[,16:96], var, na.rm = TRUE) != 0))
     runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed",discreteCovs = "Pedi", continuousCovs = contVars, data = train, predict = test, nSweeps = 100, nBurn = 900, seed = 1234)
     calcDists <- calcDissimilarityMatrix(runInfoObj)
