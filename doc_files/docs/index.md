@@ -1,8 +1,8 @@
 # Welcome to the documentation for Envirotyping!
 
-This repository is home to .md files rendered to html at http://envirotyping.readthedocs.io/en/latest/
+This repository is home to _.md_ files rendered to html at [EnviroTyping Docs](http://envirotyping.readthedocs.io/en/latest/).
 
-See "updating.md" for instructions to modify content in this repository.
+See [Updating the Docs](/updating/) for instructions to modify content in this repository.
 
 
 ### EnviroTyping
