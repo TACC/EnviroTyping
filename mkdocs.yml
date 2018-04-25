@@ -5,7 +5,7 @@ theme: readthedocs
 docs_dir: 'doc_files/docs'
 pages:
 - Home: index.md
-- 'Project Scope': project_scope.md'
+- 'Project Scope': project_scope.md
 - 'Premium Manual': manual.md
 - Workflow:
     - 'Benchmark Known Truth': 'workflow/benchmark.md'
