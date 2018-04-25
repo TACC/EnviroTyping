@@ -1,11 +1,10 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
 repo_url: https://github.com/TACC/EnviroTyping
-docs_dir: './docs'
 theme: readthedocs
+docs_dir: './md_files'
 pages:
-- Home: index.md
-- 'Project Scope': project_scope.md
+- 'Project Scope': index.md
 - Workflow:
     - 'Post hoc Analysis': 'workflow/profile_by_group.md'
 - 'Premium Manual': manual.md
