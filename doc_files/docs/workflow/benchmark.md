@@ -1,3 +1,5 @@
+# Benchmarking PReMiuM via Known Truths Tool
+
 The following tool creates a list of all the distribution simulations found within the PReMiuM package.  It quickly allows you to understand how PReMiuM can be compared against known truth files.  You also get an idea of what expected output should look like.
 
 
