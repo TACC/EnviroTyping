@@ -602,11 +602,10 @@ These are the posterior predictive distributions for the two predictive profiles
 It is possible to set the seed to replicate a run exactly. However, note that the seed must be set separately for R and C++. The function _set.seed_ in R sets the seed for all following commands run in R but it is also necessary to set the seed for the MCMC which is written in C++. This can be done using the option _seed_ in the function _profRegr_.
 
 ```r
-> set.seed(1234)
-> inputs <- generateSampleDataFile(clusSummaryPoissonDiscrete())
+set.seed(1234)
+inputs <- generateSampleDataFile(clusSummaryPoissonDiscrete())
 
-
-> runInfoObj <- profRegr(yModel=inputs$yModel,
+runInfoObj <- profRegr(yModel=inputs$yModel,
                             xModel=inputs$xModel, nSweeps=10,
                             nClusInit=20,
                             nBurn=20, data=inputs$inputData,
@@ -623,16 +622,25 @@ It is possible to set the seed to replicate a run exactly. However, note that th
 
 ### 9.1 Unit testing
 
-There are a couple of unit tests available in the package for quick testing of the package. The tests can be run as part of the R CMD check which can be run from terminal in the directory where the package PReMiuM is stored. The command to use is: `R CMD check PReMiuM_3.1.7.tar.gz`.
+There are a couple of unit tests available in the package for quick testing of the package. The tests can be run as part of the R CMD check which can be run from terminal in the directory where the package PReMiuM is stored. The command to use is: `R CMD check PReMiuM_3.1.8.tar.gz`.
 
 ### 9.2 Benchmarking
 
-The function _simBenchmark_ checks the cluster allocation of profile regression against the generating clusters for a selection of the simulated dataset provided within the package. This can be used to compute confusion matrices for simulated examples, as shown in the example below.
+The function _simBenchmark_ checks the cluster allocation of profile regression against the generating clusters for a selection of the simulated dataset provided within the package. When benchmarking PReMiuM on high performance computers, this function will allow the user to run varying distributions through PReMiuM and receive the output in an organized manner for comparison between runs. It can be used for testing accuracy when trying to optimize functions inside the PReMiuM package, as well as the overall performance in time/memory of the functions.  
+
+This function can be used to compute confusion matrices for simulated examples, as shown in the example below.
 
 ```r
-tester<-simBenchmark("clusSummaryBernoulliNormal")
+tester<-simBenchmark("clusSummaryBernoulliDiscrete")
 print(table(tester[,c(1,3)]))
 
+#                 generatingCluster
+#clusterAllocation Known 1 Known 2 Known 3 Known 4 Known 5
+#                1     181      14       2       5       2
+#                2       6     174      17       2       3
+#                3      11       2       4     184       9
+#                4       2       2       2       6     185
+#                5       0       8     175       3       1
 ```
 
 The example below computes the confusion matrix for one analysis of the selected simulated datasets. 
