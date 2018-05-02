@@ -14,8 +14,9 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield',
                        yModel = 'Normal', xModel = "Mixed",
                        discreteCovs = "Pedi",
                        continuousCovs = names(df[,16:177]),
-                       data = df, nSweeps = 60, nBurn = 540,
-                       nProgress = 10, seed = 1234)
+                       data = df, nSweeps = 500, nBurn = 500,
+                       nProgress = 10, seed = 1234, 
+                       reportBurnIn = TRUE)
 toc()
 write_rds(runInfoObj, path = "../runInfoObj.rds", compress = "xz")
 

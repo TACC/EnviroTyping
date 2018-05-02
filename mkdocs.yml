@@ -1,7 +1,7 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
 repo_url: https://github.com/TACC/EnviroTyping
-theme: cosmo
+theme: readthedocs
 docs_dir: 'doc_files/docs'
 pages:
 - Home: index.md
@@ -14,6 +14,7 @@ pages:
     - 'Small Real Data Analysis': 'workflow/toy_g2f.md'
     - 'Post hoc Analysis': 'workflow/profile_by_group.md'
 - Tutorials:
+    - 'Getting Started With High Performance Computing': 'tutorials/hpc.md'
     - 'Launcher Module': 'tutorials/launcher_module.md'
 - 'Updating the Docs': updating.md
 
