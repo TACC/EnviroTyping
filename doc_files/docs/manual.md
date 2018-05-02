@@ -619,10 +619,41 @@ It is possible to set the seed to replicate a run exactly. However, note that th
 # Random number seed: 12345
 # Sweep: 1
 ```
+## 9 Tests
 
-## 9 Unit testing
+### 9.1 Unit testing
 
-There are a couple of unit tests available in the package for quick testing of the package. The tests can be run as part of the R CMD check which can be run from terminal in the directory where the package PReMiuMis stored. The command to use is: `R CMD check PReMiuM_3.1.7.tar.gz`.
+There are a couple of unit tests available in the package for quick testing of the package. The tests can be run as part of the R CMD check which can be run from terminal in the directory where the package PReMiuM is stored. The command to use is: `R CMD check PReMiuM_3.1.7.tar.gz`.
+
+### 9.2 Benchmarking
+
+The function _simBenchmark_ checks the cluster allocation of profile regression against the generating clusters for a selection of the simulated dataset provided within the package. This can be used to compute confusion matrices for simulated examples, as shown in the example below.
+
+```r
+tester<-simBenchmark("clusSummaryBernoulliNormal")
+print(table(tester[,c(1,3)]))
+
+```
+
+The example below computes the confusion matrix for one analysis of the selected simulated datasets. 
+
+```r
+# vector of all test datasets allowed by this benchmarking function
+testDatasets<-c("clusSummaryBernoulliNormal",
+  "clusSummaryBernoulliDiscreteSmall","clusSummaryCategoricalDiscrete",
+  "clusSummaryNormalDiscrete","clusSummaryNormalNormal", 
+  "clusSummaryNormalNormalSpatial","clusSummaryVarSelectBernoulliDiscrete", 
+  "clusSummaryBernoulliMixed")
+
+# runs profile regression on all datasets and 
+# computes confusion matrix for each one
+for (i in 1:length(testDatasets)){
+  tester<-simBenchmark(testDatasets[i])
+  print(table(tester[,c(1,3)]))
+}
+```
+
+
 
 ## 10 SessionInfo
 
