@@ -27,7 +27,7 @@ for (i in n_distinct(df$Pedi)) {
     }
 }
 
-write.rds(var.sel, "var.sel.80.rds")
+write_rds(var.sel.80, "var.sel.80.rds")
 
 var.sel.90 <- list()
 for (i in n_distinct(df$Pedi)) {
@@ -49,7 +49,7 @@ for (i in n_distinct(df$Pedi)) {
     }
 }
 
-write.rds(var.sel, "var.sel.90.rds")
+write_rds(var.sel.90, "var.sel.90.rds")
 
 var.sel.95 <- list()
 for (i in n_distinct(df$Pedi)) {
@@ -71,4 +71,4 @@ for (i in n_distinct(df$Pedi)) {
     }
 }
 
-write.rds(var.sel, "var.sel.95.rds")
+write_rds(var.sel.95, "var.sel.95.rds")
