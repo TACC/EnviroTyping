@@ -15,7 +15,7 @@ for (i in 1:3) {
                                reportBurnIn = TRUE, 
                                seed = 1234, varSelectType = "Continuous")
         rho <- summariseVarSelectRho(runInfoObj)
-        var.sel.80[[hyb]][[i]] <- var[which(rho$rhoMean > .90)]
+        var.sel.80[[hyb]][[i]] <- var[which(rho$rhoMean > .80)]
     }
 }
 str(var.sel.80)

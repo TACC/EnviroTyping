@@ -2,14 +2,15 @@ library(tidyverse)
 library(PReMiuM)
 
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/shift/output")
-setwd("data/interim/G2F_Hybrid/shift/output/")
+#setwd("data/interim/G2F_Hybrid/shift/output/")
 df <- read_rds("../../hybrid_by_month_shift_all_stats.rds")
 
 stats <- c("Min", "Max", "Med", "Mean")
 
 var.sel.80 <- list()
-for (i in n_distinct(df$Pedi)) {
+for (i in 1:n_distinct(df$Pedi)) {
     hyb <- unique(df$Pedi)[i]
+    print(hyb)
     temp <- filter(df, Pedi %in% hyb)
     var.sel.80[[hyb]] <- list()
     for (i in stats) {
@@ -30,7 +31,7 @@ for (i in n_distinct(df$Pedi)) {
 write_rds(var.sel.80, "var.sel.80.rds")
 
 var.sel.90 <- list()
-for (i in n_distinct(df$Pedi)) {
+for (i in 1:n_distinct(df$Pedi)) {
     hyb <- unique(df$Pedi)[i]
     temp <- filter(df, Pedi %in% hyb)
     var.sel.90[[hyb]] <- list()
@@ -52,7 +53,7 @@ for (i in n_distinct(df$Pedi)) {
 write_rds(var.sel.90, "var.sel.90.rds")
 
 var.sel.95 <- list()
-for (i in n_distinct(df$Pedi)) {
+for (i in 1:n_distinct(df$Pedi)) {
     hyb <- unique(df$Pedi)[i]
     temp <- filter(df, Pedi %in% hyb)
     var.sel.95[[hyb]] <- list()
