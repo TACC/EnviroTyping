@@ -1,7 +1,14 @@
+library(tidyverse)
+library(lubridate)
+library(magrittr)
+
 hyb <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/GenomesToFields_G2F_2016_Data_Mar_2018/a._2016_hybrid_phenotypic_data/g2f_2016_hybrid_data_no_outliers.csv",col_types = cols("Date Plot Planted" = col_date("%m/%d/%Y"), "Date Plot Harvested" = col_date("%m/%d/%Y"), "Plant Height [cm]" = col_number(), "Ear Height [cm]" = col_number()))
 
 wth <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/GenomesToFields_G2F_2016_Data_Mar_2018/c._2016_weather_data/g2f_2016_weather_calibrated.csv")
 
+meta <- read_csv("data/external/G2F/g2f_2016_field_metadata.csv")
+
+meta <- meta %>% select(Exp = "Experiment Code", City, Lat = "Weather station latitude (in decimal numbers NOT DMS)", Lon = "Weather station longitude (in decimal numbers NOT DMS)")
 
 ##### Month #####
 # tidy the data
@@ -22,6 +29,9 @@ wthmon <- wth %>%
     # removes NA's
     drop_na()
 
+
+cols <- names(wthmon)[7:16]
+wthmon %<>% mutate_at(cols,funs(as.numeric(.)))
 # creates new variables on with summary statistics and drops all the other variables that weren't grouped
 # so these are the min/max of each day
 wthmon <- wthmon %>% 
@@ -73,6 +83,8 @@ hybmon <- right_join(hyb, wthmon, by = "Exp") %>%
 hybmon %>% 
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
+
+write_rds(hybmon, "data/interim/2016/hyb_by_mon_calibr.rds")
 
 
 
