@@ -10,7 +10,7 @@ pages:
 - Workflow:
     - 'Getting Started': 'workflow/getting_started.md'
     - 'Benchmark Known Truth': 'workflow/benchmark.md'
-    - 'Creating G2F Datasets': 'workflow/datasets.md'
+    - 'Creating bleh G2F Datasets': 'workflow/datasets.md'
     - 'Small Real Data Analysis': 'workflow/toy_g2f.md'
     - 'Post hoc Analysis': 'workflow/profile_by_group.md'
 - Tutorials:
