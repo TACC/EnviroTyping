@@ -54,7 +54,7 @@ hyb <- hyb %>%
 
 ##### Month #####
 # joining the tidy weather data with min/max variables
-# right join to preserve weather data and fill matching hybrid data to each expermient
+# left join to preserve hybrid data and fill matching weather data to each expermient
 hybmon <- left_join(hyb, wthmon, by = "Exp") %>%  
     drop_na(Yield) %>% 
     select(1:5, 11:13, 54:56, 6:10, 14:53)
