@@ -66,4 +66,5 @@ na.s <- hybmon %>%
 
 write_rds(hybmon, "data/interim/2016/hyb_by_mon_calibr.rds")
 
-
+extra.repl <- hybmon %>% group_by(Exp, Pedi, Repl) %>% summarise(count = n()) %>% filter(count > 5)
+write_csv(extra.repl, "../../interim_datasets/2016/extra_repl.csv")

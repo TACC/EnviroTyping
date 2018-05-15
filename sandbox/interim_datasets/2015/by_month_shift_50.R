@@ -2,7 +2,7 @@ library(tidyverse)
 library(lubridate)
 library(data.table)
 
-df <- read_rds("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hybrid_by_month_calibrated_weather.rds")
+df <- read_rds("data/interim/G2F_Hybrid/hybrid_by_month_calibrated_weather.rds")
 table(df$Month,df$StatID)
 
 
@@ -30,6 +30,12 @@ df2 <- df1 %>%
     unite(Var1, Var, Month) %>% 
     spread(Var1, val)
 
+uniqHybrids <- df1 %>% group_by(Pedi) %>% 
+    summarise(count = n_distinct(StatID)) %>% 
+    filter(count == 8) %>% 
+    pull(Pedi)
+
+df3 <- df2 %>% filter(Pedi %in% uniqHybrids)
 
 
-write_rds(df2, "~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/hybrid_by_month_shift_all_stats.rds", compress = "xz")
+write_rds(df3, "data/interim/G2F_Hybrid/hybrid_by_month_shift_all_stats.rds", compress = "xz")

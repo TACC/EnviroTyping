@@ -4,7 +4,7 @@ library(lubridate)
 
 setwd("~/GitHub/EnviroTyping/")
 # import cleaned weather dataset
-wth <- read_csv("data/external/G2F/g2f_2015_weather_calibrated.csv")
+wth2 <- read_csv("data/external/G2F/g2f_2015_weather_calibrated.csv")
 
 meta <- read_csv("data/external/G2F/g2f_2015_field_metadata.csv")
 
@@ -133,10 +133,10 @@ wthmon <- wth %>%
     group_by(Exp, StatID, Year, Month) %>% 
     
     # changing the sort    
-    arrange(Exp, StatID, Year, Month ) %>% 
+    arrange(Exp, StatID, Year, Month ) #%>% 
     
     # removes NA's
-    drop_na()
+    #drop_na()
 
 # creates new variables on with summary statistics and drops all the other variables that weren't grouped
 # so these are the min/max of each day

@@ -1,8 +1,10 @@
 library(tidyverse)
 library(PReMiuM)
+library(magrittr)
+library(klaR)
 
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/shift/output")
-#setwd("data/interim/G2F_Hybrid/shift/output/")
+setwd("data/interim/G2F_Hybrid/shift/output/")
 df <- read_rds("../../hybrid_by_month_shift_all_stats.rds")
 
 stats <- c("Min", "Max", "Med", "Mean")
@@ -74,6 +76,7 @@ for (i in 1:n_distinct(df$Pedi)) {
 
 write_rds(var.sel.95, "var.sel.95.rds")
 
-var.sel.80 <- read_rds("var.sel.80.rds")
-var.sel.90 <- read_rds("var.sel.90.rds")
-var.sel.95 <- read_rds("var.sel.95.rds")
+
+
+
+
