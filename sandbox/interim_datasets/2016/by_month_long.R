@@ -1,4 +1,3 @@
-library(tidyverse)
 library(lubridate)
 library(magrittr)
 
@@ -23,15 +22,15 @@ wthmon <- wth %>%
     arrange(Exp, StatID, Year, Month )
 
 # converts the weather variables to numeric
-cols <- names(wthmon)[5:14]
-wthmon %<>% mutate_at(cols,funs(as.numeric(.)))
+wthmon %<>% modify_at(5:15, as.numeric)
+
 
 # creates new variables on with summary statistics and drops all the other variables that weren't grouped
 # so these are the min/max of each day
-wthmon <- wthmon %>% summarise_if(is.numeric, funs(min, max, mean, median), na.rm = TRUE)
+wthmon %<>% summarise_if(is.numeric, funs(min, max, mean, median), na.rm = TRUE)
 
 # Split Exp with multiple sites
-wthmon <- wthmon %>% 
+wthmon %<>% 
     ungroup(Exp) %>% 
     mutate(Exp = strsplit(as.character(Exp), " ") ) %>% 
     unnest(Exp) %>% 
@@ -40,7 +39,7 @@ wthmon <- wthmon %>%
 
 wthmon$Exp[wthmon$Exp == ""] <- "NA"
 
-wthmon <- wthmon %>% filter(Exp != "NA")
+wthmon %<>% filter(Exp != "NA")
 
 wthmon <- left_join(wthmon, meta, by = "Exp")
 
