@@ -1,9 +1,9 @@
-# library(PReMiuM)
-# library(tidyverse)
+library(PReMiuM)
+library(tidyverse)
 
 setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/sandbox/shifted_data_analysis/output_shift")
 
-
+df.16 <- read_rds("../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")
 
 variance.var <- names(which(map_dbl(df.16[,17:295], var, na.rm = TRUE) != 0))
 min.vars <- str_subset(variance.var, "min")
