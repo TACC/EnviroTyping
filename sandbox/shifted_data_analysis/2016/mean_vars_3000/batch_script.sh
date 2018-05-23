@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J mean_3000
+#SBATCH -J mean_3K_16
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
