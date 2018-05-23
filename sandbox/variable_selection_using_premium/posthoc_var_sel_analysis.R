@@ -1,8 +1,8 @@
-library(tidyverse)
 library(klaR)
 library(cba)
 library(cluster)
 
+setwd("~/github/EnviroTyping/sandbox/variable_selection_using_premium/")
 var.sel.80 <- read_rds("var.sel.80.rds")
 var.sel.90 <- read_rds("var.sel.90.rds")
 var.sel.95 <- read_rds("var.sel.95.rds")
@@ -11,6 +11,13 @@ df.95 <- as_data_frame(unlist(var.sel.95)) %>%
     rownames_to_column("hyb") %>% 
     separate(hyb, into = c("hyb", "stat"), "\\.") %>% 
     dplyr::select(hyb,stat = value)
+
+min.vars <- str_subset(df.95$stat, "Min")
+df.95 %>% filter(stat %in% min.vars) %>% ggplot(aes(x = stat)) + geom_histogram(stat = "count")
+ggplot(df.95, aes(x = str(subsetstat)) + geom_histogram(stat = "count")
+
+df.95 %<>% separate(stat,c("covariate", "month"), sep = "_")
+
 # %>% 
 #     mutate_all(funs(as_factor(.)))
 n_distinct(df.95$stat)
