@@ -13,5 +13,5 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = 
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
 riskProfObj <- calcAvgRiskAndProfile(clusObj)
-write(riskProfObj, "../riskProfObj.rds")
+write(riskProfObj, "./riskProfObj.rds")
 
