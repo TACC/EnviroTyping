@@ -3,7 +3,7 @@ library(tidyverse)
 library(coda)
 setwd("~/GitHub/EnviroTyping/sandbox/convergence/output")
 
-toy.data <- read_rds("../../../data/interim/G2F_Hybrid/toy_data.rds")
+toy.data <- read_rds("../../../data/interim/G2F/toy_data.rds")
 
 inputs <- generateSampleDataFile(clusSummaryBernoulliDiscrete())
 runInfoObj <- profRegr(yModel = inputs$yModel, xModel = inputs$xModel, nSweeps = 10000, nBurn = 10000, data = inputs$inputData, output = "output", covNames = inputs$covNames,fixedEffectsNames = inputs$fixedEffectNames, reportBurnIn = TRUE)
