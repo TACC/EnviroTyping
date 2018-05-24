@@ -1,4 +1,4 @@
-library(klaR)
+library(viridis)
 library(cba)
 library(cluster)
 
@@ -13,8 +13,9 @@ df.95 <- as_data_frame(unlist(var.sel.95)) %>%
     dplyr::select(hyb,stat = value)
 
 min.vars <- str_subset(df.95$stat, "Min")
-df.95 %>% filter(stat %in% min.vars) %>% ggplot(aes(x = stat)) + geom_histogram(stat = "count")
-ggplot(df.95, aes(x = str(subsetstat)) + geom_histogram(stat = "count")
+df.95 %>% dplyr::filter(stat %in% str_subset(df.95$stat, "Min")) %>% ggplot(aes(x = stat)) + geom_histogram(aes(fill = stat), stat = "count") + theme(panel.background = element_blank(), axis.text.x = element_text(angle = 30, vjust = 0.5), legend.position = "none") + scale_fill_viridis(discrete = TRUE)
+df.95 %>% dplyr::filter(stat %in% str_subset(df.95$stat, "Max")) %>% ggplot(aes(x = stat)) + geom_histogram(aes(fill = stat), stat = "count") + theme(panel.background = element_blank(), axis.text.x = element_text(angle = 30, vjust = 0.5), legend.position = "none") + scale_fill_viridis(discrete = TRUE)
+df.95 %>% dplyr::filter(stat %in% str_subset(df.95$stat, "Mean")) %>% ggplot(aes(x = stat)) + geom_histogram(aes(fill = stat), stat = "count") + theme(panel.background = element_blank(), axis.text.x = element_text(angle = 30, vjust = 0.5), legend.position = "none") + scale_fill_viridis(discrete = TRUE)
 
 df.95 %<>% separate(stat,c("covariate", "month"), sep = "_")
 
