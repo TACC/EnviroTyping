@@ -19,7 +19,7 @@ wthmon <- wth %>%
     arrange(exp, stat_id, year, month ) 
 
 # converts the weather variables to numeric
-wthmon %<>% modify_at(4:12, as.numeric)
+wthmon %<>% modify_at(5:12, as.numeric)
 
 
 # creates new variables on with summary statistics and drops all the other variables that weren't grouped
@@ -48,11 +48,23 @@ hybmon <- left_join(hyb, wthmon, by = "exp") %>%
     drop_na(16:48)
 
 # check for NA's
-na.s <- hybmon %>% 
+missing <- hybmon %>% 
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
 write_rds(hybmon, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib.rds", compress = "xz")
+
+hybmon_with_missing <- left_join(hyb, wthmon, by = "exp") %>% 
+    select(1,11,2:3,46:48,12:13,4:10,14:45)
+
+# check for NA's
+missing_true <- hybmon_with_missing %>% 
+    select_if(function(x) any(is.na(x))) %>% 
+    summarise_all(funs(sum(is.na(.))))
+
+
+write_rds(hybmon_with_missing, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib_w_wth_nas.rds", compress = "xz")
+write_csv(missing_true, "~/github/EnviroTyping/data/interim/2014/missing_wth_counts.csv")
 
 extra.repl <- hybmon %>% group_by(Exp, Pedi, Repl) %>% summarise(count = n()) %>% filter(count > 5)
 write_csv(extra.repl, "../../interim_datasets/2016/extra_repl.csv")
