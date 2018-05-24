@@ -5,7 +5,7 @@ setwd("/work/04734/dhbrand/stampede2/github/EnviroTyping/sandbox/shifted_data_an
 
 df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_wide_shifted.rds")
 
-variance.var <- names(which(map_dbl(df[,17:255], var, na.rm = TRUE) != 0))
+variance.var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
 min.vars <- str_subset(variance.var, "min")
 
 set.seed(1234)
