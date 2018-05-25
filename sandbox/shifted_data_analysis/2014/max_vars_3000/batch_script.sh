@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J max_3K_16
+#SBATCH -J max_3K_4
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
