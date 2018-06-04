@@ -7,10 +7,6 @@ df1 <- df %>%
     unite(Var1, Var, month) %>% 
     spread(Var1, val)
 
-col <- names(df1)[16:335]
-has_variance <- names(map_dbl(df1[col], var, na.rm = TRUE) != 0)
-
-
 write_rds(df1, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib_wide.rds", compress = "xz")
 
 
