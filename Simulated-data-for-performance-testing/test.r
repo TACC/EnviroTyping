@@ -11,7 +11,7 @@ runInfoObj<-profRegr(yModel="Normal",
                      covNames = c("Cont1","Cont2"))
 
 dissimObj<-calcDissimilarityMatrix(runInfoObj)
-clusObj<-calcOptimalClustering(dissimObj,maxNClusters = nClusters+3)
+clusObj<-calcOptimalClustering(dissimObj)
 riskProfileObj<-calcAvgRiskAndProfile(clusObj)
 clusterOrderObj<-plotRiskProfile(riskProfileObj,"summary.png")
 

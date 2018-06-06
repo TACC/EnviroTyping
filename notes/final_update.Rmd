@@ -1,0 +1,361 @@
+---
+title: "Final Update"
+output:
+  html_notebook:
+    theme: cerulean
+    toc: yes
+  html_document:
+    df_print: paged
+    toc: yes
+---
+```{r} 
+library(tidyverse)
+library(magrittr)
+library(PReMiuM)
+library(kableExtra)
+library(viridis)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Data Cleaning
+
+Although the G2F group did a great job in organizing and storing the data there was some initial data cleaning that needed to occur.  Below are the methods to run summary statistics for the 2014 through 2016 hybrid, weather, and meta data sets.
+
+The first step is pulling the csv files directly from the CyVerse Data Store.  For the hybrid data set several of the variables are parsed in the correct type on the way in.  
+
+The meta data set only contains a few variables so we clean up their names on import.
+
+### 2014
+```{r}
+hyb <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016_V.3/a._2014_hybrid_phenotypic_data/g2f_2014_hybrid_no_outliers.csv" ,col_types = cols("Date Planted" = col_date("%m/%d/%Y"), "Date Harvested" = col_date("%m/%d/%Y"), "Plant height [cm]" = col_number(), "Ear height [cm]" = col_number()))
+
+wth <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016_V.3/c._2014_weather_data/g2f_2014_weather_calibrated.csv")
+
+meta <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016_V.3/z._2014_supplemental_info/g2f_2014_field_characteristics.csv") %>% 
+    select(exp = "Experiment", city = "City",lat, lon = "long")
+```
+
+The next step is running summary statistics on the weather data.  Originally I had a function to drop NA's but Susana pointed out that I would be removing rows with quality weather data the way I had it set before.  Now we leave the NA's and allow the summary stats to calculate by month.  Finally the city, lat, and lon variables are filled in to match the weather data.
+```{r echo=TRUE}
+wthmon <- wth %>% 
+    select(exp = "Experiment(s)", stat_id = "Station ID", month = "Month [Local]", year = "Year [Local]", temp = "Calibrated Temperature [C]", dew = "Calibrated Dew Point [C]", humid = "Calibrated Relative Humidity [%]", solar = "Solar Radiation [W/m2]", rain = "Rainfall [mm]", wind_spd = "Calibrated Wind Speed [m/s]", wind_dir = "Calibrated Wind Direction [degrees]", wind_gust = "Calibrated Wind Gust [m/s]") %>% 
+    group_by(exp, stat_id, year, month) %>% 
+    arrange(exp, stat_id, year, month ) 
+
+wthmon %<>% modify_at(5:12, as.numeric) %>% 
+    summarise_if(is.numeric, funs(min, max, mean, median), na.rm = TRUE) %>% 
+    separate_rows(exp) %>% 
+    left_join(wthmon, meta, by = "exp")
+
+kable(head(wthmon), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>% 
+  column_spec(5:39, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+```
+
+```{r echo=TRUE}
+wthmon <- wth %>% 
+    select(exp = "Experiment(s)", stat_id = "Station ID", month = "Month [Local]", year = "Year [Local]", temp = "Calibrated Temperature [C]", dew = "Calibrated Dew Point [C]", humid = "Calibrated Relative Humidity [%]", solar = "Solar Radiation [W/m2]", rain = "Rainfall [mm]", wind_spd = "Calibrated Wind Speed [m/s]", wind_dir = "Calibrated Wind Direction [degrees]", wind_gust = "Calibrated Wind Gust [m/s]") %>% 
+    group_by(exp, stat_id, year, month) %>% 
+    arrange(exp, stat_id, year, month ) 
+
+wthmon %<>% modify_at(5:12, as.numeric) %>% 
+    summarise_if(is.numeric, funs(min, max, mean, median), na.rm = TRUE) %>% 
+    separate_rows(exp) %>% 
+    left_join(wthmon, meta, by = "exp")
+
+kable(head(wthmon), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>% 
+  column_spec(5:39, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+```
+
+Next we rename the variables and select from the hybrids dataset.  To preserve the observations for each location the weather data is merged to the hybrid data on the experiment variable.  Experiment is the field-location variable and the only variable unique to all 3 datasets.  The missing oberservations are dropped from the weather and yield variables which will be used for analysis.
+
+```{r echo=TRUE}
+hyb %<>%
+    select(exp = "Field-Location", pedi = "Pedigree", rep = "Rep", planted = "Date Planted", harvested = "Date Harvested", plant_ht = "Plant height [cm]", ear_ht = "Ear height [cm]",test_wt = "Test Weight [lbs/bu]", plot_wt = "Plot Weight [lbs]", yield = "Grain yield [bu/A]") %>%
+    arrange(exp, pedi, rep)
+
+hybmon <- left_join(hyb, wthmon, by = "exp") %>% 
+    select(1,11,2:3,46:48,12:13,4:10,14:45) %>% 
+    drop_na(16:48)
+
+kable(head(hybmon), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>%
+  column_spec(17:48, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+```
+
+```{r echo=TRUE}
+hyb %<>%
+    select(exp = "Field-Location", pedi = "Pedigree", rep = "Rep", planted = "Date Planted", harvested = "Date Harvested", plant_ht = "Plant height [cm]", ear_ht = "Ear height [cm]",test_wt = "Test Weight [lbs/bu]", plot_wt = "Plot Weight [lbs]", yield = "Grain yield [bu/A]") %>%
+    arrange(exp, pedi, rep)
+
+hybmon <- left_join(hyb, wthmon, by = "exp") %>% 
+    select(1,11,2:3,46:48,12:13,4:10,14:45) %>% 
+    drop_na(16:48)
+
+kable(head(hybmon), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>%
+  column_spec(17:48, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+```
+
+We want to check that any missing elements are not in our variables of interest.  
+
+Considering, the PReMiuM algorithm can handle missing values we can also build a dataset which includes the missing observations within the desired variables to increase the total number of observations.
+
+Both datasets are written as rds objects and compressed to be able to commit to GitHub.
+```{r}
+missing <- hybmon %>% 
+    select_if(function(x) any(is.na(x))) %>% 
+    summarise_all(funs(sum(is.na(.))))
+kable(head(missing), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>% 
+  column_spec(1:6, bold = T) %>%
+  row_spec(1, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+
+# write_rds(hybmon, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib.rds", compress = "xz")
+
+hybmon_with_missing <- left_join(hyb, wthmon, by = "exp") %>% 
+    select(1,11,2:3,46:48,12:13,4:10,14:45)
+
+missing_true <- hybmon_with_missing %>% 
+    select_if(function(x) any(is.na(x))) %>% 
+    summarise_all(funs(sum(is.na(.))))
+kable(head(missing_true), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>% 
+  column_spec(1:45, bold = T) %>%
+  row_spec(1, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+
+
+# write_rds(hybmon_with_missing, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib_w_wth_nas.rds", compress = "xz")
+# write_csv(missing_true, "~/github/EnviroTyping/data/interim/2014/missing_wth_counts.csv")
+```
+
+
+### Wide Data
+
+As discovered in the April meeting at TACC, we want to create a unique oberservation for each of our hybrid/replicate/yield combinations.  The Yield was only taken at the end of the season so the weather covariates are spread across each month to create a much wider dateset preserving the time-series nature.
+```{r}
+df <- read_rds("~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib.rds")
+
+df_wide <- df %>% 
+    gather(Var,val,17:48) %>% 
+    unite(Var1, Var, month) %>% 
+    spread(Var1, val)
+
+kable(head(df_wide), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>% 
+  column_spec(1:335, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+
+# write_rds(df_wide, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib_wide.rds", compress = "xz")
+```
+
+
+### Shifted Data
+
+Susana also brought to light the disparity of locations starting at different months in the year.  The idea to shift the data in certain months to create a more balanced dataset was suggested which has been more effective in the PReMiuM workflow.  Instead of considering 5 as May it becomes clearer as the 1st month of the planting season.
+
+```{r eval=TRUE}
+shift <- read_rds("~/GitHub/EnviroTyping/data/interim/2014/hyb_by_mon_calib.rds")
+# print(table), width = 130)
+kable(table(shift$month, shift$stat_id), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>%
+  column_spec(1:15, bold = T) %>%
+  row_spec(1:10, bold = T, color = "white", background = "blue") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+```
+
+```{r eval=FALSE}
+s0 <- shift %>% dplyr::filter(stat_id == 8427) %>% mutate(month = replace(month, between(month,4,9), c(5:10)))
+s1 <- shift %>% dplyr::filter(stat_id == 8428) %>% mutate(month = replace(month, between(month,3,8), c(5:10)))
+
+shift %<>% dplyr::filter(!(stat_id %in% c(8427:8428))) %>% 
+    bind_rows(., s0, s1) %>% 
+    dplyr::filter(between(month, 5, 10))
+```
+
+```{r}
+kable(table(shift$month,shift$stat_id), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>%
+  column_spec(1:15, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "blue") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+```
+```{r}
+shift_wide <- shift %>% 
+    gather(Var,val,17:48) %>% 
+    unite(Var1, Var, month) %>% 
+    spread(Var1, val)
+
+kable(head(shift_wide), format = "html") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))  %>% 
+  column_spec(1:207, bold = T) %>%
+  row_spec(1:6, bold = T, color = "white", background = "#D7261E") %>%
+  scroll_box(width = "800px", height = "100%", box_css = "border: 1px solid #ddd; padding: 5px; ")
+
+# write_rds(shift_wide, "~/github/EnviroTyping/data/interim/2014/hyb_by_mon_calib_wide_shifted.rds", compress = "xz")
+```
+
+### Variable Selection using Built-In Novel PReMiuM function
+
+One of the questions to answer in the project is which environmental variables contribute most to the clustering.  Rather than using outside methods of feature detection, we choose to use the built-in novel method that the PReMiuM package uses for feature selection on continuous data.  The code below was used on the 2015 data.  There are 3 different thresholds (80, 90, & 95%) used to filter variables as measured by the **rho** parameter.  At each threshold the Min, Max, Median, and Mean statistics were compared.
+```{r}
+setwd("/work/04734/dhbrand/stampede2/GitHub/EnviroTyping/data/interim/G2F_Hybrid/shift/output")
+df <- read_rds("../../hybrid_by_month_shift_all_stats.rds")
+
+stats <- c("Min", "Max", "Med", "Mean")
+
+var.sel.80 <- list()
+for (i in 1:n_distinct(df$Pedi)) {
+    hyb <- unique(df$Pedi)[i]
+    print(hyb)
+    temp <- filter(df, Pedi %in% hyb)
+    var.sel.80[[hyb]] <- list()
+    for (i in stats) {
+        set.seed(1234)
+        print(i)
+        var <- names(df)[grep(i, names(df))]
+        runInfoObj <- profRegr(covNames = var, outcome = 'Yield',
+                               yModel = 'Normal', xModel = "Normal",
+                               data = temp, nSweeps = 100, nBurn = 50,
+                               nProgress = 1,
+                               reportBurnIn = TRUE, 
+                               seed = 1234, varSelectType = "Continuous")
+        rho <- summariseVarSelectRho(runInfoObj)
+        var.sel.80[[hyb]][[i]] <- var[which(rho$rhoMean > .80)]
+    }
+}
+
+# write_rds(var.sel.80, "var.sel.80.rds")
+
+var.sel.90 <- list()
+for (i in 1:n_distinct(df$Pedi)) {
+    hyb <- unique(df$Pedi)[i]
+    temp <- filter(df, Pedi %in% hyb)
+    var.sel.90[[hyb]] <- list()
+    for (i in stats) {
+        set.seed(1234)
+        print(i)
+        var <- names(df)[grep(i, names(df))]
+        runInfoObj <- profRegr(covNames = var, outcome = 'Yield',
+                               yModel = 'Normal', xModel = "Normal",
+                               data = temp, nSweeps = 100, nBurn = 50,
+                               nProgress = 1,
+                               reportBurnIn = TRUE, 
+                               seed = 1234, varSelectType = "Continuous")
+        rho <- summariseVarSelectRho(runInfoObj)
+        var.sel.90[[hyb]][[i]] <- var[which(rho$rhoMean > .90)]
+    }
+}
+
+# write_rds(var.sel.90, "var.sel.90.rds")
+
+var.sel.95 <- list()
+for (i in 1:n_distinct(df$Pedi)) {
+    hyb <- unique(df$Pedi)[i]
+    temp <- filter(df, Pedi %in% hyb)
+    var.sel.95[[hyb]] <- list()
+    for (i in stats) {
+        set.seed(1234)
+        print(i)
+        var <- names(df)[grep(i, names(df))]
+        runInfoObj <- profRegr(covNames = var, outcome = 'Yield',
+                               yModel = 'Normal', xModel = "Normal",
+                               data = temp, nSweeps = 100, nBurn = 50,
+                               nProgress = 1,
+                               reportBurnIn = TRUE, 
+                               seed = 1234, varSelectType = "Continuous")
+        rho <- summariseVarSelectRho(runInfoObj)
+        var.sel.95[[hyb]][[i]] <- var[which(rho$rhoMean > .95)]
+    }
+}
+
+# write_rds(var.sel.95, "var.sel.95.rds")
+```
+
+Below is a graphical summary of the filtered variables.  It appears that the Min variable is most often retained within primary months of the season.  Keep in mind that variables with constant variance are removed before running through the *profRegr* function so many of the minimum variables have been excluded at zero values.
+
+```{r}
+var.sel.80 <- read_rds("~/github/EnviroTyping/sandbox/variable_selection_using_premium/var.sel.80.rds")
+var.sel.90 <- read_rds("~/github/EnviroTyping/sandbox/variable_selection_using_premium/var.sel.90.rds")
+var.sel.95 <- read_rds("~/github/EnviroTyping/sandbox/variable_selection_using_premium/var.sel.95.rds")
+```
+
+
+```{r message=FALSE}
+
+df.95 <- as_data_frame(unlist(var.sel.95)) %>% 
+    rownames_to_column("hyb") %>% 
+    separate(hyb, into = c("hyb", "stat"), "\\.") %>% 
+    dplyr::select(hyb,stat = value)
+
+df.95 %>% dplyr::filter(stat %in% str_subset(df.95$stat, "Min")) %>% ggplot(aes(x = stat)) + geom_histogram(aes(fill = stat), stat = "count") + labs(title = "Minimum Variable Counts") + theme(panel.background = element_blank(), axis.text.x = element_text(angle = 30, vjust = 0.5), legend.position = "none") + scale_fill_viridis(discrete = TRUE)
+df.95 %>% dplyr::filter(stat %in% str_subset(df.95$stat, "Max")) %>% ggplot(aes(x = stat)) + geom_histogram(aes(fill = stat), stat = "count") + labs(title = "Maximum Variable Counts") + theme(panel.background = element_blank(), axis.text.x = element_text(angle = 30, vjust = 0.5), legend.position = "none") + scale_fill_viridis(discrete = TRUE)
+df.95 %>% dplyr::filter(stat %in% str_subset(df.95$stat, "Mean")) %>% ggplot(aes(x = stat)) + geom_histogram(aes(fill = stat), stat = "count") + labs(title = "Mean Variable Counts") + theme(panel.background = element_blank(), axis.text.x = element_text(angle = 30, vjust = 0.5), legend.position = "none") + scale_fill_viridis(discrete = TRUE)
+```
+
+### 2014-2016 Testing on Stampede2
+
+First attempts were to use the original dataset without being shifted. The results conclude that there are too many NA's in certain months which makes the Premium algorithm create many empty clusters.
+
+Next the shifted datasets were testing.  In an attempt to run within the 48 hour job window the each run was subset to either **min**, **max**, or **mean** variables for a given year.  For each job there were 50 burn-in iterations and 3000 after burn-in which from preliminary testing was the minimums to reach a stable chain.  For a quick comparison on convergence, each of the **min** variable has an extra job run featuing 50 burn-in and 1000 iterations after burn-in.  Below is a sample job script for an individual run.
+
+```{r}
+library(PReMiuM)
+library(tidyverse)
+
+setwd("/work/04734/dhbrand/stampede2/github/EnviroTyping/sandbox/shifted_data_analysis/2014/min_vars_3000/output")
+
+df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_wide_shifted.rds")
+
+variance.var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
+min.vars <- str_subset(variance.var, "min")
+
+set.seed(1234)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000)
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj <- calcOptimalClustering(calcDists)
+riskProfObj <- calcAvgRiskAndProfile(clusObj)
+write_rds(riskProfObj, "../riskProfObj.rds")
+```
+
+For each job the riskProfObj was saved.  The main output I was looking at were the number of clusters after the *calcOptimalClustering* step to find out if the MCMC appeared stable.
+
+2014 |
+|:---|:----|:-----|:----|
+var | iterations | clusters | cluster sizes
+min | 1000 | 2 | 7601 1
+min | 3000 | na | na
+max | 3000 | na | na
+mean | 3000 | na | na
+
+2015 |
+|:---|:----|:-----|:----|
+var | iterations | clusters | cluster sizes
+min | 1000 | 2 | 2239 2207
+min | 3000 | 2 | 2434 2012
+max | 3000 | 2 | 2458 1988
+mean | 3000 | 2 | 2064 2382
+
+2016 |
+|:---|:----|:-----|:----|
+var | iterations | clusters | cluster sizes
+min | 1000 | na | na
+min | 3000 | na | na
+max | 3000 | 2 | 12840 1
+mean | 3000 | na | na
+
+First off the **na's** came about from jobs that did not complete in the wall clock.  I hope to run some more testing to see if the **seed** has an effect as I have come across a similar issue in a different package where a Markov Chain was used.
+
+Second, there are several jobs which appear to have outliers.  When I first started playing around with the 2016 data I was seeing some outliers.  I'm going to run a separate job that will capture the hybrid label location for any clusters with 1 observation.  I'm hoping to find a similarity between the 2014 and 2016 datasets.  I'll also have a script that can filter any of these outliers and keep running the *profRegr* until the program reaches clustering without outliers.
+
+
+### Next Steps
+
+Run the previous mentioned looping algorithm to detect outliers in 2014 and 2016.  Try to determine if **seed** affects the algorithm.
+
+Also would like to get through a posthoc analysis and create an R notebook which allows a new lab member to pickup where I leave off.
+

@@ -1,4 +1,5 @@
 library(magrittr)
+library(tidyverse)
 
 hyb <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Nov_2016_V.3/a._2014_hybrid_phenotypic_data/g2f_2014_hybrid_no_outliers.csv" ,col_types = cols("Date Planted" = col_date("%m/%d/%Y"), "Date Harvested" = col_date("%m/%d/%Y"), "Plant height [cm]" = col_number(), "Ear height [cm]" = col_number()))
 
