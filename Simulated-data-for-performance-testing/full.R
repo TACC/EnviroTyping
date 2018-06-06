@@ -8,7 +8,7 @@ dataAll<-read.table("../sim_large_dataset_NormalMixed.dat",header = TRUE)
 cont_vars <- str_subset(names(dataAll), "Cont")
 disc_vars <- str_subset(names(dataAll), "Discr")
 
-runInfoObj<-profRegr(covNames, continuousCovs = cont_vars, discreteCovs = disc_vars, yModel="Normal", xModel="Normal", nSweeps=2000, nClusInit=40, nBurn=2000, data=dataAll, output="output")
+runInfoObj <- profRegr(outcome = 'outcome', yModel = 'Normal', xModel = "Mixed", discreteCovs = disc_vars, continuousCovs = cont_vars, data = dataAll, nSweeps = 2000, nBurn = 2000, nProgress = 100, nClusInit = 40)
 
 dissimObj<-calcDissimilarityMatrix(runInfoObj)
 clusObj<-calcOptimalClustering(dissimObj)
