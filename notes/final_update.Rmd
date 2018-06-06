@@ -359,4 +359,3 @@ Run the previous mentioned looping algorithm to detect outliers in 2014 and 2016
 
 Also would like to get through a posthoc analysis and create an R notebook which allows a new lab member to pickup where I leave off.
 
-

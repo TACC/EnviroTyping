@@ -1,17 +1,14 @@
-
+library(PReMiuM)
+library(tidyverse)
 
 # test of the simulated data 
+setwd("/work/04734/dhbrand/stampede2/github/EnviroTyping/Simulated-data-for-performance-testing/output")
+dataAll<-read.table("../sim_large_dataset_NormalMixed.dat",header = TRUE)
 
-dataAll<-read.table("sim_large_dataset_NormalMixed.dat",header = TRUE)
+cont_vars <- str_subset(names(dataAll), "Cont")
+disc_vars <- str_subset(names(dataAll), "Discr")
 
-# this is a small test using only 2 continuous covariates and the first 2,000 observations
-
-library(PReMiuM)
-library(readr)
-runInfoObj<-profRegr(yModel="Normal", 
-                     xModel="Normal", nSweeps=2000, nClusInit=40,
-                     nBurn=2000, data=dataAll, output="output", 
-                     covNames = c("Cont1","Cont2"))
+runInfoObj<-profRegr(covNames, continuousCovs = cont_vars, discreteCovs = disc_vars, yModel="Normal", xModel="Normal", nSweeps=2000, nClusInit=40, nBurn=2000, data=dataAll, output="output")
 
 dissimObj<-calcDissimilarityMatrix(runInfoObj)
 clusObj<-calcOptimalClustering(dissimObj)

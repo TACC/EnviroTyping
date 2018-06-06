@@ -1,3 +1,34 @@
-setwd("~/github/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_3000/")
+library(tidyverse)
+library(PReMiuM)
 
-min_3K_15 <- read_rds("riskProfObj.rds")
+setwd("~/github/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_3000/output")
+
+min_3K_15 <- read_rds("../riskProfObj.rds")
+pedi_stat <- read_rds("../../../../../data/interim/2015/hybrid_by_month_shift_all_stats.rds") %>% select(Pedi, StatID)
+
+
+clus_1 <- bind_cols(clus = min_3K_15$riskProfClusObj$clustering, yield = min_3K_15$riskProfClusObj$clusObjRunInfoObj$yMat, pedi_stat, min_3K_15$riskProfClusObj$clusObjRunInfoObj$xMat[,-1]) %>% filter(clus == 1)
+
+cont_vars <- names(clus_1[4:43])
+
+set.seed(1234)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = cont_vars, data = clus_1, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000)
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj_1 <- calcOptimalClustering(calcDists)
+
+clus_1_1 <- bind_cols(clus = clusObj_1$clustering, clus_1[,-1]) %>% filter(clus == 1)
+clus_1_2 <- bind_cols(clus = clusObj_1$clustering, clus_1[,-1]) %>% filter(clus == 2)
+
+table(clus_1_1$StatID)
+table(clus_1_2$StatID)
+
+set.seed(1234)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = cont_vars, data = clus_1_1, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000)
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj_1_1 <- calcOptimalClustering(calcDists)
+
+clus_1_1_1 <- bind_cols(clus = clusObj_1_1$clustering, clus_1_1[,-1]) %>% filter(clus == 1)
+clus_1_1_2 <- bind_cols(clus = clusObj_1_1$clustering, clus_1_1[,-1]) %>% filter(clus == 2)
+
+table(clus_1_1_1$StatID); n_distinct(clus_1_1_1$Pedi)
+table(clus_1_1_2$StatID); n_distinct(clus_1_1_2$Pedi)
