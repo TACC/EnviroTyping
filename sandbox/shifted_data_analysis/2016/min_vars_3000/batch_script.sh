@@ -10,4 +10,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir -p output
-Rscript --vanilla --verbose ./testing_seeds.R > ./output_seeds.Rout
+Rscript --vanilla --verbose ./testing_seeds2.R > ./output_seeds.Rout
