@@ -24,9 +24,10 @@ wthmon <- wth %>%
     # so these are the min/max of each day
     summarise_if(is.numeric, funs(min, max, mean, median), na.rm = TRUE) %>% 
     # Split exp with multiple sites
-    separate_rows(exp) %>% 
-    # add the meta data
-    left_join(wthmon, meta, by = "exp")
+    separate_rows(exp)
+
+# add the meta data
+wthmon <- left_join(wthmon, meta, by = "exp")
 
 # tidy the data
 hyb %<>% 
@@ -38,17 +39,16 @@ hyb %<>%
 ##### Month #####
 # joining the tidy weather data with min/max variables
 # left join to preserve hybrid data and fill matching weather data to each expermient
-hybmon <- left_join(hyb, wthmon, by = "exp") 
-%>%  
-    select(1:3, 11:13, 54:56, 6:10, 14:53) %>% 
-    drop_na(16:56)
+hybmon <- left_join(hyb, wthmon, by = "exp") %>%  
+    select(1:3, 11:13, 54:56, 4:10, 14:53) %>% 
+    drop_na(17:56)
 
 # check for NA's
 na.s <- hybmon %>% 
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
-write_rds(hybmon, "data/interim/2016/hyb_by_mon_calibr.rds")
+write_rds(hybmon, "data/interim/2015/hyb_by_mon_calib.rds")
 
 extra.repl <- hybmon %>% group_by(Exp, Pedi, Repl) %>% summarise(count = n()) %>% filter(count > 5)
 write_csv(extra.repl, "../../interim_datasets/2016/extra_repl.csv")
