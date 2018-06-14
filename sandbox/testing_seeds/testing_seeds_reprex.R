@@ -2,7 +2,7 @@ library(tidyverse)
 library(PReMiuM)
 
 
-setwd("~/github/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000/output")
+setwd("~/github/EnviroTyping/sandbox/testing_seeds/output")
 
 inputs <- generateSampleDataFile(clusSummaryBernoulliDiscrete())
 
@@ -19,6 +19,11 @@ for (i in seed) {
 }
 
 toy_df <- read_rds("~/github/EnviroTyping/data/interim/2015/toy_data.rds")
+
+set.seed(1234)
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = names(toy_df)[3:8], data = toy_df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 1234)
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj <- calcOptimalClustering(calcDists)
 
 for (i in seed) {
     runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = names(toy_df)[3:8], data = toy_df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = i)
