@@ -106,6 +106,13 @@ clusObj <- calcOptimalClustering(calcDists)
 #$clusterSizes
 #[1] 1481 1993  972
 
-clus_df <- cbind(cluster = clusObj$clustering, select(df, yield, pedi, stat_id, contains("humid_mean|dew_mean|rain_mean")))
+clus_df <- cbind(cluster = clusObj$clustering, select(df1, yield, pedi, stat_id,contains("humid_mean|dew_mean|rain_mean")))
 
 count_by_clust_stat_id <- clus_df %>% select(cluster, stat_id) %>% group_by(cluster, stat_id) %>% tally()
+
+summary_clus_df_dew <- clus_df_dew %>%
+    select(1,4,2,4:9) %>%
+    group_by(cluster, stat_id) %>%
+    do(map_dfr(.[-c(1:2)],~tidy(summary(.x)),.id="var")) %>%
+    ungroup %>% 
+    arrange(var, cluster, stat_id)
