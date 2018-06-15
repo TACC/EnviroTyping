@@ -25,7 +25,7 @@ while (clusObj$clusterSizes[2] == 1) {
     print(clusObj$clusterSizes)
 }
 
-### 2014
+### 2014 
 df <- read_rds("../../../data/interim/2014/hyb_by_mon_calib_wide_shifted.rds")
 variance_var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
 min_vars <- str_subset(variance_var, "min")
@@ -41,7 +41,7 @@ while (any(clusObj$clusterSizes <= 3 )) {
     update <- bind_cols(yield = clusObj$clusObjRunInfoObj$yMat[,1], clusObj$clusObjRunInfoObj$xMat) %>% filter(!(pedi == outlier$pedi & yield == outlier$yield)) %>% modify_at(2, as.character) %>% modify_at(2,as_factor)
     
     set.seed(1234)
-    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = update, nSweeps = 1000, nBurn = 50, nProgress = 100)
+    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = cont_vars, data = update, nSweeps = 500, nBurn = 50, nProgress = 100, seed = 5000)
     calcDists <- calcDissimilarityMatrix(runInfoObj)
     clusObj <- calcOptimalClustering(calcDists)
     # if (length(clusObj$clusterSizes) >= 3) 
