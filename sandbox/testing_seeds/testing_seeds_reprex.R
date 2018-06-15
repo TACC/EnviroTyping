@@ -17,6 +17,17 @@ for (i in seed) {
     calcDists <- calcDissimilarityMatrix(runInfoObj)
     clusObj[[i]] <- calcOptimalClustering(calcDists)
 }
+set.seed(1234)
+runInfoObj<-profRegr(yModel=inputs$yModel,
+                     xModel=inputs$xModel, nSweeps=50,
+                     nBurn=50, data=inputs$inputData, output="output",
+                     covNames = inputs$covNames,
+                     fixedEffectsNames = inputs$fixedEffectNames, seed=1234)
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+set.seed(1234)
+clusObj <- calcOptimalClustering(calcDists)
+
+for (i in seed){ print(clusObj[[i]]$clusterSizes)}
 
 toy_df <- read_rds("~/github/EnviroTyping/data/interim/2015/toy_data.rds")
 

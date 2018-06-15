@@ -1,4 +1,3 @@
-library(lubridate)
 library(magrittr)
 
 hyb <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/Carolyn_Lawrence_Dill_G2F_Mar_2017/a._2015_hybrid_phenotypic_data/g2f_2015_hybrid_data_no_outliers.csv",col_types = cols("Date Planted" = col_date("%m/%d/%Y"), "Date Harvested" = col_date("%m/%d/%Y"), "Plant height [cm]" = col_number(), "Ear height [cm]" = col_number()))
@@ -34,7 +33,7 @@ hyb %<>%
     # choosing variables to keep and renaming
     select(exp = "Field-Location", pedi = "Pedigree", repl = "Replicate", planted = "Date Planted", harvested = "Date Harvested", plant_ht = "Plant height [cm]", ear_ht = "Ear height [cm]",test_wt = "Test weight [lbs]", plot_wt = "Plot Weight [lbs]", yield = "Grain yield [bu/acre]") %>% 
     # changing the sort 
-    arrange(exp, pedi, repl)
+    arrange(exp, pedi, repl) %>% drop_na(yield)
 
 ##### Month #####
 # joining the tidy weather data with min/max variables
@@ -44,11 +43,22 @@ hybmon <- left_join(hyb, wthmon, by = "exp") %>%
     drop_na(17:56)
 
 # check for NA's
-na.s <- hybmon %>% 
+missing <- hybmon %>% 
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
-write_rds(hybmon, "data/interim/2015/hyb_by_mon_calib.rds")
+write_rds(hybmon, "~/github/EnviroTyping/data/interim/2015/hyb_by_mon_calib.rds")
 
-extra.repl <- hybmon %>% group_by(Exp, Pedi, Repl) %>% summarise(count = n()) %>% filter(count > 5)
-write_csv(extra.repl, "../../interim_datasets/2016/extra_repl.csv")
+# Building a second data set that allows missing weather variables
+hybmon_with_missing <- left_join(hyb, wthmon, by = "exp") %>% 
+    select(1:3, 11:13, 54:56, 4:10, 14:53)
+
+# check for NA's
+missing_true <- hybmon_with_missing %>% 
+    select_if(function(x) any(is.na(x))) %>% 
+    summarise_all(funs(sum(is.na(.))))
+
+
+write_rds(hybmon_with_missing, "~/github/EnviroTyping/data/interim/2015/hyb_by_mon_calib_w_wth_nas.rds", compress = "xz")
+write_csv(missing_true, "~/github/EnviroTyping/data/interim/2015/missing_wth_counts.csv")
+

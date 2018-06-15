@@ -1,6 +1,4 @@
 library(tidyverse)
-library(lubridate)
-library(data.table)
 
 df <- read_rds("~/github/EnviroTyping/data/interim/2015/hyb_by_mon_calib.rds")
 table(df$month,df$stat_id)
@@ -19,15 +17,17 @@ df <- df %>% filter(month %in% c(5:10))
 
 table(df$month,df$stat_id)
 
-df1 <- df %>% select(stat_id, pedi, repl, yield, month, numeric_vars)
-table(df1$Pedi, df1$stat_id)
+# df1 <- df %>% select(stat_id, pedi, repl, yield, month, numeric_vars)
+# table(df1$Pedi, df1$stat_id)
 
 df2 <- df %>% 
     gather(Var,val,17:56) %>% 
     unite(Var1, Var, month) %>% 
     spread(Var1, val)
 
-check <- df2 %>% select(stat_id, contains("mean")) %>% filter(stat_id %in% c(8427:8428))
+# check for NA's
+na.s <- df2 %>% 
+    select_if(function(x) any(is.na(x))) %>% 
+    summarise_all(funs(sum(is.na(.))))
 
-
-write_rds(df2, "~/GitHub/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_shifted", compress = "xz")
+write_rds(df2, "~/GitHub/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_shifted.rds", compress = "xz")
