@@ -13,7 +13,7 @@ df <- df %>% bind_rows(.,s3,s4)
 
 
 #df <- df %>% mutate(month = replace(month, between(month,5,9),c(1:5)))
-df <- df %>% filter(month %in% c(5:10))
+df <- df %>% filter(month %in% c(5:9))
 
 table(df$month,df$stat_id)
 
@@ -30,4 +30,4 @@ na.s <- df2 %>%
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
-write_rds(df2, "~/GitHub/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_shifted.rds", compress = "xz")
+write_rds(df2, "~/GitHub/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_shifted_front.rds", compress = "xz")
