@@ -9,4 +9,4 @@
 #SBATCH -t 48:00:00
 #SBATCH -J tester
 
-Rscript --vanilla --verbose ./Benchmark_Function.R > ./output_tester_%j.Rout
+Rscript --verbose ./Benchmark_Function.R > ./output_tester_%j.Rout
