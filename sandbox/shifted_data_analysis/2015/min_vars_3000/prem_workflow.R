@@ -1,7 +1,7 @@
 library(PReMiuM)
 library(tidyverse)
 
-setwd("/work/04734/dhbrand/stampede2/github/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_3000/output")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_3000/output")
 
 df <- read_rds("../../../../../data/interim/2015/hybrid_by_month_shift_all_stats.rds")
 
