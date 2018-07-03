@@ -10,4 +10,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir output
-Rscript --vanilla --verbose ./prem_workflow.R > ./output.Rout
+Rscript --verbose ./prem_workflow.R > ./output.Rout
