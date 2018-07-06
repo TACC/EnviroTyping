@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J mean_3K_16
+#SBATCH -J mean_3K_14
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
@@ -10,4 +10,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir output
-Rscript --vanilla --verbose ./prem_workflow.R > ./output.Rout
+Rscript --verbose ./prem_workflow.R > ./output.Rout
