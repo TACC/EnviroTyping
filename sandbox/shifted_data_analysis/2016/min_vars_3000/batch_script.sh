@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J seeds
+#SBATCH -J min_3K_16
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
@@ -10,4 +10,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir -p output
-Rscript --vanilla --verbose ./testing_seeds2.R > ./output_seeds.Rout
+Rscript --verbose ./testing_seeds2.R > ./output_seeds.Rout
