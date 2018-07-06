@@ -5,7 +5,7 @@ setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/
 
 df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_wide_shifted.rds")
 
-variance.var <- names(which(map_dbl(df[,16:255], var, na.rm = TRUE) != 0))
+variance.var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
 mean.vars <- str_subset(variance.var, "mean")
 
 set.seed(1234)
