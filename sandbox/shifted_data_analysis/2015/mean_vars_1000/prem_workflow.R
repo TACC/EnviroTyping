@@ -1,7 +1,7 @@
 library(PReMiuM)
 library(tidyverse)
 
-setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_1000/output")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2015/mean_vars_1000/output")
 
 df <- read_rds("../../../../../data/interim/2015/hyb_by_mon_calib_wide_shifted.rds")
 
