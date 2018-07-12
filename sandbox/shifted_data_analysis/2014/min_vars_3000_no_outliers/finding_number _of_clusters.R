@@ -2,12 +2,12 @@ library(tidyverse)
 library(PReMiuM)
 library(magrittr)
 
-setwd("~/github/EnviroTyping/sandbox/shifted_data_analysis/2014/min_vars_3000_no_outliers/output")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2014/min_vars_3000_no_outliers/output")
 
 df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_wide_shifted.rds")
 variance_var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
 min_vars <- str_subset(variance_var, "min")
-runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5000)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
 
@@ -18,8 +18,8 @@ while (any(clusObj$clusterSizes <= 3 )) {
     outlier_list <- c(outlier_list, outlier)
     update <- bind_cols(yield = clusObj$clusObjRunInfoObj$yMat[,1], clusObj$clusObjRunInfoObj$xMat) %>% filter(!(pedi == outlier$pedi & yield == outlier$yield)) %>% modify_at(2, as.character) %>% modify_at(2,as_factor)
     
-    set.seed(1234)
-    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = update, nSweeps = 3000, nBurn = 50, nProgress = 100)
+    set.seed(5000)
+    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = update, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5000)
     calcDists <- calcDissimilarityMatrix(runInfoObj)
     clusObj <- calcOptimalClustering(calcDists)
     # if (length(clusObj$clusterSizes) >= 3) 
