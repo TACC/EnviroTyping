@@ -7,7 +7,7 @@
 #SBATCH --mail-user=azg5169@uncw.edu
 #SBATCH --mail-type=all    # Send email at begin and end of job
 #SBATCH -p long
-#SBATCH -t 96:00:00
+#SBATCH -t 120:00:00
 #SBATCH -A Envriotype
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
