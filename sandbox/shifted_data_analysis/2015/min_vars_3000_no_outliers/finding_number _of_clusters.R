@@ -7,7 +7,7 @@ setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/
 df <- read_rds("../../../../../data/interim/2015/hyb_by_mon_calib_wide_shifted.rds")
 variance_var <- names(which(map_dbl(df[,16:255], var, na.rm = TRUE) != 0))
 min_vars <- str_subset(variance_var, "min")
-runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5000)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5001)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
 
@@ -19,7 +19,7 @@ while (any(clusObj$clusterSizes <= 3 )) {
     update <- bind_cols(yield = clusObj$clusObjRunInfoObj$yMat[,1], clusObj$clusObjRunInfoObj$xMat) %>% filter(!(pedi == outlier$pedi & yield == outlier$yield)) %>% modify_at(2, as.character) %>% modify_at(2,as_factor)
     
     set.seed(5000)
-    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = update, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5000)
+    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = update, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5001)
     calcDists <- calcDissimilarityMatrix(runInfoObj)
     clusObj <- calcOptimalClustering(calcDists)
     # if (length(clusObj$clusterSizes) >= 3) 
@@ -31,10 +31,10 @@ write_rds(clusObj, "../clusObj.rds", compress = "xz")
 write_rds(outlier_list, "../outlier_list.rds", compress = "xz")
 
 
-outlier_full <- (unlist(outlier_list))[11:20] 
-outlier_full <- rbind(names(outlier_full), unname(outlier_full)) %>% as_tibble()
-outlier_yields <-  outlier_full[2,str_which(outlier_full[1,], "yield")]
-outliers_final <- df[match(outlier_yields, df$yield),]
-df_no_outliers <- df[-match(outlier_yields, df$yield),]
-
-df_clus <- cbind(cluster = clusObj$clustering, df_no_outliers)
+#outlier_full <- (unlist(outlier_list))[11:20] 
+#outlier_full <- rbind(names(outlier_full), unname(outlier_full)) %>% #as_tibble()
+#outlier_yields <-  outlier_full[2,str_which(outlier_full[1,], "yield")]
+# outliers_final <- df[match(outlier_yields, df$yield),]
+# df_no_outliers <- df[-match(outlier_yields, df$yield),]
+# 
+# df_clus <- cbind(cluster = clusObj$clustering, df_no_outliers)
