@@ -10,7 +10,7 @@ min_vars <- str_subset(variance_var, "min")
 
 runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 1528830361)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
-clusObj3 <- calcOptimalClustering(calcDists)
+clusObj <- calcOptimalClustering(calcDists)
 outlier_list <- list()
 while (any(clusObj$clusterSizes <= 3 )) {
     outlier_clusters <- which(clusObj$clusterSizes <= 3, useNames = TRUE)
