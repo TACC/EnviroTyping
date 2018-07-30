@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J min3K15no
+#SBATCH -J min3K16no
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
