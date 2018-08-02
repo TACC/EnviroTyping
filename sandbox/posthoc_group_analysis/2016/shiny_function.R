@@ -131,3 +131,8 @@ windSpd2 <- windSpd %>%
     gather(key, value, -group) %>% 
     separate(key, into = c("var", "stat"), sep = "_(?!.*_)")
 
+
+# merging hybrid labels from original data to premium levels output
+
+og_dat <- read_rds("~/github/EnviroTyping/data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")
+
