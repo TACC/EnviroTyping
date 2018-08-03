@@ -101,23 +101,23 @@ server <- function(input, output) {
         } else {
             
             # changes based on variable
-            if (input$input_var == "dew") {
+            if (input$input_var2 == "dew") {
                 data <- dew2
                 title <- "Dew Point"
                 ylab <- "Dew Point [C]"
-            } else if (input$input_var == "humid") {
+            } else if (input$input_var2 == "humid") {
                 data <- humid2
                 title <- "Humidity"
                 ylab <- "Relative Humidity [%]"
-            } else if (input$input_var == "temp") {
+            } else if (input$input_var2 == "temp") {
                 data <- temp2
                 title <- "Temperature"
                 ylab <- "Temperature [C]"
-            } else if (input$input_var == "windDir") {
+            } else if (input$input_var2 == "windDir") {
                 data <- windDir2
                 title <- "Wind Direction"
                 ylab <- "Wind Direction [degrees]"
-            } else if (input$input_var == "windGust") {
+            } else if (input$input_var2 == "windGust") {
                 data <- windGust2
                 title <- "Wind Gust"
                 ylab <- "Wind Gust [m/s]"
@@ -152,6 +152,14 @@ server <- function(input, output) {
         }
     })
     
+    output$table <- DT::renderDataTable({
+        data <- hybrids_groups
+        if (input$group != "All") {
+            data <- data[data$group == input$group,]
+        }
+        DT::datatable(data)
+    })
+    
 }
 
 
@@ -167,7 +175,7 @@ ui <- fluidPage(
     title = "Post Hoc Grouping Explorer",
     fluidRow(
         column(3,
-               h4("Post Hoc Grouping Explorer 2"),
+               h4("Post Hoc Grouping Explorer"),
                
                # Input: Checkbox for whether outliers should be included ----
                checkboxInput("scaled_input", "Use Scaled Data"),
@@ -185,7 +193,7 @@ ui <- fluidPage(
                ),
                conditionalPanel(
                    condition = "input.scaled_input == false",
-                   selectInput("input_var", "Variable:", 
+                   selectInput("input_var2", "Variable:", 
                                c("Dew Point" = "dew",
                                  "Relative Humidity" = "humid",
                                  "Temperature" = "temp",
@@ -196,14 +204,26 @@ ui <- fluidPage(
         )
     ),
     
+    
     hr(),
     
-    plotOutput("Plot", height = "800px")
+    plotOutput("Plot", height = "800px"),
     
+    hr(), 
     
+    fluidPage(
+        column(4,
+               selectInput("group",
+                           "Post Hoc Group:",
+                           c("All", as.character(1:num_groups))))
+    ),
     
-    
-    
+    fluidRow(
+        column(12,
+               h4("Hybrids by Grouping Variables"),
+               
+               DT::dataTableOutput("table"))
+    )
 )
 
 

@@ -35,31 +35,20 @@ cores <- parallel::detectCores()
 posthocGroup <- hcluster(hyb_mon_clus[,-2], method = "euclidean", link = "ward", nbproc = cores)
 
 
-
 dist <- daisy(hyb_mon_clus[,-2])
-tic()
+
 dynamicCutree <- cutreeDynamic(posthocGroup, distM = as.matrix(dist), deepSplit = 4, verbose = 4)
-toc()
+
 
 num_groups <- n_distinct(dynamicCutree)
 
 hyb_mon_groups <- data.frame(group = dynamicCutree, hyb_mon_clus)
 
 
-# scale <- hyb_mon_groups %>% 
-#     group_by(group) %>% 
-#     summarise_at(4:23, funs(min, max, median), na.rm = TRUE) %>% 
-#     select(-1) %>% 
-#     scales::rescale(., to = c(0,10)) %>% 
-#     as.tibble() %>% 
-#     cbind(group = seq(1:length(hyb_mon_groups$group)), .) %>% 
-#     gather(key, value, -group) %>% 
-#     separate(key, into = c("var", "stat"), sep = "_(?!.*_)")
-# 
-
 normalize <- function(x) {
     return((x - min(x)) / (max(x) - min(x)))
 }
+
 prescaled <- hyb_mon_groups %>% 
     group_by(group) %>% 
     summarise_at(4:(length(.) - 1), funs(min, max, median), na.rm = TRUE) %>% 
@@ -70,7 +59,8 @@ humids <- prescaled %>% select(str_subset(names(prescaled), "humid|Humid")) %>% 
 temps <- prescaled %>% select(str_subset(names(prescaled), "temp|Temp")) %>% normalize() %>% select( -(contains("10")), contains("10"))
 windDirs <- prescaled %>% select(str_subset(names(prescaled), "wind_dir|windDir")) %>% normalize() %>% select( -(contains("10")), contains("10"))
 windGusts <- prescaled %>% select(str_subset(names(prescaled), "wind_gust|windGust")) %>% normalize() %>% select( -(contains("10")), contains("10"))
-windSpds <- prescaled %>% select(str_subset(names(prescaled), "wind_spd|windSpd")) %>% normalize() %>% select( -(contains("10")), contains("10"))
+windSpds <- prescaled %>% select(str_subset(names(prescaled), "wind_spd|windSpd")) %>% normalize() %>% select( -(contains("10")), contains("10")) 
+
 
 scaled <- bind_cols(dews, humids, temps, windDirs, windGusts, windSpds) %>% 
     cbind(group = seq(1:num_groups), .) %>% 
@@ -146,8 +136,11 @@ post_analysis <- clusObj$clusObjRunInfoObj$yMat %>% round(digits = 3) %>% as.vec
 outliers <- vector(mode = "integer")
 outliers <- c(outliers, which(reduced != post_analysis)[1])
 diff <- length(reduced) - length(post_analysis) - 1
-for (i in 1:4) {
+if(diff > 0) {
+for (i in 1:diff) {
   outliers <- c(outliers, which(reduced[-outliers] != post_analysis)[1])
 }
-
-hybrids_groups <- cbind(hybrids = og_dat$pedi[-outliers], group = hyb_mon_groups$group)
+hybrids_groups <- data_frame(hybrids = og_dat$Pedi[-outliers], group = hyb_mon_groups$group)
+} else {
+    hybrids_groups <- data_frame(hybrids = og_dat$Pedi, group = hyb_mon_groups$group)
+}
