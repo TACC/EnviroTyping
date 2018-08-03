@@ -1,15 +1,18 @@
 library(amap)
+library(cluster)
 library(tidyverse)
 library(magrittr)
 library(dynamicTreeCut)
 library(viridis)
+library(rlang)
 #############################################################################################################################
 #                                             CHANGE PATH TO YOUR FILE                                                      #
 ################VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV###################################
-path_to_file <- "~/github/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000_no_outliers/clusObj.rds"
-
+path_to_clusObj <- "~/github/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000_no_outliers/clusObj.rds"
+path_to_original_data <- "~/github/EnviroTyping/data/interim/2016/hyb_by_mon_calib_wide_shifted.rds"
 #############################################################################################################################
-clusObj <- read_rds(path_to_file)
+og_dat <- read_rds(path_to_original_data)
+clusObj <- read_rds(path_to_clusObj)
 #############################################################################################################################
 
 create_mapper_na <- function(.p){
@@ -134,5 +137,17 @@ windSpd2 <- windSpd %>%
 
 # merging hybrid labels from original data to premium levels output
 
-og_dat <- read_rds("~/github/EnviroTyping/data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")
 
+
+reduced <- og_dat  %>% select(contains("yield", ignore.case = TRUE)) %>% round(digits = 3) %>% pull()
+post_analysis <- clusObj$clusObjRunInfoObj$yMat %>% round(digits = 3) %>% as.vector()
+
+
+outliers <- vector(mode = "integer")
+outliers <- c(outliers, which(reduced != post_analysis)[1])
+diff <- length(reduced) - length(post_analysis) - 1
+for (i in 1:4) {
+  outliers <- c(outliers, which(reduced[-outliers] != post_analysis)[1])
+}
+
+hybrids_groups <- cbind(hybrids = og_dat$pedi[-outliers], group = hyb_mon_groups$group)

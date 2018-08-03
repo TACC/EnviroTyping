@@ -153,7 +153,13 @@ server <- function(input, output) {
     })
     
     output$table <- DT::renderDataTable({
-        DT::datatable(hyb_mon_groups)
+        DT::datatable(
+            data <- hybrids_groups, 
+            if (input$trans != "All") {
+                data <- data[data$group == input$group,]
+            },
+            data
+            )
     })
     
 }
@@ -184,6 +190,12 @@ ui <- fluidPage(
                
                # Input: Checkbox for whether outliers should be included ----
                checkboxInput("scaled_input", "Use Scaled Data", TRUE)
+        ),
+        column(4,
+               selectInput("group",
+                           "Post Hoc Group:",
+                           c("All",
+                             unique(as.character(hybrids_groups$group))))
         )
     ),
     
