@@ -2,9 +2,9 @@ library(PReMiuM)
 library(tidyverse)
 library(tictoc)
 
-setwd("work/04902/azg5169/stampede2/EnviroTyping/sandbox/testing_seeds")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/testing_seeds")
 
-df <- read_rds("work/04902/azg5169/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_w_wth_nas.rds")
+df <- read_rds("/work/04902/azg5169/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_w_wth_nas.rds")
 
 variance_var <- names(which(map_dbl(df[,16:length(df)], var, na.rm = TRUE) != 0))
 min_vars <- str_subset(variance_var, "min")
@@ -14,7 +14,7 @@ seed <- sample(1:100000,10)
 tic.clearlog()
 for (i in seed) {
     tic()
-    dir_name <- paste0("work/04902/azg5169/stampede2/EnviroTyping/sandbox/testing_seeds", i, "_output")
+    dir_name <- paste0("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/testing_seeds", i, "_output")
     dir.create(dir_name)
     setwd(dir_name)
     runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 500, nBurn = 10, nProgress = 25, seed = i)
