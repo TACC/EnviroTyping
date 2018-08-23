@@ -13,6 +13,7 @@ pages:
     - 'Creating G2F Datasets': 'workflow/datasets.md'
     - 'Small Real Data Analysis': 'workflow/toy_g2f.md'
     - 'Post hoc Analysis': 'workflow/profile_by_group.md'
+    - 'Interactive App': 'workflow/profile_by_group_app.md'
 - Tutorials:
     - 'Getting Started With High Performance Computing': 'tutorials/hpc.md'
     - 'Launcher Module': 'tutorials/launcher_module.md'

@@ -13,7 +13,7 @@ path_to_original_data <- "~/github/EnviroTyping/data/interim/2016/hyb_by_mon_cal
 
 #### Run the App
 
-One of the first lines of code in the *app.R* sources the *shiny_function.R* which will create the new clusters (groups) and the datasets needed to display your plots.  If you are using the same image you can comment out the line of code as below to reduce setup time when reloading the app.
+One of the first lines of code in the *app.R* sources the *shiny_function.R* which will create the new clusters (groups) and the datasets needed to display your plots.  If you are using the same image you can comment out the line of code as below to reduce setup time when reloading the app. Just make sure it runs during the initial setup.
 
 ```r
 # source("shiny_function.R")
@@ -25,4 +25,4 @@ Next click **RunApp** on the top right of your script from within RStudio.
 
 You are presented with two ways to view the output.  You can check the *Scaled Data* box to view a min/max normalization of the weather variables independently or all together.  With the box unchecked you can only view the variables independently as they all have different scales for the y-axis according to the type of weather factor.
 
-Below the plots there is a table which allows you to filter the which hybrids are in each group.  The table defaults to showing all groups and only 10 observations at a time.
+Below the plots there is a table which allows you to filter which hybrids are in each group.  The table defaults to showing all groups and only 10 observations at a time.
