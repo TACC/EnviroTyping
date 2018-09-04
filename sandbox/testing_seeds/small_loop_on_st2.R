@@ -17,7 +17,7 @@ for (i in seed) {
     dir_name <- paste0("~/GitHub/EnviroTyping/sandbox/testing_seeds", i, "_output")
     dir.create(dir_name)
     setwd(dir_name)
-    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 10, nBurn = 1, nProgress = 1, seed = i)
+    runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 20, nBurn = 5, nProgress = 1, seed = i)
     toc(log = TRUE, quiet = TRUE)
     clus_file <- paste0(dir_name,"/output_nMembers.txt")
     nmembers <- str_split(read_lines(clus_file), pattern = " ", simplify = TRUE)
