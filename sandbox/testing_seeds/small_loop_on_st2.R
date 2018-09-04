@@ -29,6 +29,6 @@ for (i in seed) {
     write_delim(empty_clusters, "empty_clusters.txt")
 }
 
-seed_v_time <- bind_cols(seed = seed, time = unlist(tic.log(format = TRUE)))
+seed_v_time <- bind_cols(seed = seed, time = unlist(tic.log(format = TRUE)),clus = empty_clusters)
 
 write_csv(seed_v_time, "seed_v_time.csv")
