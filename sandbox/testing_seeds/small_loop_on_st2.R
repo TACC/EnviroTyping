@@ -28,7 +28,9 @@ for (i in seed) {
         as.tibble()
     write_delim(empty_clusters, "empty_clusters.txt")
 }
+setwd("~/GitHub/EnviroTyping/sandbox/testing_seeds")
 
-seed_v_time <- bind_cols(seed = seed, time = unlist(tic.log(format = TRUE)),clus = empty_clusters)
+seed_v_time <- bind_cols(seed = seed, time = unlist(tic.log(format = TRUE)))
+
 
 write_csv(seed_v_time, "seed_v_time.csv")
