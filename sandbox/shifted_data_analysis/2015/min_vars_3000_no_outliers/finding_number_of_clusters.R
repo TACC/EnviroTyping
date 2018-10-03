@@ -7,7 +7,7 @@ setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/
 df <- read_rds("../../../../../data/interim/2015/hyb_by_mon_calib_wide_shifted.rds")
 variance_var <- names(which(map_dbl(df[,16:255], var, na.rm = TRUE) != 0))
 min_vars <- str_subset(variance_var, "min")
-runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 12345)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min_vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, seed = 5000)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
 
