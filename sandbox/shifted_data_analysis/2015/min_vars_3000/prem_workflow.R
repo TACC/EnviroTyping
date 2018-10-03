@@ -4,7 +4,7 @@ library(tictoc)
 
 setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_3000/output")
 
-df <- read_rds("~/github/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_w_wth_nas.rds")
+df <- read_rds("~/github/EnviroTyping/data/interim/2015/hyb_by_mon_calib_wide_shifted.rds")
 
 variance_var <- names(which(map_dbl(df[,16:length(df)], var, na.rm = TRUE) != 0))
 min_vars <- str_subset(variance_var, "min")
