@@ -5,8 +5,8 @@ setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/
 
 df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_w_wth_nas.rds")
 
-variance.var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
-min.vars <- str_subset(variance.var, "min")
+#variance.var <- names(which(map_dbl(df[,16:length(df)], var, na.rm = TRUE) != 0))
+min.vars <- str_subset(names(df[,16:length(df)]), "min")
 
 set.seed(1234);
 runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = 2435)
