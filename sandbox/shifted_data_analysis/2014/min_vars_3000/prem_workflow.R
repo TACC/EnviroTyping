@@ -8,7 +8,7 @@ df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_wide_shifted.r
 variance.var <- names(which(map_dbl(df[,16:207], var, na.rm = TRUE) != 0))
 min.vars <- str_subset(variance.var, "min")
 
-set.seed(1234);
+set.seed(12345);
 runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = 12345)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
