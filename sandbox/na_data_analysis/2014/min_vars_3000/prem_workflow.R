@@ -5,7 +5,9 @@ setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/na_data_analysis/2014/
 
 df <- read_rds("../../../../../data/interim/2014/hyb_by_mon_calib_w_wth_nas.rds")
 
-#variance.var <- names(which(map_dbl(df[,16:length(df)], var, na.rm = TRUE) != 0))
+df = df[is.na(df$yield) == FALSE,]
+
+variance.var <- names(which(map_dbl(df[,16:length(df)], var, na.rm = TRUE) != 0))
 min.vars <- str_subset(names(df[,16:length(df)]), "min")
 
 set.seed(1234);
