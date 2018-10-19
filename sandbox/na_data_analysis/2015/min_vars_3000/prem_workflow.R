@@ -2,7 +2,7 @@ library(PReMiuM)
 library(tidyverse)
 library(tictoc)
 
-setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2015/min_vars_3000/output")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/na_data_analysis/2015/min_vars_3000/output")
 
 df <- read_rds("../../../../../data/interim/2015/hyb_by_mon_calib_w_wth_nas.rds")
 
