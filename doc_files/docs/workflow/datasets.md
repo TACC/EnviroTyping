@@ -73,7 +73,7 @@ wthday <- wthday %>%
     unnest(Exp) %>%
     select(Exp, everything())
 
-wthday$Exp[wday$Exp == ""] <- "NA"
+wthday$Exp[wthday$Exp == ""] <- "NA"
 
 wthday <- wthday %>% filter(Exp != "NA")
 ```
