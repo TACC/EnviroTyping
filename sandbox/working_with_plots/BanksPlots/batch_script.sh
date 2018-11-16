@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 #
-#SBATCH -J min163k
+#SBATCH -J risk_prof
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
-#SBATCH -t 10:00:00
+#SBATCH -t 5:00:00
 #SBATCH -A Envriotype
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir -p output
-Rscript --verbose ./prem_workflow.R > ./output.Rout
+Rscript --verbose ./2016YJuneYield.R > ./output.Rout
