@@ -60,7 +60,7 @@ clusObj <- calcOptimalClustering(calcDists)
 # BUT WHAT ABOUT GETTING ONLY JUNE VARIABLES
 
 # tic()
-# riskProfObj <- calcAvgRiskAndProfile(clusObj)
+riskProfObj <- calcAvgRiskAndProfile(clusObj)
 # toc()
 # beep("ping")
-# saveRDS(riskProfObj, "../riskProfObj.rda")
+write_rds(riskProfObj, "/riskProfObj.rds")
