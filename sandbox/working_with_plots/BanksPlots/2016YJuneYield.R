@@ -18,7 +18,7 @@ library(viridis)
 library(gridExtra)
 library(reshape2)
 
-setwd("/Users/banks/RProjects/EnviroTyping/sandbox/shifted_data_analysis/2016")
+setwd("/home1/06019/bno5761/EnviroTyping/sandbox/shifted_data_analysis/2016")
 
 ### TEST BY SHOWING CLUSTERS RESPONSES TO VARIABLES WITH ONLY JUNE MONTH FIRST ### 
 
