@@ -5,7 +5,7 @@
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
-#SBATCH -t 5:00:00
+#SBATCH -t 9:00:00
 #SBATCH -A Envriotype
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
