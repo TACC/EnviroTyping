@@ -9,11 +9,34 @@ variance.var <- names(which(map_dbl(df[,16:255], var, na.rm = TRUE) != 0))
 min.vars <- str_subset(variance.var, "min")
 
 set.seed(12345)
-runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = 1540040282)
+
+seeds = c(5015460331, 2924967319, 2560083040, 6900504555)
+
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = seeds[1])
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
 riskProfObj <- calcAvgRiskAndProfile(clusObj)
 write_rds(riskProfObj, "../riskProfObj.rds")
-write_rds(clusObj, "../clusObj.rds", compress = "xz")
+write_rds(clusObj, "../clusObj1.rds", compress = "xz")
 
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = seeds[2])
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj <- calcOptimalClustering(calcDists)
+riskProfObj <- calcAvgRiskAndProfile(clusObj)
+write_rds(riskProfObj, "../riskProfObj.rds")
+write_rds(clusObj, "../clusObj2.rds", compress = "xz")
+
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = seeds[3])
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj <- calcOptimalClustering(calcDists)
+riskProfObj <- calcAvgRiskAndProfile(clusObj)
+write_rds(riskProfObj, "../riskProfObj.rds")
+write_rds(clusObj, "../clusObj3.rds", compress = "xz")
+
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 100, nClusInit = 1000, seed = seeds[4])
+calcDists <- calcDissimilarityMatrix(runInfoObj)
+clusObj <- calcOptimalClustering(calcDists)
+riskProfObj <- calcAvgRiskAndProfile(clusObj)
+write_rds(riskProfObj, "../riskProfObj.rds")
+write_rds(clusObj, "../clusObj4.rds", compress = "xz")
 
