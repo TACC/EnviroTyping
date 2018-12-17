@@ -18,7 +18,7 @@ library(PReMiuM)
 # library(gridExtra)
 # library(reshape2)
 
-setwd("/Users/banks/RProjects/EnviroTyping/sandbox/shifted_data_analysis/2016")
+setwd("/home1/06019/bno5761/EnviroTyping/sandbox/shifted_data_analysis/2016")
 
 ### TEST BY SHOWING CLUSTERS RESPONSES TO VARIABLES WITH ONLY JUNE MONTH FIRST ### 
 
@@ -49,8 +49,8 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield',
                        #output = "output/",
                        data = june,
                        nSweeps = 500,
-                       nProgress = 10
-                       nBurn = 50)
+                       nProgress=10,
+                       nBurn = 500)
 
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 
