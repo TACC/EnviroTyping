@@ -10,4 +10,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir -p output
-Rscript --verbose ./2016JuneYieldCalibWide.R > ./output.Rout
+Rscript --verbose ./2016YieldCalibWide.R > ./output.Rout
