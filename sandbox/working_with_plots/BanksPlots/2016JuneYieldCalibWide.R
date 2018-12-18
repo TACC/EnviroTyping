@@ -27,8 +27,8 @@ setwd("/home1/06019/bno5761/EnviroTyping/sandbox/shifted_data_analysis/2016")
 hyb_by_mon <- read_rds("../../../data/interim/2016/hyb_by_mon_calib_wide.rds")
 
 # Assign column names to a list
-vars = colnames(hyb_by_mon)
-print(vars)
+# vars = colnames(hyb_by_mon)
+# print(vars)
 
 # Select Pedi, Yield, and numeric variables ending in "5","6", or "7" to isolate May-July variables
 may_july = select(hyb_by_mon,Pedi,Yield,ends_with("5"),ends_with("6"),ends_with("7"))
