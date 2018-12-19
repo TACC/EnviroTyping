@@ -11,5 +11,5 @@
 #SBATCH --mail-user=azg5169@azg5169.com
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
-mkdir -p output
+mkdir output
 Rscript --verbose ./prem_workflow.R > ./output.Rout
