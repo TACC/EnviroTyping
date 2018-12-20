@@ -16,7 +16,6 @@ set.seed(12345)
 runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 1000)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj1 <- calcOptimalClustering(calcDists)
-riskProfObj <- calcAvgRiskAndProfile(clusObj1)
 write_rds(clusObj1, "../clusObj1.rds", compress = "xz")
 
 
