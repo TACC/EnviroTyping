@@ -18,7 +18,7 @@ library(PReMiuM)
 # library(gridExtra)
 # library(reshape2)
 
-setwd("/work/06019/bno5761/EnviroTyping/sandbox/shifted_data_analysis/2016")
+setwd("/work/06019/bno5761/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2016")
 
 ### TEST BY SHOWING CLUSTERS RESPONSES TO VARIABLES WITH ONLY JUNE MONTH FIRST ### 
 
