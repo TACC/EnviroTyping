@@ -3,7 +3,7 @@ library(tidyverse)
 
 rm(list = ls(all = TRUE))
 
-setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000/output2")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000/output")
 
 df <- read_rds("../../../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")
 
