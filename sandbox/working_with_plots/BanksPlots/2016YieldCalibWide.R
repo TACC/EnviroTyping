@@ -4,8 +4,7 @@
 ###       of 2016 as responses to various predictor variables
 ###       ASPECTS: Not the shifted data
 ### CHALLENGES:
-install.packages("tidyverse")
-install.packages("PReMiuM")
+
 # library(beepr)
 # library(amap)
 # library(cluster)
