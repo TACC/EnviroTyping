@@ -2,7 +2,7 @@
 #
 #
 #SBATCH -J risk_prof
-#SBATCH -N 1
+#SBATCH -N 2
 #SBATCH -n 1
 #SBATCH -p skx-normal
 #SBATCH -t 48:00:00
