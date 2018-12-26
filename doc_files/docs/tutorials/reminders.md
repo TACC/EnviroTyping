@@ -37,4 +37,4 @@ To remove a non-empty folder but receive a prompt before removal: `rmdir -iR <fo
 
 It is easy to remove a file when you are in the proper directory already; but if you are not, simply specify the file's full address when using the above commands. Likewise, you may delete multiple files at once by listing the unwanted file names beside each other: `rm <filename1> <filename2>`.
 
-Command line programming is powerful. However, such power is hard to tame without the proper knowledge. If you ever need extra information for working with Stampede2, the Internet is a great resource; but the best help will be given by XSEDE's [Help Desk][https://portal.xsede.org/web/xup/help-desk].
+Command line programming is powerful. However, such power is hard to tame without the proper knowledge. If you ever need extra information for working with Stampede2, the Internet is a great resource; but the best help will be given by XSEDE's <a href=https://portal.xsede.org/web/xup/help-desk].>Help Desk</a>.
