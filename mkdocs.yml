@@ -17,6 +17,7 @@ pages:
 - Tutorials:
     - 'Getting Started With High Performance Computing': 'tutorials/hpc.md'
     - 'Launcher Module': 'tutorials/launcher_module.md'
+    - 'Reminders and Useful Commands': 'tutorials/reminders.md'
 - 'Updating the Docs': updating.md
 
 
