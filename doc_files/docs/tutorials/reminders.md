@@ -6,10 +6,10 @@ Second, it cannot be stressed enough that you must load modules anytime you want
 
 Third, if your job requires the use of packages not already included in your base module, you must install the packages in the HPC first. It is easiest to do this by loading your preferred module, calling it, then installing the necessary packages. For example, if you need to install *tidyvese*, you would employ the following steps:
 
-`ml Rstats`
-`R # to open R`
-`install.packages("tidyverse")`
-`q() # to quit R`
+`ml Rstats` <br/>
+`R # to open R` <br/>
+`install.packages("tidyverse")` <br/>
+`q() # to quit R` <br/>
 
 Once you finish installing the packages, you may continue to submit jobs as needed.
 
@@ -19,21 +19,21 @@ Fourth, don't forget to push or pull updates from your Git respository. Many hea
 
 Navigating directories through a command line can be daunting the first couple of times you do it, but it becomes easier with time and experience. Here are some basic commands and their effects:
 
-`ls` returns the collection of folders and files in the current level of your directory,
-`cd <directory>` will take you to a lower level (subfolder) of the directory,
-`cd ..` will take you one level higher,
-`sbatch <batch script filename>` submits your job,
-`squeue -u <Stampede2 username>` tells you the details of *all* your current jobs,
-`scancel <job number>` cancels the requested job,
-`cat <job output filename>` reads the output file of a module (e.g., a .out or .Rout file), and
+`ls` returns the collection of folders and files in the current level of your directory, <br/>
+`cd <directory>` will take you to a lower level (subfolder) of the directory, <br/>
+`cd ..` will take you one level higher, <br/>
+`sbatch <batch script filename>` submits your job, <br/>
+`squeue -u <Stampede2 username>` tells you the details of *all* your current jobs, <br/>
+`scancel <job number>` cancels the requested job, <br/>
+`cat <job output filename>` reads the output file of a module (e.g., a .out or .Rout file), and <br/>
 `exit` disconnects your SSH session to Stampede2.
 
 There may be a time when you need to remove existing files or whole folders to free up space in your `$HOME` or `$WORK` directories. Doing so is straight-forward, but extreme caution should be practiced because data is not recoverable once removed using these methods.
 
-To remove a file: `rm <filename>`.
-To remove an empty folder: `rmdir <foldername>`.
-To remove a non-empty folder: `rmdir -R <foldername>`.
-To remove a non-empty folder but receive a prompt before removal: `rmdir -iR <foldername>`.
+To remove a file: `rm <filename>`. <br/>
+To remove an empty folder: `rmdir <foldername>`. <br/>
+To remove a non-empty folder: `rmdir -R <foldername>`. <br/>
+To remove a non-empty folder but receive a prompt before removal: `rmdir -iR <foldername>`. <br/>
 
 It is easy to remove a file when you are in the proper directory already; but if you are not, simply specify the file's full address when using the above commands. Likewise, you may delete multiple files at once by listing the unwanted file names beside each other: `rm <filename1> <filename2>`.
 
