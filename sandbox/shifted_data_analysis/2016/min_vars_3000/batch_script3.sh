@@ -9,5 +9,5 @@
 #SBATCH -A Envriotype
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
-mkdir -p output3
+mkdir -p outputt
 Rscript --verbose ./prem_workflow3.R > ./outputt.Rout
