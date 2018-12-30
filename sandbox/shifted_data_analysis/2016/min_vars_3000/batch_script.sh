@@ -11,5 +11,5 @@
 #SBATCH -A Envriotype
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
-mkdir output
-Rscript --verbose ./prem_workflow.R > ./output.Rout
+mkdir -p output1
+Rscript --verbose ./prem_workflow.R > ./output1.Rout
