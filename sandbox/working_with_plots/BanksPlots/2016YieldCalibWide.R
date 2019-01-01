@@ -50,9 +50,9 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield',
                        continuousCovs = numericVars,
                        #output = "output/",
                        data = mar_nov,
-                       nSweeps = 500,
+                       nSweeps = 250,
                        nProgress=10,
-                       nBurn = 500)
+                       nBurn = 250)
 
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 
