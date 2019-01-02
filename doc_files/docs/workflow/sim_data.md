@@ -1,6 +1,6 @@
 We can use a simulated data set and run through the PReMiuM workflow to get an idea of how it works and an example of the results.
 
-## Data set
+## Workflow
 
 Download the `rds` file [here](https://github.com/TACC/EnviroTyping/blob/master/sandbox/shifted_data_analysis/simulated/data/hyb_simulated.rds) and read it into R using `df <- read_rds("path/hyb_simulated.rds")[[1]]`. The `rds` file contains a list of 3 simulated data sets so we select the first data set.
 
