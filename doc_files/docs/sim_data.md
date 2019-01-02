@@ -1,5 +1,3 @@
-# Simulated Data Sets
-
 We can use a simulated data set and run through the PReMiuM workflow to get an idea of how it works and an example of the results.
 
 ## Data set
