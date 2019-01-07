@@ -5,7 +5,7 @@ library(tidyverse)
 
 setwd("/work/06019/bno5761/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000")
 
-clusObj = read_rds(clusObj.rds)
+clusObj = read_rds("/clusObj.rds")
 
 riskProfObj = calcAvgRiskAndProfile(clusObj)
 
