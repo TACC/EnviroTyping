@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 #
-#SBATCH -J min3K16no
-#SBATCH -N 1
-#SBATCH -n 1
+#SBATCH -J 2016min3
+#SBATCH -N 2
+#SBATCH -n 4
 #SBATCH -p skx-normal
-#SBATCH -t 48:00:00
+#SBATCH -t 15:00:00
 #SBATCH -A Envriotype
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
-mkdir output
-Rscript --verbose ./finding_number_of_clusters.R > ./output.Rout
+mkdir -p output
+Rscript --verbose ./riskOutput.R > ./output.Rout
