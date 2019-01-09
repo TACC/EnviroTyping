@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J 2016min3
+#SBATCH -J min3_1
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH -p skx-normal
