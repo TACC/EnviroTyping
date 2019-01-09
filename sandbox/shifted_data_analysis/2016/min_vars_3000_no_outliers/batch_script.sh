@@ -2,8 +2,8 @@
 #
 #
 #SBATCH -J 2016min3
-#SBATCH -N 2
-#SBATCH -n 4
+#SBATCH -N 1
+#SBATCH -n 1
 #SBATCH -p skx-normal
 #SBATCH -t 15:00:00
 #SBATCH -A Envriotype
