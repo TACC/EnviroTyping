@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J mean_3K_16
+#SBATCH -J mean_long
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH --mail-user=bno5761@uncw.edu
@@ -12,4 +12,4 @@
 #SBATCH -o job_%j_%N.out
 #------------------------------------------------------
 mkdir output
-Rscript --verbose ./prem_workflow.R > ./output.Rout
+Rscript --verbose ./prem_workflow.R > ./output_long.Rout
