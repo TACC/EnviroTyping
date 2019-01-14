@@ -4,7 +4,7 @@
 library(tidyverse)
 library(PReMiuM)
 
-setwd("/Users/banks/RProjects/EnviroTyping/sandbox/shifted_data_analysis/2016/mean_vars_3000/output")
+setwd("/work/06019/bno5761/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2016/mean_vars_3000/output")
 
 hyb_by_mon <- read_rds("../../../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")
 
