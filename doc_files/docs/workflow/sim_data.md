@@ -2,7 +2,7 @@ We can use a simulated data set and run through the PReMiuM workflow to get an i
 
 ## Workflow
 
-Download the `rds` file [here](https://github.com/TACC/EnviroTyping/blob/master/sandbox/shifted_data_analysis/simulated/data/hyb_simulated.rds) and read it into R using `df <- read_rds("path/hyb_simulated.rds")[[1]]`. The `rds` file contains a list of 3 simulated data sets so we select the first data set.
+Download the `rds` file [here](https://github.com/TACC/EnviroTyping/blob/master/sandbox/shifted_data_analysis/simulated/data/hyb_simulated.rds) and read it into R using `df <- read_rds("path/hyb_simulated.rds")[[1]]` where `path` is the path to the downloaded file. The `rds` file contains a list of 3 simulated data sets so we select the first data set.
 
 Check for constant (no variance) variables and for this example select the minimum variables.
 
