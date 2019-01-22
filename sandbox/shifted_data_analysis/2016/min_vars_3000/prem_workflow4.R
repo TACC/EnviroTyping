@@ -11,7 +11,7 @@ min.vars <- str_subset(variance.var, "min")
 set.seed(12345)
 
 
-runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 1000, nClusInit = 1000)
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 50, nProgress = 1000, nClusInit = 1000, seed = 5296368613)
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
 riskProfObj <- calcAvgRiskAndProfile(clusObj)
