@@ -1,8 +1,8 @@
-#### Intro to GitHub
+## Intro to GitHub
 
 Because the files necessary to EnviroTyping are located in a repository, it will be increasingly helpful over time if you create your own account on [GitHub](https://github.com). This allows you to easily access not only the EnviroTyping datasets available at the time of this writing, but also any changes made over time. If you have used GitHub previously, you can skim (or simply skip) this tutorial and jump to the information you need. However, if you are new to the whole experience, following the below outline will provide you with a strong foundation to understand the tools GitHub provides.
 
-#### Creating the Account and Forking
+## Creating the Account and Forking
 
 This first step is straight-forward. Once you arrive on [GitHub](https://github.com), simply create an account by inputting a few identifying details, such as your email address. After your account is created, you will be taken to your personal page. Here you can see your repositories, other projects you follow, and personal details. Feel free to customize it or add a picture because this account is yours, and becoming active on GitHub is a great networking opportunity to become connected to the global research community. 
 
@@ -10,10 +10,10 @@ Now, direct your attention to the search bar on the top, left-hand side of the p
 
 This step is important because "forking" allows you to read and write the files in the master repository without fear of losing the original data. It also grants you the opportunity to contribute to the project by submitting "Pull" requests when you create (or edit) a file that helps further the project's goals. 
 
-#### Navigating Directories
+## Navigating Directories
 
 
-#### Set EnviroTyping Project in RStudio
+## Set EnviroTyping Project in RStudio
 
 Because most of the code for EnviroTyping is written in R, you should consider creating a "Project" in RStudio that you utilize when working with EnviroTyping files. Projects allow you to consistently work in a specific working directory on your local machine, easily connect to GitHub repositories, and streamline your work. If you do not already have RStudio downloaded on your computer, go to RStudio's [website](https://www.rstudio.com/products/rstudio/download) and select the installer for your OS.
 
@@ -23,6 +23,6 @@ Next, in RStudio go to "Projects" on the top, right-hand side of the screen. Sel
 
 Now, the Project setup in RStudio is complete! When you need to use R for EnviroTyping tasks, simply open RStudio, go to "Projects", and select "EnviroTyping". From there, you can choose to navigate the EnviroTyping files in the directory on the bottom, left-hand side of the screen (depending on your selected layout of RStudio); create new files; or do whatever else you need.
 
-#### Cloning Repository into Stampede
+## Cloning Repository into Stampede
 
 Ensure you are connected to secure Wi-Fi.
