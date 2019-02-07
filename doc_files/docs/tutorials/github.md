@@ -12,7 +12,6 @@ This step is important because "forking" allows you to read and write the files 
 
 ## Navigating Directories
 
-<center>
 
 |Directory|Description|Commonly Used?|
 |---------|:---------:|:------------:|
@@ -26,7 +25,7 @@ This step is important because "forking" allows you to read and write the files 
 |sandbox|Collection of data and files in current use|Yes|
 |tools|Some benchmark funcitons|No|
 
-</center>
+
 ## Setting EnviroTyping Project in RStudio
 
 Because most of the code for EnviroTyping is written in R, you should consider creating a "Project" in RStudio that you utilize when working with EnviroTyping files. Projects allow you to consistently work in a specific working directory on your local machine, easily connect to GitHub repositories, and streamline your work. If you do not already have RStudio downloaded on your computer, go to RStudio's [website](https://www.rstudio.com/products/rstudio/download) and select the installer for your OS.
@@ -40,4 +39,3 @@ Now, the Project setup in RStudio is complete! When you need to use R for Enviro
 ## Cloning Repository into Stampede
 
 Ensure you are connected to secure Wi-Fi.
-c
