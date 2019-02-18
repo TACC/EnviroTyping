@@ -1,4 +1,4 @@
-## Intro to GitHub
+## Intro
 
 Because the files necessary to EnviroTyping are located in a repository, it will be increasingly helpful over time if you create your own account on [GitHub](https://github.com). This allows you to easily access not only the EnviroTyping datasets available at the time of this writing, but also any changes made over time. If you have used GitHub previously, you can skim (or simply skip) this tutorial and jump to the information you need. However, if you are new to the whole experience, following the below outline will provide you with a strong foundation to understand the tools GitHub provides.
 
@@ -12,6 +12,7 @@ This step is important because "forking" allows you to read and write the files 
 
 ## Navigating Directories
 
+As previously alluded to, there are a plethora of directories within the EnviroTyping GitHub. Needless to say, it can be confusing when trying to navigate the massive number of files. In order to alleviate some of the initial confusion when navigating the files, below are a couple of tables which briefly describe some important folders in the directory and imply whether or not they are commonly used. However, do keep in mind these directories may change; and these tables are meant solely as a guide. The first table describes overall parent folders.
 
 |Directory|Description|Commonly Used?|
 |---------|:---------:|:------------:|
@@ -23,8 +24,19 @@ This step is important because "forking" allows you to read and write the files 
 |Notes|Various notes|No|
 |References|Collection of various articles for research|Yes|
 |sandbox|Collection of data and files in current use|Yes|
-|tools|Some benchmark funcitons|No|
+|tools|Some benchmark functons|No|
 
+You will find yearly GxE hybrid data, unsurprisingly, in the folder entitled "data". Immediately within this folder are two more: "external" and "interim". The former consists of files and raw data used to make the cleaned data in the "interim" folder. More often than not, you will utilize the data found in the "interim" folder. Within it, you will see more folders subset by years. Within each year folder, you may see a small selection of datasets with different suffixes in their names. Each dataset is slightly different. For example, the files with the suffix "wth_nas" have missing observations; and those with "shifted" move observations from later months to earlier months to remove any such missing observations. Having so many datasets with such minute differences is necessary to our research as it helps us establish any inconsistencies across different statistical tests.
+
+It should be noted, however, the most commonly used files (and, consequently, most work) are found within "sandbox". Within "sandbox" are several folders, but below are the most frequently used.
+
+|Directory|Description|
+|---------|:---------:|
+|posthoc_group_analysis|Various years' files used to create the output in the "Post hoc Anaylsis" section of the ReadtheDocs|
+|shifted_data_analysis|Various years' workflows with different workflows for minimum, mean/median, or maximum variables|
+|working_with_plots|Collection of files utilized to make different figures to visualize EnviroTyping data|
+
+Your specific tasks will determine where you find (and place) your work. Nonetheless, feel free to navigate the GitHub and utlize any file, as needed. This part of the tutorial is meant solely to help you understand the basic structure of the EnviroTyping GitHub. Understanding the nature of the directories and where to find the most important files will help tremendously when you need to reference multiple datasets or simply find a figure.
 
 ## Setting EnviroTyping Project in RStudio
 
@@ -38,4 +50,6 @@ Now, the Project setup in RStudio is complete! When you need to use R for Enviro
 
 ## Cloning Repository into Stampede
 
-Ensure you are connected to secure Wi-Fi.
+You are almost finished! Now you need to ensure your portal on the Stampede servers has cloned the data from your personal GitHub fork of the EnviroTyping repository. Assuming you have already created an account with TACC, cloning your repository is simple. 
+
+First, you must be connected to a secure Wi-Fi or ethernet network. If you are not, TACC will not allow you to connect to the Stampede servers. Next, open up Terminal (Mac OS/Linux) or Command Line (Windows), and log onto the servers by SSH. Type into your command line prompt `ssh <TACC username>@stampede2.tacc.utexas.edu`. After inputting your password, the system will ask you to verify your login information by sending you a text or email, depending upon your settings, with a unique code. Inputting the code correctly will finalize the log-in process. Make sure you copy the URL from your forked repository, then type: `git clone <repository URL>`. The URL will be the same as the one used for the R Project previously. You will know your command was accepted if Terminal or Command Line tells you that files are being downloaded. Once your repository is cloned, you may now submit jobs to be processed on the HPC. If you are unfamiliar with the SLURM commands used to communicate with Stampede2, feel free to reference the "Reminders and Useful Commands" section of the ReadtheDocs.
