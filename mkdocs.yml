@@ -17,6 +17,7 @@ pages:
     - 'Interactive App': 'workflow/profile_by_group_app.md'
 - Tutorials:
     - 'Getting Started With High Performance Computing': 'tutorials/hpc.md'
+    - 'Introduction to GitHub and Project Set-up': 'tutorials/github.md'
     - 'Launcher Module': 'tutorials/launcher_module.md'
     - 'Reminders and Useful Commands': 'tutorials/reminders.md'
 - 'Updating the Docs': updating.md
