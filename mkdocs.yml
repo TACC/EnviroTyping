@@ -16,8 +16,9 @@ pages:
     - 'Post hoc Analysis': 'workflow/profile_by_group.md'
     - 'Interactive App': 'workflow/profile_by_group_app.md'
 - Tutorials:
-    - 'Getting Started With High Performance Computing': 'tutorials/hpc.md'
+    - 'Getting Started With High Performance Computing': 'tutorials/hpc_setup.md'
     - 'Introduction to GitHub and Project Set-up': 'tutorials/github.md'
+    - 'Jobs on HPC': 'tutorials/hpc_use.md'
     - 'Launcher Module': 'tutorials/launcher_module.md'
     - 'Reminders and Useful Commands': 'tutorials/reminders.md'
 - 'Updating the Docs': updating.md
