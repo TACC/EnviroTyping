@@ -6,7 +6,6 @@ This section of the tutorial will assume some basic knowledge of how to log into
 
 Unlike a personal computer, the HPC will not simply run an R or Python script. The high performance computer must be "told" what to do. This is because endusers have the ability to request how much and what type of resources are utilized when a job is submitted through the system. For example, you will have one option to choose how many cores the HPC uses to process your request; and yet another option is to have the system email you when a job is submitted or completed. The batch script is what communicates your requests to the HPC. You may find an example batch script below:
 
-
 `#!/bin/bash` (Never change this line) <br/>
 `#` <br/>
 `#` <br/>
@@ -27,7 +26,25 @@ Notice, however, you must change a few generic idenfiers with your own specifics
 
 If you wish to know more about batch scripts, there are plenty of other tutorials online. One great tutorial is provided by Cornell University's Center for Advanced Computing. This [tutorial](https://www.cac.cornell.edu/education/training/StampedeJan2017/Envi.pdf) provides a good introduction to how Stampede2 operates and gives several great examples of batch scripts and other useful SLURM codes.
 
+### Push and Pull Requests
+
+When you wish to edit a batch script, open RStudio and go to the EnviroTyping Project created earlier. You can edit batch scripts in RStudio just like any other file, so it will be assumed you are working in this IDE. You may choose to edit an existing batch script or create a new one; simply ensure the file name is in the form of `file_name.sh` because the `.sh` extension is one way the HPC knows how to read the script.
+
+However, once you finish editting the batch script (or any other file), you must commit the change to your GitHub repository and submit a push request. The process is simple in an RStudio Project. First, open RStudio and look around the top-middle of the RStudio window for smaller icon with a green "+", red "-", and grey "G" symbol vetically stacked. Click on the symbol, then select "Commit". This starts the staging process. A new window should open where you select the files you want to stage; select all the files you want to merge into your repository and write a short message that describes the changes made in each file. Once all changes have been staged, click the green arrow that says "Push" to add the new changes to your GitHub repository. If there are no complications, your repository should be updated in less than a minute.
+
+Next, you must make sure the repository cloned to your Stampede2 drive is updated, as well. Simply log-in to Stampede2 as before and enter the command `git pull`. If there are no complications and few files to update, your command line editor will give descriptions of the files added, changed, or deleted in a matter of a few seconds. Make sure to update each drive ($home, $work, etc.) in Stampede2 as necessary. 
+
+This process is the same for any file -- not just batch scripts. Once your changes have been pushed and pulled without issue, you may continue to submit your batch script to the HPC for processing. 
+
 ### Job Submittal Process
+
+Assuming you are already logged into the system, there are three steps to submitting a job request to Stampede2. First, load the modules needed to run the job. Second, navigate to the directory of the batch script you wish to submit. Third, submit the batch script. 
+
+Loading modules requires the use of a single command: `module load <module>` or `ml <module>`. EnviroTyping requires the extensive use of R, so you will more than likely need to use `ml Rstats`. If need be, you can also load Python or other modules in similar manner.
+
+Navigating directories via command line editors is simple. If you're unsure of the layout of the folders you can see all the folders and files on the current level of the directory by entering the command `ls`. You can then go down a level by typing the command `cd <folder_name>`. If you accidentally go into the wrong folder, the command `cd ..` will take you back up one level of your directory. You may repeat this process until you find the location of the batch script.
+
+Finally, you are ready to submit the job request! Simply type `sbatch <file_name.sh>`. Stampede should output information about the job request, such as the request number and some other identifying information. From here, you may do a number of things, such as check on the status of the request or even cancel the job. More information about your options are found the in the "Reminders and Useful Commands" tutorial. 
 
 ## Stampede Rules
 
