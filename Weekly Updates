@@ -9,8 +9,14 @@ Week of 22 February 2019:
 Week of 1 March 2019:
   - Fixed merge conflicts from personal repository master to master EnviroTyping repository
   - Accidentally deleted file which included code for R figures
+  - Created new branch for tutorials names Tutorial_Additions
   - Needs:
     - Rewrite file
     - Recreate files with the names of hybrids in each group
     - Finish HPC tutorial
     - Upload tutorials to Envirotyping repository for Morgan to further edit
+
+Week of 8 March 2019:
+  - Finished tutorials on how to use HPC (including submitting batch scripts and push/pull requests)
+  - Merge master EnviroTyping repository with Tutorial_Additions branch to upload new pages to ReadtheDocs
+  - Contacted Morgan about edits
