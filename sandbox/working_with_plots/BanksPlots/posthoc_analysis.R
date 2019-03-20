@@ -14,45 +14,31 @@ setwd("/Users/banks/RProjects/EnviroTyping/sandbox/shifted_data_analysis/2016")
 pedi <- read_rds("../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")[,c(1,2,15)]
 
 # Load riskProfObj which is based on the 2016 min_vars_3000 without NAs analysis
-riskProfObj <- read_rds("../../sandbox/posthoc_group_analysis/2016/riskProfObj.rds")
+riskProfObj <- read_rds("min_vars_3000/riskProfObj.rds")
+
 # plotRiskProfile(riskProfObj,whichCovariates=riskProfObj$riskProfClusObj$clusObjRunInfoObj$covNames[11:20],
 #                outFile="../../working_with_plots/BanksPlots/profile_plot.png")
 
-
 # Create a new variable named "clus" to add cluster identifiers to hybrids and merge with pedi dataframe
 # and weather observations for hybrids
-df_clus <- data.frame(pedi, clus = as.factor(riskProfObj$riskProfClusObj$clustering),riskProfObj$riskProfClusObj$clusObjRunInfoObj$xMat[,-1])
+hyb_by_mon_clus <- data.frame(clus = as.factor(riskProfObj$riskProfClusObj$clustering),pedi,riskProfObj$riskProfClusObj$clusObjRunInfoObj$xMat[,-1])
 
-colnames(df_clus) # to verify we have only indentifier and minimum variables with non-zero variance
+colnames(hyb_by_mon_clus) # to verify we have only indentifier and minimum variables with non-zero variance
 
 cores <- parallel::detectCores()
-posthocGroup <- hcluster(df_clus[,-1], method = "euclidean", link = "ward", nbproc = cores)
+posthocGroup <- hcluster(hyb_by_mon_clus[,-1], method = "euclidean", link = "ward", nbproc = cores)
 
-dist <- daisy(df_clus[,-1])
-dynamicCutree <- cutreeDynamic(posthocGroup, distM = as.matrix(dist), deepSplit = 4, verbose = 4) 
-length(unique(dynamicCutree)) # 14
-df_groups <- data.frame(group = dynamicCutree, df_clus)
+# The two categorical variables needed to be converted to type "Factor" to be used with daisy
+hyb_by_mon_clus$Exp = as.factor(hyb_by_mon_clus$Exp)
+hyb_by_mon_clus$Pedi = as.factor(hyb_by_mon_clus$Pedi)
+str(hyb_by_mon_clus) # confirm the first three variables have type "Factor" and the rest "num"
+
+dist = daisy(hyb_by_mon_clus[,-1])
+dynamicCutree = cutreeDynamic(posthocGroup, distM = as.matrix(dist), deepSplit = 4, verbose = 4) 
+length(unique(dynamicCutree)) # the number of post hoc groups should be 4
+hyb_by_mon_posthoc = data.frame(group = dynamicCutree, hyb_by_mon_clus)
 
 
-
-
-
-
-
-cores <- parallel::detectCores() - 1
-
-tic()
-posthocGroup <- hcluster(mon5_7Clust[,-2], method = "euclidean", link = "ward", nbproc = cores)
-toc()
-
-typeof(posthocGroup)
-
-tic()
-dynamicCutree <- cutreeDynamic(posthocGroup, distM = as.matrix(dist), deepSplit = 4, verbose = 4) 
-toc()
-
-n_distinct(dynamicCutree) 
-mon5_7Groups <- data.frame(group = dynamicCutree, mon5_7Clust)
 
 l = list()
 for (i in 1:11){
@@ -86,3 +72,4 @@ for (i in 1:14){
     })
 }
 dev.off()login1(1011)
+
