@@ -9,7 +9,7 @@ library(tictoc)
 
 The PReMiuM _profRegr_ function returns a lot of output.  Creating a separate directory for the output can help when recovering files later.
 ```r
-setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/small_data/")
+setwd("~/GitHub/EnviroTyping/data/interim/2015/small_data")
 dir.create("output")
 setwd("./output")
 ```
