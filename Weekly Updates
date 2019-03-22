@@ -20,3 +20,14 @@ Week of 8 March 2019:
   - Finished tutorials on how to use HPC (including submitting batch scripts and push/pull requests)
   - Merge master EnviroTyping repository with Tutorial_Additions branch to upload new pages to ReadtheDocs
   - Contacted Morgan about edits
+
+Week of 22 March 2019:
+  - Started to recreate file used to generate post hoc analysis
+    - Have recreated a little over 50% of posthoc analysis file
+    - Identified several redundancies in original code and simplified process
+  - Began to identify ways to imporve post hoc Analysis page in ReadtheDocs
+    - Clean up page introduction, including moving the packages and removing tictoc package
+    - Possibly update page with 2016 post hoc analysis, or make new section for it
+    - Describe purpose of figures
+    - Describe which procedures answer which questions
+    - Possibly break my analysis file into separate ones and list where files would be located in GitHub
