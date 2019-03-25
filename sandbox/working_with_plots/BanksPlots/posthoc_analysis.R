@@ -45,37 +45,71 @@ hyb_by_mon_posthoc = data.frame(group = dynamicCutree, hyb_by_mon_clus)
 hyb_by_mon_posthoc = hyb_by_mon_posthoc[c(3,4,5,1,2,7,8,6,9,10,11,12,13,14,15,16,17,19,20,18,21,22,24,25,23)]
 # colnames(hyb_by_mon_posthoc) # can be used to see new order of variables
 
+hyb_by_mon_posthoc$group = as.factor(hyb_by_mon_posthoc$group) # convert group to factor for graphing ease
+
 clus.colors = c("1"="#7570B3","2"="#1C9E77","3"="#D95F02","4"="#E72A8A","5"="#E6AB02","6"="#666666") # assign colors to groups
+group.colors = c("1"="#E69F00","2"="#57B4E9","3"="#019E73","4"="#F0E442")
 
 # To create a set of boxplots that illustrate Yield by the clusters in each post-hoc group
 png("../../working_with_plots/BanksPlots/Figures/ClusterYieldsbyGroup.png", width = 1280, height = 1080)
 l = list()
 for (i in 1:4){
     tmp = hyb_by_mon_posthoc %>% filter(group == i)
-    p = ggplot(tmp,aes(clus, Yield)) + geom_bar(aes(fill = clus), width = .5, stat = "summary", fun.y = "mean") + scale_fill_manual(values=clus.colors) +
-         labs(title = paste("Average Yield by Cluster for Group",i,sep = " "), x = "Envirotyping Cluster", y = "Yield [bu/acre]") +
-         theme_bw() + theme(plot.title = element_text(hjust = 0.5)) + guides(fill=FALSE)
+    p = ggplot(tmp,aes(clus, Yield)) + 
+        geom_bar(aes(fill = clus), width = .5, stat = "summary", fun.y = "mean") + 
+        scale_fill_manual(values=clus.colors) +
+        labs(title = paste("Average Yield by Cluster for Group",i,sep = " "), x = "Envirotyping Cluster", y = "Yield [bu/acre]") +
+        theme_bw() + 
+        theme(plot.title = element_text(hjust = 0.5)) + 
+        guides(fill=FALSE)
     l[[i]] = p
 }
 grid.arrange(l[[1]],l[[2]],l[[3]],l[[4]])
 dev.off()
 
-ggplot(hyb_by_mon_posthoc, aes(x = clus, y = Yield)) + geom_bar(aes(fill = clus), stat = "summary", fun.y = "mean")+
-    facet_wrap(~ dynamicCutree, scales = "free_y", ncol = 4) +
-    scale_fill_viridis(discrete = TRUE) + labs(title = "Cluster by Yield for Post hoc Grouping", x = "Envirotyping Cluster", y = "Yield [bu/acre]" ) +
-    theme_bw()+ guides(fill=FALSE)
+# Note: May need to use Shiny or other package to have interactive graphs that show number of hybrids per cluster in previous figure
+
+png("../../working_with_plots/BanksPlots/Figures/AverageGroupYields.png", width = 1280, height = 1080)
+ggplot(hyb_by_mon_posthoc, aes(x = group, y = Yield)) + 
+    geom_bar(aes(fill = group), stat = "summary", fun.y = "mean") +
+    scale_fill_manual(values=group.colors) + 
+    labs(title = "Average Yield by Post Hoc Group", x = "Envirotyping Cluster", y = "Yield [bu/acre]" ) +
+    theme_bw()+ 
+    theme(plot.title = element_text(hjust = 0.5)) + 
+    guides(fill=FALSE)
 dev.off()
 
-pdf("yieldByClusterPlot.pdf", paper = "a4r")
-for (i in 1:14){
-    print({
-        tmp <- weeks3_5Groups %>% filter(group == i)
-        ggplot(gather(tmp,key,value, -c(group,optClus,Pedi)),aes(optClus,value)) + geom_boxplot(aes(fill=optClus)) +
-            facet_wrap(~ key, scales="free_y", ncol = 5)+
-            scale_fill_viridis(discrete = TRUE)+ ggtitle(paste("Cluster by Yield for Post hoc Group",i,sep = " ")) +
-            theme_bw()+
-            theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
-    })
-}
-dev.off()login1(1011)
+# GENERATE LISTS OF HYBRIDS IN ALL GROUPS
 
+# We want to see how the post-hoc groups differ from one another, so we find hybrids
+# are found in multiple groups and compare their Yield distributions with violin plots
+
+# Next, we assign the identifiers of our hybrids of interest to their own vector (any can be chosen)
+
+hyb_of_interest = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")
+
+# There exists a glitch(?) where an unwanted violin plot is created unless we subset only our data of interest, so we subset to avoid
+# the unwanted figure
+
+hyb_by_mon_interest = hyb_by_mon_posthoc %>% filter(Pedi %in% hyb_of_interest)
+
+png("../../working_with_plots/BanksPlots/Figures/ViolinbyPedi.png", width = 1280, height = 1080)
+ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")),y = Yield)) + 
+    labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") +
+    geom_violin(fill = "#ADD8E6") + 
+    geom_boxplot(width=0.1) + 
+    scale_fill_manual(values=group.colors) +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
+dev.off()
+
+png("../../working_with_plots/BanksPlots/Figures/ViolinbyGroup.png", width = 1280, height = 1080)
+ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")),y = Yield,fill = group)) + 
+    geom_violin() + 
+    scale_fill_manual(values=group.colors,name="Group") + 
+    labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") + 
+    theme_bw() + 
+    theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
+dev.off()
+
+# Recreate "dots" image
