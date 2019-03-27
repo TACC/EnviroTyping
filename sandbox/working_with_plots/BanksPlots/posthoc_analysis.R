@@ -12,10 +12,10 @@ setwd("/Users/banks/RProjects/EnviroTyping/sandbox/shifted_data_analysis/2016")
 
 # Bring in hybrid identifier (col 1), experiment identifier (2), and yield (15) observations from 2016 
 # monthly, calibrated, shifted data 
-pedi <- read_rds("../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")[,c(1,2,15)]
+pedi = read_rds("../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")[,c(1,2,15)]
 
 # Load riskProfObj which is based on the 2016 min_vars_3000 without NAs analysis
-riskProfObj <- read_rds("min_vars_3000/riskProfObj.rds")
+riskProfObj = read_rds("min_vars_3000/riskProfObj.rds")
 
 # If you would like to see the risk profile of various variables, run the below code with different indices:
 # plotRiskProfile(riskProfObj,whichCovariates=riskProfObj$riskProfClusObj$clusObjRunInfoObj$covNames[11:20],
@@ -23,12 +23,12 @@ riskProfObj <- read_rds("min_vars_3000/riskProfObj.rds")
 
 # Create a new variable named "clus" to add cluster identifiers to hybrids and merge with pedi dataframe
 # and weather observations for hybrids
-hyb_by_mon_clus <- data.frame(clus = as.factor(riskProfObj$riskProfClusObj$clustering),pedi,riskProfObj$riskProfClusObj$clusObjRunInfoObj$xMat[,-1])
+hyb_by_mon_clus = data.frame(clus = as.factor(riskProfObj$riskProfClusObj$clustering),pedi,riskProfObj$riskProfClusObj$clusObjRunInfoObj$xMat[,-1])
 
 colnames(hyb_by_mon_clus) # to verify we have only indentifier and minimum variables with non-zero variance
 
-cores <- parallel::detectCores()
-posthocGroup <- hcluster(hyb_by_mon_clus[,-1], method = "euclidean", link = "ward", nbproc = cores)
+cores = parallel::detectCores()
+posthocGroup = hcluster(hyb_by_mon_clus[,-1], method = "euclidean", link = "ward", nbproc = cores)
 
 # The two categorical variables needed to be converted to type "Factor" to be used with daisy
 hyb_by_mon_clus$Exp = as.factor(hyb_by_mon_clus$Exp)
@@ -79,8 +79,6 @@ ggplot(hyb_by_mon_posthoc, aes(x = group, y = Yield)) +
     guides(fill=FALSE)
 dev.off()
 
-# GENERATE LISTS OF HYBRIDS IN ALL GROUPS
-
 # We want to see how the post-hoc groups differ from one another, so we find hybrids
 # are found in multiple groups and compare their Yield distributions with violin plots
 
@@ -112,4 +110,42 @@ ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3II
     theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
 dev.off()
 
-# Recreate "dots" image
+# Recreate "dots" image 
+# GENERATE LISTS OF HYBRIDS IN ALL GROUPS
+
+table(hyb_by_mon_posthoc$group,hyb_by_mon_posthoc$Exp) # To show distribution of experiments in each group
+
+group1 = hyb_by_mon_posthoc %>% filter(group==1) %>% select(Exp,Pedi,Yield,clus)
+group1_hybrids = as.data.frame(unique(group1$Pedi)); colnames(group1_hybrids) = "Hybrid" # To generate list of hybrids in Group 1
+table(group1$clus,group1$Exp) # To see experiments in each cluster
+
+group1clus2 = hyb_by_mon_posthoc %>% filter(group==1, clus==2) %>% select(Exp,Pedi,Yield)
+group1clus3 = hyb_by_mon_posthoc %>% filter(group==1, clus==3) %>% select(Exp,Pedi,Yield)
+group1clus4 = hyb_by_mon_posthoc %>% filter(group==1, clus==4) %>% select(Exp,Pedi,Yield)
+group1clus5 = hyb_by_mon_posthoc %>% filter(group==1, clus==5) %>% select(Exp,Pedi,Yield)
+
+group2 = hyb_by_mon_posthoc %>% filter(group==2) %>% select(Exp,Pedi,Yield,clus)
+group2_hybrids = as.data.frame(unique(group2$Pedi)); colnames(group2_hybrids) = "Hybrid" # To generate list of hybrids in Group 2
+table(group2$clus,group2$Exp) # To see experiments in each cluster
+
+group2clus2 = hyb_by_mon_posthoc %>% filter(group==2, clus==2) %>% select(Exp,Pedi,Yield)
+group2clus3 = hyb_by_mon_posthoc %>% filter(group==2, clus==3) %>% select(Exp,Pedi,Yield)
+group2clus4 = hyb_by_mon_posthoc %>% filter(group==2, clus==4) %>% select(Exp,Pedi,Yield)
+
+group3 = hyb_by_mon_posthoc %>% filter(group==3) %>% select(Exp,Pedi,Yield,clus)
+group3_hybrids = as.data.frame(unique(group3$Pedi)); colnames(group3_hybrids) = "Hybrid" # To generate list of hybrids in Group 3
+table(group3$clus,group3$Exp) # To see experiments in each cluster
+
+group3clus3 = hyb_by_mon_posthoc %>% filter(group==3, clus==3) %>% select(Exp,Pedi,Yield)
+group3clus4 = hyb_by_mon_posthoc %>% filter(group==3, clus==4) %>% select(Exp,Pedi,Yield)
+
+group4 = hyb_by_mon_posthoc %>% filter(group==4) %>% select(Exp,Pedi,Yield,clus)
+group4_hybrids = as.data.frame(unique(group4$Pedi)); colnames(group4_hybrids) = "Hybrid" # To generate list of hybrids in Group 4
+table(group4$clus,group4$Exp) # To see experiments in each cluster
+
+group4clus1 = hyb_by_mon_posthoc %>% filter(group==4, clus==1) %>% select(Exp,Pedi,Yield)
+group4clus3 = hyb_by_mon_posthoc %>% filter(group==4, clus==3) %>% select(Exp,Pedi,Yield)
+group4clus6 = hyb_by_mon_posthoc %>% filter(group==4, clus==6) %>% select(Exp,Pedi,Yield)
+
+match(group2clus9$Pedi,group5clus9$Pedi)
+match(group2clus13$Pedi,group5clus13$Pedi)
