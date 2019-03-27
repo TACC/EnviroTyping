@@ -147,5 +147,12 @@ group4clus1 = hyb_by_mon_posthoc %>% filter(group==4, clus==1) %>% select(Exp,Pe
 group4clus3 = hyb_by_mon_posthoc %>% filter(group==4, clus==3) %>% select(Exp,Pedi,Yield)
 group4clus6 = hyb_by_mon_posthoc %>% filter(group==4, clus==6) %>% select(Exp,Pedi,Yield)
 
+# Save lists of hybrids as separate files 
+write_csv(group1_hybrids,"../../posthoc_group_analysis/2016/Group1.csv")
+write_csv(group2_hybrids,"../../posthoc_group_analysis/2016/Group2.csv")
+write_csv(group3_hybrids,"../../posthoc_group_analysis/2016/Group3.csv")
+write_csv(group4_hybrids,"../../posthoc_group_analysis/2016/Group4.csv")
+
+
 match(group2clus9$Pedi,group5clus9$Pedi)
 match(group2clus13$Pedi,group5clus13$Pedi)
