@@ -34,5 +34,9 @@ Week of 22 March 2019:
 
 Week of 29 March 2019:
   - Recreated violin plots for selected hybrids both individually and by groups
+  - Recreated script that creates dataframes for each group-cluster combination
   - Create new figure describing average yields by group
   - Identify apparent glitch in ggplot code that creates unwanted figure when splitting x-axis into factors
+  - Generated lists of hybrids in each post hoc group
+  - Still need to recreate "dots" image
+    - Created new folder in GitHub under 2016 post_hoc_analysis folder
