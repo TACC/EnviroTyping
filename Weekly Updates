@@ -31,3 +31,8 @@ Week of 22 March 2019:
     - Describe purpose of figures
     - Describe which procedures answer which questions
     - Possibly break my analysis file into separate ones and list where files would be located in GitHub
+
+Week of 29 March 2019:
+  - Recreated violin plots for selected hybrids both individually and by groups
+  - Create new figure describing average yields by group
+  - Identify apparent glitch in ggplot code that creates unwanted figure when splitting x-axis into factors
