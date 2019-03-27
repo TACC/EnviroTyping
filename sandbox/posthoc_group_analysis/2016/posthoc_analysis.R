@@ -121,6 +121,8 @@ dev.off()
 # Now, we would like to get a better feel of the data, such as the composition of the groups 
 # and how the hybrids interact in each cluster/group
 
+# Note: Data from groupiclusj are not used extensively and may be skipped
+
 Pedi_count = as.data.frame(table(hyb_by_mon_posthoc$Pedi)) # To show number of times hybrid is used
 table(hyb_by_mon_posthoc$group,hyb_by_mon_posthoc$Exp) # To show distribution of experiments in each group
 
