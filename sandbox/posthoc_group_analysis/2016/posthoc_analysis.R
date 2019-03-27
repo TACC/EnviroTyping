@@ -82,6 +82,11 @@ dev.off()
 # We want to see how the post-hoc groups differ from one another, so we find hybrids
 # are found in multiple groups and compare their Yield distributions with violin plots
 
+hyb_by_mon_posthoc_sort = hyb_by_mon_posthoc %>% # To get dataframe with hybrids and respective groups
+    group_by_(.dots=c("Pedi","group","clus")) %>%
+    tally() %>% 
+    select(-n)
+
 # Next, we assign the identifiers of our hybrids of interest to their own vector (any can be chosen)
 
 hyb_of_interest = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")
@@ -111,8 +116,12 @@ ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3II
 dev.off()
 
 # Recreate "dots" image 
-# GENERATE LISTS OF HYBRIDS IN ALL GROUPS
 
+
+# Now, we would like to get a better feel of the data, such as the composition of the groups 
+# and how the hybrids interact in each cluster/group
+
+Pedi_count = as.data.frame(table(hyb_by_mon_posthoc$Pedi)) # To show number of times hybrid is used
 table(hyb_by_mon_posthoc$group,hyb_by_mon_posthoc$Exp) # To show distribution of experiments in each group
 
 group1 = hyb_by_mon_posthoc %>% filter(group==1) %>% select(Exp,Pedi,Yield,clus)
@@ -153,6 +162,5 @@ write_csv(group2_hybrids,"../../posthoc_group_analysis/2016/Group2.csv")
 write_csv(group3_hybrids,"../../posthoc_group_analysis/2016/Group3.csv")
 write_csv(group4_hybrids,"../../posthoc_group_analysis/2016/Group4.csv")
 
-
-match(group2clus9$Pedi,group5clus9$Pedi)
+match(group1clus2$Pedi,group2clus2$Pedi)
 match(group2clus13$Pedi,group5clus13$Pedi)
