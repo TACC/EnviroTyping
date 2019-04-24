@@ -21,7 +21,7 @@ set.seed(12345)
 
 #profile regression
 #don't set seed because we can get the seed used from the output.R
-runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 100)
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 532)
 
 #calculate dissimilarity matrix
 calcDists <- calcDissimilarityMatrix(runInfoObj)
