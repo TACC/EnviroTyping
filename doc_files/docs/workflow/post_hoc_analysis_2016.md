@@ -116,3 +116,6 @@ The above code produces:
 
 ![Cluster Yield by Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ClusterYieldsbyGroup.png)
 
+The *y*-value, Average Yield, is plotted across each cluster in every group. Clearly, there are differences across the post-hoc groups. Despite the same cluster appearing in multiple groups, each group appears to have its own characteristics. For example, Cluster 3 appears in each post-hoc group; but the cluster behaves uniquely across groups. The average yield for Cluster 3 is over 150 bu/acre in Group 1, but is slightly below 100 bu/acre in Groups 2 and 4. Likewise, the average yield for each cluster within Group 1 is close to 150 bu/acre; but there is a large range for the average yield of the clusters in Group 2. As such, it may be inferred that clusters within any given post-hoc group exhibit similar weather profiles to the other clusters within the same group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
+
+
