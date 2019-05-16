@@ -116,7 +116,7 @@ The above code produces:
 
 ![Cluster Yield by Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ClusterYieldsbyGroup.png)
 
-The *y*-value, Average Yield, is plotted across each cluster in every group. Clearly, there are differences across the post-hoc groups. Despite the same cluster appearing in multiple groups, each group appears to have its own characteristics. For example, Cluster 3 appears in each post-hoc group; but the cluster behaves uniquely across groups. The average Yield for Cluster 3 is over 150 bu/acre in Group 1, but is slightly below 100 bu/acre in Groups 2 and 4. Likewise, the average Yield for each cluster within Group 1 is close to 150 bu/acre; but there is a large range for the average yield of the clusters in Group 2. As such, it may be inferred that clusters within any given post-hoc group exhibit similar weather profiles to the other clusters within the same group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
+The *y*-value, Average Yield, is plotted across each cluster in every group. Clearly, there are differences across the post-hoc groups. Despite the same cluster appearing in multiple groups, each group appears to have its own characteristics. For example, Cluster 3 appears in each post-hoc group; but the cluster behaves uniquely across groups. The average Yield for Cluster 3 is over 150 bu/acre in Group 1, but is slightly below 100 bu/acre in Groups 2 and 4. Likewise, the average Yield for each cluster within Group 1 is close to 150 bu/acre; but there is a large range for the average yield of the clusters in Group 2. As such, it may be inferred that clusters within any given post-hoc group exhibit similar weather profiles to the other clusters within the same group. We would like to see if the different weather profiles have other effects on Yield.
 
 ### Composition of Groups
 
@@ -137,3 +137,41 @@ Next, we arbitrarily choose a handful of hybrids to plot their distributions. Th
 hyb_of_interest = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")
 ```
 
+Since we want the distribution of Yield for each particular hybrid of interest, we will make violin plots for the hybrids. We must note, however, there existed an apparent issue when we initially made the figure: an extra violin was generated that described the distribution of all of the hybrids in the hyb_of_interest vector. The issue is rectified by subsetting only the data of interest.
+
+```{r}
+hyb_by_mon_interest = hyb_by_mon_posthoc %>% filter(Pedi %in% hyb_of_interest)
+```
+
+The above step may be skipped if you do not encounter similar issues. Whether or not the data are subsetted, the following steps to produce the violin plots are fairly standard. We first show the distribution of the hybrids' Yield without group identifiers but with boxplots that descibe the distributions' five number summaries. As should be expected, each hybrid exhibits different characteristics. For example, hybrid 2369/3IIH6 produces a large range of values for Yield, even some of the greatest values; but the hybrid also produces some of the lowest outliers, as well. On the other hand, hybrid PHW52/LH82 has the smallest range for Yield and also has the greatest median. Similar inferences may be made for the other hybrids.
+
+```{r}
+png("../../working_with_plots/BanksPlots/Figures/ViolinbyPedi.png", width = 1280, height = 1080)
+ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")),y = Yield)) + 
+    labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") +
+    geom_violin(fill = "#ADD8E6") + 
+    geom_boxplot(width=0.1) + 
+    scale_fill_manual(values=group.colors) +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
+dev.off()
+```
+
+![Violin By Pedigree](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ViolinbyPedi.png)
+
+Of course, we want to know if there are any differences across groups for a particular hybrid. Plotting Yield by Pedi and group reveal interesting insights into the nature of each group. For example, Group 1 produces the greatest yield for each hybrid associated with that weather profile. Group 2 tends to have the greatest range of Yield and is associated with the lowest output for each hybrid in that group. Groups 3 and 4 appear to produce Yield somewhere between Groups 1 and 2. These distributions allow us to infer that hybrids grow significantly different in varying climates. Even more so, there exists a "best" climate for each particular hybrid. In other words, each hybrid's Yield may be maximized by planting it in its preferred climate that matches its weather profile.
+
+```{r}
+png("../../working_with_plots/BanksPlots/Figures/ViolinbyGroup.png", width = 1280, height = 1080)
+ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3IIH6","B14A/MO17","B73/MO17","BGEM-0107-N/LH195","PHHB9/LH123HT","PHW52/LH82")),y = Yield,fill = group)) + 
+    geom_violin() + 
+    scale_fill_manual(values=group.colors,name="Group") + 
+    labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") + 
+    theme_bw() + 
+    theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
+dev.off()
+```
+
+![Violin By Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ViolinbyGroup.png)
+
+It is now clear the post-hoc groups have different weather profiles. These profiles may be extracted from the data by identifying the minimum, median, and maximum values for each weather covariate by group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
