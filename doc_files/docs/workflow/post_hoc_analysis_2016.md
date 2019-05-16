@@ -177,3 +177,36 @@ dev.off()
 It is now clear the post-hoc groups have different weather profiles. These profiles may be extracted from the data by identifying the minimum, median, and maximum values for each weather covariate by group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the EnviroTyping GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
 
 ### Group Composition
+
+We can also obtain a detailed description of the composition of each group. Specifically, we can identify the hybrids associated with each post-hoc group. We can refine this idea further by identifying the hybrids' PReMiuM cluster association within each group, as well. The following code first counts the number of times each hybrid is an observation, then shows the number of experiments in each group. We do not provide the code to filter the group data by cluster, but it may be found in the EnviroTyping GitHub repository under `sandbox/posthoc_group_analysis/2016/posthoc_analysis.R`.
+
+```{r}
+Pedi_count = as.data.frame(table(hyb_by_mon_posthoc$Pedi)) # To show number of times hybrid is used
+table(hyb_by_mon_posthoc$group,hyb_by_mon_posthoc$Exp) # To show distribution of experiments in each group
+```
+
+Next, we create new dataframes for Group 1, Group 2, Group 3, and Group 4 which include the hybrid names, experiment locations, crop output, and PReMiuM cluster identifier. Separating the hybrids into the their respective groups allows us to create simple .csv files which list the groups' compositions.
+
+```{r}
+group1 = hyb_by_mon_posthoc %>% filter(group==1) %>% select(Exp,Pedi,Yield,clus)
+group1_hybrids = as.data.frame(unique(group1$Pedi)); colnames(group1_hybrids) = "Hybrid" # To generate list of hybrids in Group 1
+table(group1$clus,group1$Exp) # To see experiments in each cluster
+
+group2 = hyb_by_mon_posthoc %>% filter(group==2) %>% select(Exp,Pedi,Yield,clus)
+group2_hybrids = as.data.frame(unique(group2$Pedi)); colnames(group2_hybrids) = "Hybrid" # To generate list of hybrids in Group 2
+table(group2$clus,group2$Exp) # To see experiments in each cluster
+
+group3 = hyb_by_mon_posthoc %>% filter(group==3) %>% select(Exp,Pedi,Yield,clus)
+group3_hybrids = as.data.frame(unique(group3$Pedi)); colnames(group3_hybrids) = "Hybrid" # To generate list of hybrids in Group 3
+table(group3$clus,group3$Exp) # To see experiments in each cluster
+
+group4 = hyb_by_mon_posthoc %>% filter(group==4) %>% select(Exp,Pedi,Yield,clus)
+group4_hybrids = as.data.frame(unique(group4$Pedi)); colnames(group4_hybrids) = "Hybrid" # To generate list of hybrids in Group 4
+table(group4$clus,group4$Exp) # To see experiments in each cluster
+
+# Save lists of hybrids as separate files 
+write_csv(group1_hybrids,"../../posthoc_group_analysis/2016/Group1.csv")
+write_csv(group2_hybrids,"../../posthoc_group_analysis/2016/Group2.csv")
+write_csv(group3_hybrids,"../../posthoc_group_analysis/2016/Group3.csv")
+write_csv(group4_hybrids,"../../posthoc_group_analysis/2016/Group4.csv")
+```
