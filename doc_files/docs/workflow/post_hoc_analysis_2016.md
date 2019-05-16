@@ -174,4 +174,4 @@ dev.off()
 
 ![Violin By Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ViolinbyGroup.png)
 
-It is now clear the post-hoc groups have different weather profiles. These profiles may be extracted from the data by identifying the minimum, median, and maximum values for each weather covariate by group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
+It is now clear the post-hoc groups have different weather profiles. These profiles may be extracted from the data by identifying the minimum, median, and maximum values for each weather covariate by group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the EnviroTyping GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
