@@ -118,7 +118,7 @@ The above code produces:
 
 The *y*-value, Average Yield, is plotted across each cluster in every group. Clearly, there are differences across the post-hoc groups. Despite the same cluster appearing in multiple groups, each group appears to have its own characteristics. For example, Cluster 3 appears in each post-hoc group; but the cluster behaves uniquely across groups. The average Yield for Cluster 3 is over 150 bu/acre in Group 1, but is slightly below 100 bu/acre in Groups 2 and 4. Likewise, the average Yield for each cluster within Group 1 is close to 150 bu/acre; but there is a large range for the average yield of the clusters in Group 2. As such, it may be inferred that clusters within any given post-hoc group exhibit similar weather profiles to the other clusters within the same group. We would like to see if the different weather profiles have other effects on Yield.
 
-### Composition of Groups
+### Group Characteristics
 
 We first want to uncover more of the differences between the groups. We'll do so by identifying several hybrids that appear in multiple groups and analyzing the distribution of the Yield variable by hybrid. First, we want to identify the hybrids that appear in multiple groups.
 
@@ -175,3 +175,5 @@ dev.off()
 ![Violin By Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ViolinbyGroup.png)
 
 It is now clear the post-hoc groups have different weather profiles. These profiles may be extracted from the data by identifying the minimum, median, and maximum values for each weather covariate by group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the EnviroTyping GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
+
+### Group Composition
