@@ -114,7 +114,7 @@ dev.off()
 
 The above code produces:
 
-![Cluster Yield by Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ClusterYieldsbyGroup.png)
+![Cluster Yield by Group](img/BanksPlots/Figures/ClusterYieldsbyGroup.png)
 
 The *y*-value, Average Yield, is plotted across each cluster in every group. Clearly, there are differences across the post-hoc groups. Despite the same cluster appearing in multiple groups, each group appears to have its own characteristics. For example, Cluster 3 appears in each post-hoc group; but the cluster behaves uniquely across groups. The average Yield for Cluster 3 is over 150 bu/acre in Group 1, but is slightly below 100 bu/acre in Groups 2 and 4. Likewise, the average Yield for each cluster within Group 1 is close to 150 bu/acre; but there is a large range for the average yield of the clusters in Group 2. As such, it may be inferred that clusters within any given post-hoc group exhibit similar weather profiles to the other clusters within the same group. We would like to see if the different weather profiles have other effects on Yield.
 
@@ -157,7 +157,7 @@ ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3II
 dev.off()
 ```
 
-![Violin By Pedigree](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ViolinbyPedi.png)
+![Violin By Pedigree](img/BanksPlots/Figures/ViolinbyPedi.png)
 
 Of course, we want to know if there are any differences across groups for a particular hybrid. Plotting Yield by Pedi and group reveal interesting insights into the nature of each group. For example, Group 1 produces the greatest yield for each hybrid associated with that weather profile. Group 2 tends to have the greatest range of Yield and is associated with the lowest output for each hybrid in that group. Groups 3 and 4 appear to produce Yield somewhere between Groups 1 and 2. These distributions allow us to infer that hybrids grow significantly different in varying climates. Even more so, there exists a "best" climate for each particular hybrid. In other words, each hybrid's Yield may be maximized by planting it in its preferred climate that matches its weather profile.
 
@@ -172,7 +172,7 @@ ggplot(hyb_by_mon_interest,aes(x = factor(Pedi,level = c("2369/3IIH6","2FACC/3II
 dev.off()
 ```
 
-![Violin By Group](https://github.com/TACC/EnviroTyping/blob/master/sandbox/working_with_plots/Figures/ViolinbyGroup.png)
+![Violin By Group](img/BanksPlots/Figures/ViolinbyGroup.png)
 
 It is now clear the post-hoc groups have different weather profiles. These profiles may be extracted from the data by identifying the minimum, median, and maximum values for each weather covariate by group. Because the profiles produce several large figures, we do not provide the plots in this guide. The weather profiles for each group may be seen in the EnviroTyping GitHub under `sandox/working_with_plots/Figures/Banks_Post-HocAnalysisofWeather Profiles.pdf`.
 
