@@ -1,4 +1,4 @@
-setwd("~/RProjects/EnviroTyping/sandbox/posthoc_group_analysis/2016/violin_app/")
+setwd("~/EnviroTyping/sandbox/posthoc_group_analysis/2016/violin_app/")
 library(shiny)
 library(ggplot2)
 library(tidyr)
@@ -23,7 +23,7 @@ ui <- fluidPage(
             
             selectInput("hybrids",
                         h3("Choose up to 8 Hybrids"),
-                        choices = choicesHybrids, # will change to vector of unique Pedi
+                        choices = names(choicesHybrids), # will change to vector of unique Pedi
                         selected = NULL,
                         multiple = TRUE),
             
@@ -41,10 +41,17 @@ ui <- fluidPage(
 # Define server logic ----
 server <- function(input, output) {
     
+    df = hyb_by_mon_posthoc
+    
+    df_subset = reactive({
+        a = df[which(as.character(factor(Pedi,level = input$hybrids)) != 'NA'),]
+        return(a)
+    })
+    
     output$distributions <- renderPlot({
         
     # Violin by Pedi  
-    p <- ggplot(hyb_by_mon_posthoc,aes(x = factor(Pedi,level = input$hybrids),y = Yield)) + 
+    p <- ggplot(df_subset(),aes(Pedi,Yield)) + 
         labs(title = "Yield by Pedigree",x = "Pedi",y = "Yield") +
         geom_violin(fill = "#ADD8E6") + 
         geom_boxplot(width=0.1) + 
@@ -58,7 +65,7 @@ server <- function(input, output) {
     
     # Violin by group 
     else if(input$group == TRUE){
-        p <- ggplot(hyb_by_mon_posthoc,aes(x = factor(Pedi,level = input$hybrids),y = Yield,fill = group)) + 
+        p <- ggplot(df_subset(),aes(Pedi, Yield, fill = group)) + 
             geom_violin() + 
             scale_fill_manual(values=group.colors,name="Group") + 
             labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") + 
