@@ -1,4 +1,4 @@
-setwd("~/EnviroTyping/sandbox/posthoc_group_analysis/2016/violin_app/")
+setwd("~/RProjects/EnviroTyping/sandbox/posthoc_group_analysis/2016/violin_app/")
 library(shiny)
 library(ggplot2)
 library(tidyr)
@@ -31,12 +31,12 @@ ui <- fluidPage(
             checkboxInput("group", "Yes", value = FALSE),
             
             submitButton("Submit")
-        ),
+            ),
         mainPanel(
             plotOutput("distributions")
         )
     )
-)
+    )
 
 # Define server logic ----
 server <- function(input, output) {
@@ -44,38 +44,36 @@ server <- function(input, output) {
     df = hyb_by_mon_posthoc
     
     df_subset = reactive({
-        a = df[which(as.character(factor(Pedi,level = input$hybrids)) != 'NA'),]
+        a = df[which(as.character(factor(df$Pedi,level = input$hybrids)) != 'NA'),]
         return(a)
     })
     
     output$distributions <- renderPlot({
         
-    # Violin by Pedi  
-    p <- ggplot(df_subset(),aes(Pedi,Yield)) + 
-        labs(title = "Yield by Pedigree",x = "Pedi",y = "Yield") +
-        geom_violin(fill = "#ADD8E6") + 
-        geom_boxplot(width=0.1) + 
-        scale_fill_manual(values=group.colors) +
-        theme_bw() +
-        theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
-    
-    if(input$group == FALSE){
-        p
-    }
-    
-    # Violin by group 
-    else if(input$group == TRUE){
-        p <- ggplot(df_subset(),aes(Pedi, Yield, fill = group)) + 
-            geom_violin() + 
-            scale_fill_manual(values=group.colors,name="Group") + 
-            labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") + 
-            theme_bw() + 
+        # Violin by Pedi  
+        p <- ggplot(df_subset(),aes(Pedi,Yield)) + 
+            labs(title = "Yield by Pedigree",x = "Pedi",y = "Yield") +
+            geom_violin(fill = "#ADD8E6") + 
+            geom_boxplot(width=0.1) + 
+            scale_fill_manual(values=group.colors) +
+            theme_bw() +
             theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
-        p
-    }
-# need to connect data to function
-# need to create funtion to draw violins
-# need to make option to separate by groups
+        
+        if(input$group == FALSE){
+            p
+        }
+        
+        # Violin by group 
+        else if(input$group == TRUE){
+            p <- ggplot(df_subset(),aes(Pedi, Yield, fill = group)) + 
+                geom_violin() + 
+                scale_fill_manual(values=group.colors,name="Group") + 
+                labs(title = "Yield by Pedigree and Group",x = "Pedi",y = "Yield") + 
+                theme_bw() + 
+                theme(axis.text.x = element_text(angle=45,hjust=1), plot.title = element_text(hjust = 0.5))
+            p
+        }
+
     })
 }
 
