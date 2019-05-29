@@ -11,7 +11,7 @@ df <- read_rds("../../../../../data/interim/2016/hyb_by_mon_calib_w_wth_nas.rds"
 df = df[is.na(df$yield) == FALSE,]
 
 variance.var <- names(which(map_dbl(df[,16:dim(df)[2]], var, na.rm = TRUE) != 0))
-min.vars <- str_subset(variance.var, "min")
+min.vars <- str_subset(variance.var, "mean")
 
 set.seed(12345)
 runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 500)
