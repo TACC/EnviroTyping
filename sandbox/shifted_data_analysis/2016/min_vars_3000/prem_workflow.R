@@ -21,7 +21,7 @@ set.seed(12345)
 
 #profile regression
 #don't set seed because we can get the seed used from the output.R
-runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 532)
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 532, seed = 3846532330)
 
 #calculate dissimilarity matrix
 calcDists <- calcDissimilarityMatrix(runInfoObj)
@@ -29,9 +29,13 @@ calcDists <- calcDissimilarityMatrix(runInfoObj)
 #calculate optimal clustering
 clusObj <- calcOptimalClustering(calcDists)
 
+clusObj$clusObjRunInfoObj$xMat = na_if(clusObj$clusObjRunInfoObj$xMat, -999)
+
 #calculate risk profile
 riskProfObj <- calcAvgRiskAndProfile(clusObj)
 
 #write clusObj to take a quick look at clustering 
 #clustering is how we have been assessing performance on surface level
 write_rds(clusObj, "../clusObj1.rds", compress = "xz")
+
+write_rds(riskProfObj, "../riskProfObj1.rds", compress = "xz")
