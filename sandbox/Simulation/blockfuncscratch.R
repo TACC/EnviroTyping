@@ -6,7 +6,7 @@ dat = read_rds('~/EnviroTyping/sandbox/shifted_data_analysis/simulated/data/hyb_
 
 dat = dat[[1]]
 
-desiNA = .20
+desiNA = .40
 
 ##Isolate variables
 
@@ -42,5 +42,15 @@ dat[,grep(sel.var,colnames(dat))] = NA
 propNA = mean(is.na(dat[,1:length(dat)]))
 
 isTRUE(all.equal(0, desiNA - propNA, tolerance = .05))
+
+newdat1 = naBlockFunc(dat, .10, seed = 12345)
+newdat2 = naBlockFunc(dat, .10, seed = 12345)
+identical(newdat1, newdat2)
+
+all.loc = c(as.character(unique(dat$StYRe)))
+
+
+newdat1 = naBlockFunc(dat, .20, "intervals", seed = 12345)
+
 
 
