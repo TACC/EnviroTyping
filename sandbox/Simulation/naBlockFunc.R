@@ -1,7 +1,12 @@
-naBlockFunc <- function(df, desiNA, type, seed) {
+naBlockFunc <- function(df, desiNA, type = "variable", seed) {
     set.seed(seed)
     dat = df
     propNA = 0
+    
+    if (desiNA > 1){
+        stop("desiNA should be between 0 and 1")
+        geterrmessage("desiNA should be between 0 and 1")
+    }
     
     ##Isolate variables
     if (type == 'variable') {
@@ -66,35 +71,7 @@ naBlockFunc <- function(df, desiNA, type, seed) {
             propNA = mean(is.na(dat[,1:length(dat)]))
         }
         return(dat)
+        #return(print(paste("The total proportion of NA's in the data set is", round(propNA,4), "and NA's were blocked by", type, sep = " ")))
+        
     }
 }
-
-
-
-
-
-
-
-#     
-#     ##Choose variable
-#     
-#     sel.var = all.vars[round(runif(1,1,length(all.vars)))]
-#     all.vars = all.vars[-which(all.vars == sel.var)]
-#     
-#     
-#     ##Set corresponding variable to NA and check total % of NA
-#     
-#     dat[,grep(sel.var,colnames(dat))] = NA
-#     propNA = mean(is.na(dat[,1:length(dat)]))
-#     
-#     toggle = isTRUE(all.equal(0, desiNA - propNA, tolerance = .05))
-#     
-#     if (toggle == TRUE) {
-#     return(dat)
-#     } else {
-#         sel.var = all.vars[round(runif(1,1,length(all.vars)))]
-#         all.vars = all.vars[-which(all.vars == sel.var)]   
-#         dat[,grep(sel.var,colnames(dat))] = NA
-#         propNA = mean(is.na(dat[,1:length(dat)]))
-#     } 
-# }
