@@ -29,12 +29,12 @@ naBlockFunc <- function(df, desiNA, type, seed) {
     
         #Begin while loop
     
-        while (isTRUE(all.equal(0, desiNA - propNA, tolerance = .05)) == FALSE) {
+        while (isTRUE(all.equal(0, desiNA - propNA, tolerance = .03)) == FALSE) {
         
-            sel.var = all.vars[round(runif(1,1,length(all.vars)))]
+            sel.var = all.vars[sample(1:length(all.vars),1)]
             #all.vars = all.vars[-which(all.vars == sel.var)]
         
-            sel.loc = all.loc[round(runif(1,1,length(all.loc)))]
+            sel.loc = all.loc[sample(1:length(all.loc),1)]
             #all.loc = all.loc[-which(all.loc == sel.loc)]
         
             dat[grep(sel.loc,dat$StYRe),grep(sel.var,colnames(dat))] = NA
@@ -43,23 +43,26 @@ naBlockFunc <- function(df, desiNA, type, seed) {
         return(dat)
     }
     else if (type == "intervals") {
-        tim1 = colnames(dat)[grep('1', colnames(dat))]
-        tim2 = colnames(dat)[grep('2', colnames(dat))]
-        tim3 = colnames(dat)[grep('3', colnames(dat))]
-        tim4 = colnames(dat)[grep('4', colnames(dat))]
-        
-        all.tim = c(tim1, tim2, tim3, tim4)
+        # tim1 = colnames(dat)[grep('1', colnames(dat))]
+        # tim2 = colnames(dat)[grep('2', colnames(dat))]
+        # tim3 = colnames(dat)[grep('3', colnames(dat))]
+        # tim4 = colnames(dat)[grep('4', colnames(dat))]
+        # 
+        # all.tim = c(tim1, tim2, tim3, tim4)
         all.loc = c(as.character(unique(dat$StYRe)))
         
-        while (isTRUE(all.equal(0, desiNA - propNA, tolerance = .05)) == FALSE) {
+        while (isTRUE(all.equal(0, desiNA - propNA, tolerance = .03)) == FALSE) {
             
-            sel.tim = all.tim[round(runif(1,1,length(all.tim)))]
+            
+            sel.tim = colnames(dat)[grep(paste0(sample(1:4,1)), colnames(dat))]
+            #sel.tim = all.tim[round(runif(1,1,length(all.tim)))]
             #all.vars = all.vars[-which(all.vars == sel.var)]
             
-            sel.loc = all.loc[round(runif(1,1,length(all.loc)))]
+            sel.loc = all.loc[sample(1:length(all.loc),1)]
             #all.loc = all.loc[-which(all.loc == sel.loc)]
-            
-            dat[grep(sel.loc,dat$StYRe),grep(sel.tim,colnames(dat))] = NA
+            for (i in 1:length(sel.tim)) {
+                dat[grep(sel.loc,dat$StYRe),grep(sel.tim[i],colnames(dat))] = NA
+            }
             propNA = mean(is.na(dat[,1:length(dat)]))
         }
         return(dat)
