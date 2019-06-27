@@ -51,6 +51,9 @@ all.loc = c(as.character(unique(dat$StYRe)))
 
 
 newdat1 = naBlockFunc(dat, .20, "intervals", seed = 12345)
+mean(is.na(newdat1[,1:length(newdat1)]))
 
+dat = dat[[2]]
 
+newdat2 = naBlockFunc(dat, .4, seed = 12345)
 

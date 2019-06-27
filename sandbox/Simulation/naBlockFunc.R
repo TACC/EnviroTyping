@@ -1,5 +1,4 @@
-naBlockFunc <- function(df, desiNA, type = "variable", seed) {
-    set.seed(seed)
+naBlockFunc <- function(df, desiNA, type = "variable") {
     dat = df
     propNA = 0
     
