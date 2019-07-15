@@ -1,7 +1,5 @@
 # Making Human Readable Visualizations
 
-Descriptions and goals
-
 We want to ensure both researchers and practioners alike will understand the results of our post-hoc analysis. Because the output of the analysis is rather extensive, visualizing results past those seen previously can be a massive undertaking. Consequently, it is a challenge to make code for the figures easy to follow and to choose the proper results to visualize. Our goal for this walkthrough is to extend our work in the post-hoc analysis page by highlighting various results through different types of human-readable figures.
 
 ## Shiny Apps
@@ -10,7 +8,9 @@ R has the ability to run dynamic web-based apps, called Shiny apps. Shiny apps m
 
 The first Shiny app is one which allows users to choose several different hybrids and plot their Yield distributions via violin plots. There is also an option to split the hybrids into their respective groups in order to see how hybrids that are associated with more than one weather profile differ across post-hoc groups. We won't provide all the code to produce the app in this walkthrough because it is extensive and may be found at this [link](https://github.com/TACC/EnviroTyping/blob/Tutorial_Additions/sandbox/posthoc_group_analysis/2016/violin_app/app.R). If you desire to run the app on your local machine, you must download the whole folder entitled `violin_app` and ensure any directory references match those in your own R workspace. __*However, you may also see the app hosted online [here](https://bno5761.shinyapps.io/violin_app/)*__. 
 
-Weather profiles and location of code
+The second Shiny app is one which provides a more in-depth look at the weather profiles of the respective groups. Users may choose any group and see how any number of the significant weather variables determine its weather profile. Further, users may select different scales for the *y*-axis and treat NAs as 0s in order to identify trends more clearly. The code for this app is much more extensive than the violins, so may find the code to run the app locally [here](https://github.com/TACC/EnviroTyping/blob/Tutorial_Additions/sandbox/posthoc_group_analysis/2016/profiles_app/app.R). Like with the violin plots app, the app to visualize the weather profiles is also online. __*It may be utilized at this [page](https://bno5761.shinyapps.io/profiles_app/)*__.
+
+Of course, many more apps could be produced; and you are more than welcome to help in our effort.
 
 ## Maps
 
