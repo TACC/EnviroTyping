@@ -9,14 +9,14 @@ library(tictoc)
 
 The PReMiuM _profRegr_ function returns a lot of output.  Creating a separate directory for the output can help when recovering files later.
 ```r
-setwd("~/GitHub/EnviroTyping/data/interim/G2F_Hybrid/small_data/")
+setwd("~/GitHub/EnviroTyping/sandbox/interim_datasets/2015/")
 dir.create("output")
 setwd("./output")
 ```
 
 Next, import a dataset.  This one in particular has 5 different hybrids (2 replicates of each) found in 5 locations for a total of 50 observations.  The columns are the variables which comprise of the hybrid label, the yield in bushels per acre collected at the end of the season, and weather variables temperature and dew point for months May through October.
 ```r
-df <- read_rds("../../toy_data.rds")
+df <- read_rds("../toy_data.rds")
 head(df)
 ```
 As mentioned in the PReMiuM manual it is a good idea to set the seed in the _profRegr_ function and outside the PReMiuM workflow.  Also depending on the size of the dataset (particularly the number of columns), the runtime on _profRegr_ can increase dramatically.  Here is process time is captured with the _tic_ and _toc_ functions.  As this is model is mixed the continuous covariates need to be identified.
