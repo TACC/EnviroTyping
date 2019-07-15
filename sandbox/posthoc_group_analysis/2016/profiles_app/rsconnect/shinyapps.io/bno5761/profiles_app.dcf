@@ -1,0 +1,10 @@
+name: profiles_app
+title:
+username:
+account: bno5761
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1031894
+bundleId: 2233851
+url: https://bno5761.shinyapps.io/profiles_app/
+when: 1563210339.44054
