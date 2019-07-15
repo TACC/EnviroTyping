@@ -14,5 +14,11 @@ Of course, many more apps could be produced; and you are more than welcome to he
 
 ## Maps
 
+Recall that one of our main goals of EnviroTyping is to identify which weather variables contribute to the differences in GxE. Simply looking at results from an analysis of the post-hoc weather profiles (as in the aforementioned app) will go only so far because there is still room for human inference to decide the climate each profile reflects. We bridge the gap between the post-hoc results and human inference by plotting on a map the locations of the hybrids and looking for trends in clusters of hybrids that are associated with certain groups.
+
+Describe getting lat and lon data (including the IA exps)
+Show code for each step
 Examples
 Code
+
+![Corn Experiments](../img/BanksPlots/Figures/Corn_Experiments.png)
