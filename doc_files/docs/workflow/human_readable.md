@@ -125,7 +125,9 @@ top_bottom_3 = rbind(head(group3_mean),tail(group3_mean))
 top_bottom_4 = rbind(head(group4_mean),tail(group4_mean))
 ```
 
-Because all hybrids at the same Experiment will have the same coordinates, we allow for a small amount of jitter in the plotting of their locations in order to more aptly identify the trends. Consequently, any figures produced using the following code may have slightly different locations for the points; but the overall patterns will be the same.
+It should be noted that the above code appears to include a bug with the min_max_Mean variables. All observations in each dataframe should be bounded between 1 and 4, with only one observation in each dataframe holding either value; but there are multiple observations with either the same minimum or maximum value. This issue does not affect the meaning of the figures -- only the size of the dots. 
+
+Nonetheless, because all hybrids at the same Experiment will have the same coordinates, we allow for a small amount of jitter in the plotting of their locations in order to more aptly identify the trends. Consequently, any figures produced using the following code may have slightly different locations for the points; but the overall patterns will be the same.
 
 ```
 ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = "grey", color = "white") +
@@ -142,9 +144,49 @@ ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fi
 
 ![Top_Worst_Hybrids_Group](../img/BanksPlots/Corn_Maps/Top_Worst_Hybrids_Group.png)
 
+It should be noted that dot sizes in the above graph cannot be compared across groups but may be compared within groups. Nonetheless, there are very obvious patterns throughout the map. Unsurprisingly, groups appear to be clustered in particular regions. If you desire to dig futher into the top and bottom performers within each group, there are figures that illustrate the top 35 and bottom 35 performers in the GitHub under `EnviroTyping/doc_files/docs/img/Corn_Maps`. The code to produce the aforementioned figures is located in the R script `CornMaps.R` within the folder `EnviroTyping/sandbox/posthoc_group_analysis/2016/`.
 
+Now that we've shown where each post-hoc group's preferred climate is, we can now take a more in-depth look at specific hybrids. Theoretically, each hybrid should have a preferred climate; or, at the very least, some hybrids' Yield should be maximized in particular regions. We will sort our data in such a way we find the association between each hybrid and its respective post-hoc group(s). 
 
-Show code for each step
-Examples
-Code
+```
+hyb_by_mon_posthoc_sort = hyb_by_mon_posthoc_map %>% # To get dataframe with hybrids and respective groups
+    group_by_(.dots=c("Pedi","group","clus")) %>%
+    tally() %>% 
+    select(-n) %>%
+    distinct(Pedi,group)
+```
 
+We arbitrarily choose the hybrid 2369/3IIH6 because a quick perusal of the above dataframe reveals the hybrid appears in all four groups, and we want to see how it differs in Yield geographically. You can choose any number of hybrids with the following code, but you just need to be aware of the number of points to be plotted.
+
+```
+hybrid_choices = "2369/3IIH6" # arbitrarily chosen because they show up in 4 groups
+
+group1_hyb = group1_mean %>% filter(Pedi %in% hybrid_choices) %>% mutate(group = "1")
+group2_hyb = group2_mean %>% filter(Pedi %in% hybrid_choices) %>% mutate(group = "2")
+group3_hyb = group3_mean %>% filter(Pedi %in% hybrid_choices) %>% mutate(group = "3")
+group4_hyb = group4_mean %>% filter(Pedi %in% hybrid_choices) %>% mutate(group = "4")
+group_hyb = as.data.frame(rbind(group1_hyb,group2_hyb,group3_hyb,group4_hyb))
+
+group_hyb = group_hyb %>% mutate(min_max_Mean = 3*abs(min_max_scale(Mean))+1) # to make dots comparable across groups
+
+# Plot the figure
+
+ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = "grey", color = "white") +
+    geom_point(data = group1_hyb, aes(x = long, y = lat, color = group1_hyb$Mean), size = group1_hyb$min_max_Mean, position = position_jitter(w = 1, h = 0.8)) + 
+    geom_point(data = group2_hyb, aes(x = long, y = lat, color = group2_hyb$Mean), size = group2_hyb$min_max_Mean, position = position_jitter(w = 1, h = 0.8)) +    
+    geom_point(data = group3_hyb, aes(x = long, y = lat, color = group3_hyb$Mean), size = group3_hyb$min_max_Mean, position = position_jitter(w = 1, h = 0.8)) + 
+    geom_point(data = group4_hyb, aes(x = long, y = lat, color = group4_hyb$Mean), size = group4_hyb$min_max_Mean, position = position_jitter(w = 1, h = 0.8)) +
+    scale_color_gradient(low = "red", high = "deepskyblue3",name = "Average\nYield") +
+    guides(fill=guide_legend(title="Group")) + 
+    labs(title = "Locations of Hybrid 2369/3IIH6 by Post-hoc Group", x = "Longitude", y = "Latidude") +
+    theme(plot.title = element_text(hjust=0.5)) +
+    coord_fixed(1.4) +
+    geom_label_repel(data = group1_hyb, aes(long,lat,label = "1")) +
+    geom_label_repel(data = group2_hyb, aes(long,lat,label = "2")) +
+    geom_label_repel(data = group3_hyb, aes(long,lat,label = "3")) +
+    geom_label_repel(data = group4_hyb, aes(long,lat,label = "4"))
+```
+
+![2369:3IIH6](../img/BanksPlots/Corn_Maps/2369:3IIH6_by_group.png)
+
+The above figure appears to imply the hybrid 2369/3IIH6 has a preferred climate because its performance in Group 1 dominates its performance in other groups, namely Groups 3 and 4. Consequently, we could make similar inferences about other hybrids and their preferred climates, given the groups' weather profiles.
