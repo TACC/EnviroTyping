@@ -15,6 +15,7 @@ pages:
     - 'Small Real Data Analysis': 'workflow/toy_g2f.md'
     - 'Post hoc Analysis': 'workflow/profile_by_group.md'
     - '2016 Post-hoc Analysis': 'workflow/post_hoc_analysis_2016.md'
+    - 'Human-Readable Visualization': 'workflow/human_readable.md'
     - 'Interactive App': 'workflow/profile_by_group_app.md'
 - Tutorials:
     - 'Getting Started With High Performance Computing': 'tutorials/hpc_setup.md'
