@@ -64,7 +64,6 @@ We are almost ready to produce our first figure that will illustrate which Exper
 dot_size_Exp = hyb_by_mon_posthoc_map %>% group_by(Exp) %>% 
     summarize(Mean = mean(Yield,na.rm = TRUE)) %>%
     mutate(ln_Mean = log(Mean),min_max_Mean = 3*abs(min_max_scale(Mean))+1,scale_Mean = abs(scale(Mean))) # 3 is arbitrary; any scalar can be chosen
-
 ```
 
 Now, we can produce the figures we initially supposed. The first figure illustrates all the crop experiments, colors the locations based upon their average Yields, and scales the point sizes based upon magnitude of the means. We exclude the outline for Ontario because including the map of Canada alters the scaling of the map deleteriously, but the Experiment locations in Ontario are still depicted. 
@@ -80,7 +79,6 @@ ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fi
     coord_fixed(1.4)
 ```
 
-h
 ![Corn Experiments](../img/BanksPlots/Corn_Maps/Corn_Experiments.png)
 
 Clearly, there are trends in the average Yield across Experiment locations. The locations in the upper-Midwest appear to produce much larger quantities of corn than those in the South. However, there is still room for speculation as to which weather profile matches which climate. Because Experiments are not assigned to post-hoc groups, we need to plot the locations of the hybrids themselves, coloring the points based upon their groups, to analyze any macro-level trends in the spread of the weather profiles. We assume that plotting the best and worst performers will help us reach that goal. We first need to isolate our data of interest in each group.
