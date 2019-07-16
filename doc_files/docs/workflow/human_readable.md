@@ -21,4 +21,4 @@ Show code for each step
 Examples
 Code
 
-![Corn Experiments](../img/BanksPlots/Figures/Corn_Experiments.png)
+![Corn Experiments](../../img/BanksPlots/Figures/Corn_Experiments.png)
