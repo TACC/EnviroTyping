@@ -18,7 +18,8 @@ Recall that one of our main goals of EnviroTyping is to identify which weather v
 
 Because our ultimate goal is to produce maps, we need to ensure the data include longitude and latitude coordinates for the crop experiments. The process of obtaining coordinates is straightforward: merge the variables `Weather station latitude` and `Weather station longitude` from the file `EnviroTyping/data/external/G2F/g2f_2016_field_metadata.csv` on the variable `Exp` in `EnviroTyping/sandbox/posthoc_group_analysis/2016/posthocgroup.rds`. To make the process simpler, however, we simply provide the final output of the merge via the file `EnviroTyping/sandbox/posthoc_group_analysis/2016/hyb_by_mon_posthoc_map.rds`. We must pre-process some of the data before producing the figures.
 
-```library(tidyverse) # for easier figure production
+```{r}
+library(tidyverse) # for easier figure production
 library(maps) # for map production
 library(mapdata) # for map boundaries
 library(ggrepel) # for proper labelling
@@ -32,7 +33,7 @@ hyb_by_mon_posthoc_map = read_rds("~/RProjects/Maps/hyb_by_mon_posthoc_map.rds")
 
 A quick glance of `hyb_by_mon_posthoc_map` reveals the geographic data of four Experiment locations (those in Iowa) are missing, so we replace the NAs with the proper longitude and latitude data.
 
-```
+```{r}
 # Tidy locations in Iowa
 hyb_by_mon_posthoc_map$Lat[hyb_by_mon_posthoc_map$Exp == "IAH1"] = 41.99762
 hyb_by_mon_posthoc_map$Lon[hyb_by_mon_posthoc_map$Exp == "IAH1"] = -93.69622
@@ -46,7 +47,7 @@ hyb_by_mon_posthoc_map$Lon[hyb_by_mon_posthoc_map$Exp == "IAH4"] = -91.49214
 
 Next, we load data pertaining to maps of the United States and Canada. We also perform a step to ensure we use the same verbage across all datasets when referring to geographic data.
 
-```
+```{r}
 usa = map_data("usa")
 states = map_data("state")
 canada = map_data("world","canada") # This is not used in our analysis, but it can be utilized in the future.
@@ -60,7 +61,7 @@ stations$long[6:9] = c(-93.69622,-93.61800,-92.24096,-91.49214)
 
 We are almost ready to produce our first figure that will illustrate which Experiment locations produce the greatest Yield. We want our figure to be read and understood quickly, so we will add an effect that changes the size of the points based upon the value of interest (Yield). It should be noted, though, the last line in the following step adds three different variables, each of which may be used as a type of scaling. We find the `min_max_Mean` scaling variable works best for our purposes.
 
-```
+```{r}
 dot_size_Exp = hyb_by_mon_posthoc_map %>% group_by(Exp) %>% 
     summarize(Mean = mean(Yield,na.rm = TRUE)) %>%
     mutate(ln_Mean = log(Mean),min_max_Mean = 3*abs(min_max_scale(Mean))+1,scale_Mean = abs(scale(Mean))) # 3 is arbitrary; any scalar can be chosen
@@ -68,7 +69,7 @@ dot_size_Exp = hyb_by_mon_posthoc_map %>% group_by(Exp) %>%
 
 Now, we can produce the figures we initially supposed. The first figure illustrates all the crop experiments, colors the locations based upon their average Yields, and scales the point sizes based upon magnitude of the means. We exclude the outline for Ontario because including the map of Canada alters the scaling of the map deleteriously, but the Experiment locations in Ontario are still depicted. 
 
-```
+```{r}
 ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = "grey", color = "white") +
     #geom_polygon(data = canada, aes(x = long, y = lat, group = group), color = "white") +
     geom_point(data = stations, aes(x = long, y = lat, color = dot_size_Exp$Mean), size = dot_size_Exp$min_max_Mean) + 
@@ -83,7 +84,7 @@ ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fi
 
 Clearly, there are trends in the average Yield across Experiment locations. The locations in the upper-Midwest appear to produce much larger quantities of corn than those in the South. However, there is still room for speculation as to which weather profile matches which climate. Because Experiments are not assigned to post-hoc groups, we need to plot the locations of the hybrids themselves, coloring the points based upon their groups, to analyze any macro-level trends in the spread of the weather profiles. We assume that plotting the best and worst performers will help us reach that goal. We first need to isolate our data of interest in each group.
 
-```
+```{r}
 # Filter by group
 
 group1 = hyb_by_mon_posthoc_map %>% filter(group==1) %>% select(Exp,Pedi,Yield,clus,Lat,Lon)
@@ -129,7 +130,7 @@ It should be noted that the above code appears to include a bug with the min_max
 
 Nonetheless, because all hybrids at the same Experiment will have the same coordinates, we allow for a small amount of jitter in the plotting of their locations in order to more aptly identify the trends. Consequently, any figures produced using the following code may have slightly different locations for the points; but the overall patterns will be the same.
 
-```
+```{r}
 ggplot() + geom_polygon(data = states, aes(x = long, y = lat, group = group), fill = "grey", color = "white") +
     geom_point(data = top_bottom_1, aes(x = long, y = lat, color = "#019E73"), size = top_bottom_1$min_max_Mean, position = position_jitter(w = 1, h = 0.8)) + 
     geom_point(data = top_bottom_2, aes(x = long, y = lat, color = "#57B4E9"), size = top_bottom_2$min_max_Mean, position = position_jitter(w = 1, h = 0.8)) +    
@@ -148,7 +149,7 @@ It should be noted that dot sizes in the above graph cannot be compared across g
 
 Now that we've shown where each post-hoc group's preferred climate is, we can now take a more in-depth look at specific hybrids. Theoretically, each hybrid should have a preferred climate; or, at the very least, some hybrids' Yield should be maximized in particular regions. We will sort our data in such a way we find the association between each hybrid and its respective post-hoc group(s). 
 
-```
+```{r}
 hyb_by_mon_posthoc_sort = hyb_by_mon_posthoc_map %>% # To get dataframe with hybrids and respective groups
     group_by_(.dots=c("Pedi","group","clus")) %>%
     tally() %>% 
@@ -158,7 +159,7 @@ hyb_by_mon_posthoc_sort = hyb_by_mon_posthoc_map %>% # To get dataframe with hyb
 
 We arbitrarily choose the hybrid 2369/3IIH6 because a quick perusal of the above dataframe reveals the hybrid appears in all four groups, and we want to see how it differs in Yield geographically. You can choose any number of hybrids with the following code, but you just need to be aware of the number of points to be plotted.
 
-```
+```{r}
 hybrid_choices = "2369/3IIH6" # arbitrarily chosen because they show up in 4 groups
 
 group1_hyb = group1_mean %>% filter(Pedi %in% hybrid_choices) %>% mutate(group = "1")
