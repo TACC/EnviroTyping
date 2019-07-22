@@ -33,11 +33,11 @@ runInfoObj <- profRegr(covNames, outcome = 'Yield',
                        nProgress = 25, seed = 1234)
 toc()
 ```
-The object created by _profRegr_ can be useful for analysis later so keep a copy of it is a good idea.  It also can be quite large depending on the size of the dataset and number of iterations during the MCMC run so compressing it to move across the servers should occur.
+The object created by _profRegr_ can be useful for analysis later so keeping a copy of it is a good idea.  It also can be quite large depending on the size of the dataset and number of iterations during the MCMC run, so compressing it to move across the servers is also wise.
 ```r
 write_rds(runInfoObj, path = "../runInfoObj.rds", compress = "xz")
 ```
-Next, the rest of the PReMiuM workflow is completed.  The object **riskProfObj** is also saved for future work.  A summary of the analysis can be seen in the plot created.
+Next, we complete the final portions of the PReMiuM workflow.  The object **riskProfObj** is also saved for future work.  A summary of the analysis can be seen in the plot created.
 ```r
 calcDists <- calcDissimilarityMatrix(runInfoObj)
 clusObj <- calcOptimalClustering(calcDists)
