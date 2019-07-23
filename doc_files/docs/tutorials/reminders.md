@@ -15,7 +15,7 @@
  
   Fourth, don't forget to push or pull updates from your Git respository. Many headaches are avoided if you get into the habit of typing `git pull` in the command line as soon as you push an updated file from your local machine and are logged into Stampede2.
  
-  ## Other Useful Commands
+ ## Other Useful Commands
  
   Navigating directories through a command line can be daunting the first couple of times you do it, but it becomes easier with time and experience. Here are some basic commands and their effects:
  
