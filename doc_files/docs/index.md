@@ -20,12 +20,12 @@ Genetically-Informed EnviroTyping Tools to Better Test and Target Environments
 ### Student Contributors
 
 * Austin Gratton : University of North Carolina Wilmington
-  * azg5169@uncw.edu
-  * grattonauz@gmail.com
+    - azg5169@uncw.edu
+    - grattonauz@gmail.com
 
 * Banks Osborne :  University of North Carolina Wilmington
-  * bno5761@uncw.edu
-  * justonedrop95@gmail.com
+    - bno5761@uncw.edu
+    - justonedrop95@gmail.com
 
 ### Purpose
 
