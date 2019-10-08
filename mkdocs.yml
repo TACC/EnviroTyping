@@ -10,7 +10,8 @@ pages:
 - Workflow:
     - 'Getting Started': 'workflow/getting_started.md'
     - 'Benchmark Known Truth': 'workflow/benchmark.md'
-    - 'Simulated Data': 'workflow/sim_data.md' 
+    - 'Simulated Data': 'workflow/sim_data.md'
+    - 'Testing NA Robustness': 'workflow/NAadded.md'
     - 'Creating G2F Datasets': 'workflow/datasets.md'
     - 'Small Real Data Analysis': 'workflow/toy_g2f.md'
     - '2016 Post-hoc Analysis': 'workflow/post_hoc_analysis_2016.md'
