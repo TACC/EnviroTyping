@@ -5,16 +5,16 @@ library(tidyverse)
 rm(list = ls(all = TRUE))
 
 #set directory for the output files (created by the batch script)
-setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/shifted_data_analysis/2016/min_vars_3000/output1")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/hyb_by_day_analysis/output")
 
 #read in by-month, calibrated, wide shifted data, example in docs
-df <- read_rds("../../../../../data/interim/2016/hyb_by_mon_calib_wide_shifted.rds")
+df <- read_rds("../../../../../data/interim/2015/hyb_by_day_calib.rds")
 
 #remove 0 variance variables
-variance.var <- names(which(map_dbl(df[,16:255], var, na.rm = TRUE) != 0))
+variance.var <- names(which(map_dbl(df[,17:55], var, na.rm = TRUE) != 0))
 
 #subset only the minimum measurements (mean, median, and max are other options)
-min.vars <- str_subset(variance.var, "min")
+min.vars <- str_subset(variance.var, "Min")
 
 #set seed for R 
 set.seed(12345)
@@ -36,6 +36,6 @@ riskProfObj <- calcAvgRiskAndProfile(clusObj)
 
 #write clusObj to take a quick look at clustering 
 #clustering is how we have been assessing performance on surface level
-write_rds(clusObj, "../clusObj1.rds", compress = "xz")
+write_rds(clusObj, "../clusObj.rds", compress = "xz")
 
-write_rds(riskProfObj, "../riskProfObj1.rds", compress = "xz")
+write_rds(riskProfObj, "../riskProfObj.rds", compress = "xz")
