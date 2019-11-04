@@ -5,7 +5,7 @@ library(tidyverse)
 rm(list = ls(all = TRUE))
 
 #set directory for the output files (created by the batch script)
-setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/hyb_by_day_analysis/output")
+setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/hyb_by_day_analysis/2015/output")
 
 #read in by-month, calibrated, wide shifted data, example in docs
 df <- read_rds("../../../../../data/interim/2015/hyb_by_day_calib.rds")
