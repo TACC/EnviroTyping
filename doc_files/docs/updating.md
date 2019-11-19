@@ -38,4 +38,4 @@ In short, you'll want to create a fork of the repository from the terminal or th
 MkDocs is a fast, simple and downright gorgeous static site generator that's geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file.
 
 
-Contact hiltbrandd@uncw.edu
+Contact azg5169@uncw.edu
