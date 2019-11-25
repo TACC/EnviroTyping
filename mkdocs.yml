@@ -1,8 +1,8 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
-repo_url: https://github.com/TACC/EnviroTyping
+repo_url: https://github.com/TACC/EnviroTyping/doc_files
 theme: readthedocs
-docs_dir: '/doc_files/docs'
+docs_dir: '/docs'
 pages:
 - Home: index.md
 - 'Genomes to Fields Project': project_scope.md
