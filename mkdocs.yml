@@ -2,6 +2,7 @@ site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
 repo_url: https://github.com/TACC/EnviroTyping/doc_files
 theme: readthedocs
+edit_uri: https://github.com/TACC/EnviroTyping/doc_files
 docs_dir: '/docs'
 pages:
 - Home: index.md
