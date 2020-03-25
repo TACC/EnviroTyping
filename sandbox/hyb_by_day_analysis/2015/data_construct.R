@@ -160,7 +160,7 @@ missing <- hybday %>%
 #write_rds(hybmon, "~/EnviroTyping/data/interim/2015/hyb_by_mon_calib.rds")
 
 
-write_rds(hybday, "~/EnviroTyping/data/interim/2015/hyb_by_day_calib.rds")
+write_rds(hybday, "~/EnviroTyping/data/interim/2015/hyb_by_day_calib.rds", compress = "xz")
 
 # Building a second data set that allows missing weather variables
 # hybmon_with_missing <- left_join(hyb, wthmon, by = "exp") %>% 

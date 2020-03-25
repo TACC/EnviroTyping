@@ -68,14 +68,16 @@ write_rds(full.res, "fullintres.rds", compress = "xz")
 
 int.dat = read_rds("fullintres.rds")
 int.avs = read_rds("interres.rds")
+seeds = c(89548009,85000401,54912628,60149388,99302548,22948358,38327743,34766776,59998145,13945098)
 
-nClus = data.frame(int.dat[1:dim(full.res)[1],2:(length(seeds)+1)], row.names = int.dat[1:dim(full.res)[1],1])
+
+nClus = data.frame(int.dat[1:dim(int.avs)[1],2:(length(seeds)+1)], row.names = int.dat[1:dim(int.avs)[1],1])
 
 clusters = as.vector(unlist(nClus))
 
 
 #prop = c("10","20","30","40","50","60","70","10","20","30","40","50","60","70","10","20","30","40","50","60","70","10","20","30","40","50","60","70","10","20","30","40","50","60","70","10","20","30","40","50","60","70","10","20","30","40","50","60","70")
-prop = c(rep(paste0(c((1:dim(full.res)[1])*10)), length(seeds)))
+prop = c(rep(paste0(c((1:dim(int.avs)[1])*10)), length(seeds)))
 #just make this character vector of seeds
 #run = c("run_1","run_1","run_1","run_1","run_1","run_1","run_1","run_2","run_2","run_2","run_2","run_2","run_2","run_2","run_3","run_3","run_3","run_3","run_3","run_3","run_3","run_4","run_4","run_4","run_4","run_4","run_4","run_4","run_5","run_5","run_5","run_5","run_5","run_5","run_5","run_6","run_6","run_6","run_6","run_6","run_6","run_6","run_7","run_7","run_7","run_7","run_7","run_7","run_7")
 #clusters = c(9,6,11,5,6,3,2,12,10,6,4,3,5,2,8,8,6,5,16,2,2,13,9,7,4,7,8,4,8,10,9,13,15,24,3)
@@ -90,19 +92,20 @@ str(run.data)
 #avs = data.frame(c(10.0,8.6,7.8,6.2,9.4,8.4,2.6))
 avs = data.frame(c(int.avs[,1]))
 colnames(avs) = "nClus"
-avsprop = as.numeric(prop[1:dim(full.res)[1]])
+avsprop = as.numeric(prop[1:dim(int.avs)[1]])
 
-#avsdf = data.frame(as.character(avsprop),avs)
+avsdf = data.frame(as.character(avsprop),avs)
 colnames(avsdf) = c("avsprop", "nClus")
 newclus = as.vector(rep(unlist(avs), 10))
 avsdf = data.frame(prop,run.label,newclus)
 
 
 
-ggplot(data = run.data,aes(x = as.numeric(prop),y = clusters, color = factor(run.label), group = factor(run.label))) +
-    geom_point(size = 3) + geom_line() +
-    geom_point(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = 'black') + geom_line(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = 'black')
-a = list(run.data, avsdf)
+p <- ggplot(data = run.data,aes(x = as.numeric(prop),y = clusters, group = factor(run.label), color = factor(run.label))) +
+    geom_point(size = 1, alpha = 1) + geom_line(alpha = .3, size = 1) +  
+    geom_point(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = '#DC143C') + geom_line(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = '#DC143C')
+
+p + labs(title = 'NAs Introduced by Interval', x = "Total NAs (percentage)", y = "Number of Clusters Found", subtitle = "From 10 to 70 percent across 10 random seeds, based on simulated data") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = "none")
 
 
 write_rds(a, 'intervalsdataset1.rds', compress = "xz")
@@ -217,10 +220,11 @@ newclus = as.vector(rep(unlist(avs), 10))
 avsdf = data.frame(prop,run.label,newclus)
 
 
-ggplot(data = run.data,aes(x = as.numeric(prop),y = clusters, color = factor(run.label), group = factor(run.label))) +
-    geom_point(size = 2, alpha = .3) + geom_line(alpha = .3) +
-    geom_point(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = 'red') + geom_line(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = 'red')
+p <- ggplot(data = run.data,aes(x = as.numeric(prop),y = clusters, group = factor(run.label), color = factor(run.label))) +
+    geom_point(size = 1, alpha = 1) + geom_line(alpha = .3, size = 1) +  
+    geom_point(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = '#DC143C') + geom_line(data = avsdf, aes(x = as.numeric(prop),y = newclus), size = 2, color = '#DC143C')
 
+p + labs(title = 'NAs Introduced by Variable', x = "Total NAs (percentage)", y = "Number of Clusters Found", subtitle = "From 10 to 70 percent across 10 random seeds, based on simulated data") + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), legend.position = "none")
 
 
 tapply(run.data[,3],run.data[,1], range)

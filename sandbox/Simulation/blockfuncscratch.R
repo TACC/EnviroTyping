@@ -57,3 +57,9 @@ dat = dat[[2]]
 
 newdat2 = naBlockFunc(dat, .4, seed = 12345)
 
+
+
+
+
+
+
