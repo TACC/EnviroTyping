@@ -1,8 +1,9 @@
 site_name: EnviroTyping
 site_description: EnviroTyping Project Documentation
-repo_url: https://github.com/TACC/EnviroTyping
+repo_url: https://github.com/TACC/EnviroTyping/doc_files
 theme: readthedocs
-docs_dir: 'doc_files/docs'
+edit_uri: https://github.com/TACC/EnviroTyping/doc_files
+docs_dir: '/docs'
 pages:
 - Home: index.md
 - 'Genomes to Fields Project': project_scope.md
@@ -10,12 +11,12 @@ pages:
 - Workflow:
     - 'Getting Started': 'workflow/getting_started.md'
     - 'Benchmark Known Truth': 'workflow/benchmark.md'
-    - 'Simulated Data': 'workflow/sim_data.md' 
+    - 'Simulated Data': 'workflow/sim_data.md'
+    - 'Testing NA Robustness': 'workflow/NAadded.md'
     - 'Creating G2F Datasets': 'workflow/datasets.md'
     - 'Small Real Data Analysis': 'workflow/toy_g2f.md'
-    - 'Post hoc Analysis': 'workflow/profile_by_group.md'
     - '2016 Post-hoc Analysis': 'workflow/post_hoc_analysis_2016.md'
-    - 'Interactive App': 'workflow/profile_by_group_app.md'
+    - 'Human-Readable Visualization': 'workflow/human_readable.md'
 - Tutorials:
     - 'Getting Started With High Performance Computing': 'tutorials/hpc_setup.md'
     - 'Introduction to GitHub and Project Set-up': 'tutorials/github.md'

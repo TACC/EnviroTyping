@@ -17,6 +17,16 @@ Genetically-Informed EnviroTyping Tools to Better Test and Target Environments
 
 - Silvia Liverani : Queen Mary University of London, School of Mathematical Sciences
 
+### Student Contributors
+
+* Austin Gratton : University of North Carolina Wilmington
+    - azg5169@uncw.edu
+    - grattonauz@gmail.com
+
+* Banks Osborne :  University of North Carolina Wilmington
+    - bno5761@uncw.edu
+    - justonedrop95@gmail.com
+
 ### Purpose
 
 Better matching of test environments to target production environments is key for efficient crop breeding. We are optimizing PreMiuM Bayesian clustering-based envirotyping analysis and developing publicly accessible known-truth genotype-environment simulations. We will combine PreMiuM profile regression covariate variable selection with standard linear model selection and fit methods to create a combined analysis workflow that will allow breeders to fit SNP and environment variates to their data. To illustrate these new analysis methods and inform our breeding program modeling, we will analyze real crop datasets with our improved PreMiuM and PreMiuM+model selection workflow and make spatial results maps to visualize the results in an easily interpretable field context.
