@@ -271,29 +271,29 @@ missing <- hybday %>%
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
-write_rds(hybwk, "~/EnviroTyping/data/interim/2015/hyb_by_wk_calib.rds")
+write_rds(hybwk, "data/interim/2015/hyb_by_wk_calib.rds")
 
 
 write_rds(hybday, "~/EnviroTyping/data/interim/2015/hyb_by_day_calib.rds", compress = "xz")
 
-# Building a second data set that allows missing weather variables
-# hybmon_with_missing <- left_join(hyb, wthmon, by = "exp") %>% 
-#     select(1:3, 11:13, 54:56, 4:10, 14:53)
+ Building a second data set that allows missing weather variables
+hybwk_with_missing <- left_join(hyb, wthwk, by = "exp") %>% 
+     select(1:3, 11:13, 54:56, 4:10, 14:53)
 
 hybday_with_missing <- left_join(hyb, wthday, by = "exp") %>% 
     select(1:3, 11:13, 54:56, 4:10, 14:53)
 
 
 # check for NA's
-# missing_true <- hybmon_with_missing %>% 
-#     select_if(function(x) any(is.na(x))) %>% 
-#     summarise_all(funs(sum(is.na(.))))
+missing_true <- hybwk_with_missing %>% 
+     select_if(function(x) any(is.na(x))) %>% 
+     summarise_all(funs(sum(is.na(.))))
 
 missing_true <- hybday_with_missing %>% 
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
-# write_rds(hybmon_with_missing, "~/EnviroTyping/data/interim/2015/hyb_by_mon_calib_w_wth_nas.rds", compress = "xz")
+write_rds(hybwk_with_missing, "data/interim/2015/hyb_by_wk_calib_w_wth_nas.rds", compress = "xz")
 
 write_rds(hybday_with_missing, "~/EnviroTyping/data/interim/2015/hyb_by_day_calib_w_wth_nas.rds", compress = "xz")
 
