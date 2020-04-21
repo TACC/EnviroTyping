@@ -5,23 +5,26 @@ library(tidyverse)
 rm(list = ls(all = TRUE))
 
 #set directory for the output files (created by the batch script)
-setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/hyb_by_day_analysis/2015/output")
+#setwd("/work/04902/azg5169/stampede2/EnviroTyping/sandbox/hyb_by_day_analysis/2015/output")
+setwd("sandbox/hyb_by_wk_analysis/2015/output")
 
 #read in by-month, calibrated, wide shifted data, example in docs
-df <- read_rds("../../../../data/interim/2015/hyb_by_day_calib.rds")
+df <- read_rds("../../../../data/interim/2015/hyb_by_wk_calib.rds")
 
 #remove 0 variance variables
-variance.var <- names(which(map_dbl(df[,17:55], var, na.rm = TRUE) != 0))
+variance.var <- names(which(map_dbl(df[,17:56], var, na.rm = TRUE) != 0))
 
 #subset only the minimum measurements (mean, median, and max are other options)
-min.vars <- str_subset(variance.var, "Min")
+min.vars <- str_subset(variance.var, "min")
+
+df = df[sample(c(1:length(t(df[,1]))), 100),]
 
 #set seed for R 
 set.seed(12345)
 
 #profile regression
 #don't set seed because we can get the seed used from the output.R
-runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 3000, nBurn = 1000, nProgress = 1000, nClusInit = 532, seed = 3846532330)
+runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min.vars, data = df, nSweeps = 1000, nBurn = 1000, nProgress = 50)
 
 #calculate dissimilarity matrix
 calcDists <- calcDissimilarityMatrix(runInfoObj)
