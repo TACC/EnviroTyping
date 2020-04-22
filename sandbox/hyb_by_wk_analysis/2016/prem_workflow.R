@@ -9,13 +9,13 @@ rm(list = ls(all = TRUE))
 setwd("sandbox/hyb_by_wk_analysis/2015/output")
 
 #read in by-month, calibrated, wide shifted data, example in docs
-df <- read_rds("../../../../data/interim/2015/hyb_by_wk_calib.rds")
+df <- read_rds("../../../../data/interim/2016/hyb_by_wk_calib_clean_wide.rds")
 
 #remove 0 variance variables
-variance.var <- names(which(map_dbl(df[,17:56], var, na.rm = TRUE) != 0))
+variance.var <- names(which(map_dbl(df[,17:1495], var, na.rm = TRUE) != 0))
 
 #subset only the minimum measurements (mean, median, and max are other options)
-min.vars <- str_subset(variance.var, "min")
+min.vars <- str_subset(variance.var, "Min")
 
 df = df[sample(c(1:length(t(df[,1]))), 100),]
 
@@ -24,7 +24,7 @@ set.seed(12345)
 
 #profile regression
 #don't set seed because we can get the seed used from the output.R
-runInfoObj <- profRegr(covNames, outcome = 'yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "pedi", continuousCovs = min.vars, data = df, nSweeps = 1000, nBurn = 1000, nProgress = 50)
+runInfoObj <- profRegr(covNames, outcome = 'Yield', yModel = 'Normal', xModel = "Mixed", discreteCovs = "Pedi", continuousCovs = min.vars, data = df, nSweeps = 100, nBurn = 100, nProgress = 10)
 
 #calculate dissimilarity matrix
 calcDists <- calcDissimilarityMatrix(runInfoObj)

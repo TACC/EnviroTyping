@@ -4,14 +4,12 @@ library(magrittr)
 
 hyb <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/GenomesToFields_G2F_2016_Data_Mar_2018/a._2016_hybrid_phenotypic_data/g2f_2016_hybrid_data_no_outliers.csv",col_types = cols("Date Plot Planted" = col_date("%m/%d/%Y"), "Date Plot Harvested" = col_date("%m/%d/%Y"), "Plant Height [cm]" = col_number(), "Ear Height [cm]" = col_number()))
 
-wth <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/GenomesToFields_G2F_2016_Data_Mar_2018/c._2016_weather_data/g2f_2016_weather_calibrated.csv")
-cols <- names(wth)
-wth <- read.csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/GenomesToFields_G2F_2016_Data_Mar_2018/c._2016_weather_data/g2f_2016_weather_calibrated.csv")
-names(wth) = cols
+wth <- read_csv("https://de.cyverse.org/anon-files//iplant/home/shared/commons_repo/curated/GenomesToFields_G2F_2016_Data_Mar_2018/c._2016_weather_data/g2f_2016_weather_clean.csv")
 
 meta <- read_csv("data/external/G2F/g2f_2016_field_metadata.csv")
 
 meta <- meta %>% select(Exp = "Experiment Code", City, Lat = "Weather station latitude (in decimal numbers NOT DMS)", Lon = "Weather station longitude (in decimal numbers NOT DMS)")
+
 
 Date = NULL
 
@@ -20,18 +18,19 @@ Date = as.Date(with(wth, paste(2016, Month, Day, sep = '-')), "%Y-%m-%d")
 Week = as.numeric(strftime(Date, format = "%V"))
 
 wth$Month = Week
-colnames(wth)[7] = "Week"
-colnames(wth)[7]
+colnames(wth)[5] = "Week"
+colnames(wth)[5]
 unique(wth$Week)
-
-
 
 ##### Week #####
 # tidy the data
 wthwk <- wth %>% 
     
-    # choosing variables to keep and renaming, calibrated wind gust is full NA
-    select(Exp = "Experiment(s)", StatID = "Station ID", Day, Week, Year, DoY = "Day of Year", Temp = "Calibrated Temperature [C]", Dew = "Calibrated Dew Point [C]", Humid = "Calibrated Relative Humidity [%]", Solar = "Solar Radiation [W/m2]", Rain = "Rainfall [mm]", windSpd = "Calibrated Wind Speed [m/s]", windDir = "Calibrated Wind Direction [degrees]", windGust = "Calibrated Wind Gust [m/s]", soilTemp = "Soil Temperature [C]", soilMoist = "Soil Moisture [%VWC]") %>% 
+    # choosing variables to keep and renaming
+    select(Exp = "Experiment(s)", StatID = "Station ID", Day, Week, Year, DoY = "Day of Year", Temp = "Temperature [C]",
+           Dew = "Dew Point [C]", Humid = "Relative Humidity [%]", Solar = "Solar Radiation [W/m2]", 
+           Rain = "Rainfall [mm]", windSpd = "Wind Speed [m/s]", windDir = "Wind Direction [degrees]", 
+           windGust = "Wind Gust [m/s]", soilTemp = "Soil Temperature [C]", soilMoist = "Soil Moisture [%VWC]") %>% 
     
     # grouping by variables for making summary statistics
     group_by(Exp, StatID, Year, Week) %>% 
@@ -97,13 +96,13 @@ hybwk %>%
     select_if(function(x) any(is.na(x))) %>% 
     summarise_all(funs(sum(is.na(.))))
 
-write_rds(hybwk, "data/interim/2016/hyb_by_wk_calib.rds")
+write_rds(hybwk, "data/interim/2016/hyb_by_wk_calib_clean.rds")
 
 
 ###Wide
 
 library(tidyverse)
-df <- read_rds("data/interim/2016/hyb_by_wk_calib.rds")
+df <- read_rds("data/interim/2016/hyb_by_wk_calib_clean.rds")
 val <- str_which(names(df),"Min|Max|Mean|Median")
 numericVars <- names(which(map_dbl(df[,17:56], var, na.rm = TRUE) != 0))
 df %>% select(1:16,numericVars)
@@ -113,4 +112,10 @@ df1 <- df %>%
     spread(Var1, val)
 str(df1)
 
-write_rds(df1, "data/interim/2016/hyb_by_wk_calib_wide.rds", compress = "xz")
+write_rds(df1, "data/interim/2016/hyb_by_wk_calib_clean_wide.rds", compress = "xz")
+
+
+
+
+
+
