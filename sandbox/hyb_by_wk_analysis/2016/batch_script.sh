@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-#SBATCH -J minday
+#SBATCH -J minwk
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH --mail-user=azg5169@uncw.edu
