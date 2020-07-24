@@ -19,6 +19,7 @@ pages:
     - 'Introduction to GitHub and Project Set-up': 'tutorials/github.md'
     - 'Jobs on HPC': 'tutorials/hpc_use.md'
     - 'Launcher Module': 'tutorials/launcher_module.md'
+    - 'Use IDOLS with Singularity': 'tutorials/use_singularity.md'
     - 'Reminders and Useful Commands': 'tutorials/reminders.md'
 - 'Updating the Docs': updating.md
 
